@@ -21,6 +21,7 @@
   },
   "homepage": "https://github.com/vietlq/react-training#readme",
   "dependencies": {
+    "babelify": "^7.3.0",
     "browserify": "^13.1.0"
   }
 }
