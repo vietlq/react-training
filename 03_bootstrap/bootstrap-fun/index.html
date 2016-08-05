@@ -9,10 +9,38 @@
     </head>
     <body>
         <div class="container">
-            <button class="btn btn-primary">Click Me!</button>
-            <button class="btn btn-warning">Click Me!</button>
-            <button class="btn btn-danger">Click Me!</button>
-            <button class="btn btn-default">Click Me!</button>
+            <div class="row">
+                <div class="col-sm-12" style="background: pink; height: 200px;">
+                    <button class="btn btn-primary">Click Me!</button>
+                    <button class="btn btn-warning">Click Me!</button>
+                    <button class="btn btn-danger">Click Me!</button>
+                    <button class="btn btn-default">Click Me!</button>
+                </div>
+            </div>
+            <div class="row">
+                <!-- For small screens, use 6 columns, for large, take all 12 -->
+                <div class="col-sm-6 col-lg-12" style="background: cyan; height: 200px;">
+                    <button class="btn btn-primary">Click Me!</button>
+                    <button class="btn btn-warning">Click Me!</button>
+                    <button class="btn btn-danger">Click Me!</button>
+                    <button class="btn btn-default">Click Me!</button>
+                </div>
+            </div>
+            <div class="row">
+                <!-- For small screens, take 4 columns for each div -->
+                <div class="col-sm-4" style="background: red; height: 200px;"></div>
+                <div class="col-sm-4" style="background: green; height: 200px;"></div>
+                <div class="col-sm-4" style="background: blue; height: 200px;"></div>
+            </div>
+            <div class="row">
+                <!-- For small screens, use 1 column for each div, for large, take 4 for each div -->
+                <div class="col-xs-1 col-sm-1 col-md-3 col-lg-4"
+                    style="background: gray; height: 200px;"></div>
+                <div class="col-xs-1 col-sm-1 col-md-3 col-lg-4"
+                    style="background: orange; height: 200px;"></div>
+                <div class="col-xs-1 col-sm-1 col-md-3 col-lg-4"
+                    style="background: yellow; height: 200px;"></div>
+            </div>
         </div>
 
         <script src="jquery-3.1.0.min.js"></script>
