@@ -4,6 +4,7 @@
   "description": "Skeleton for React",
   "main": "main.js",
   "scripts": {
+    "start": "watchify src/main.jsx -v -t [ babelify --presets [ react ] ] -o public/js/main.js",
     "test": "test"
   },
   "repository": {
