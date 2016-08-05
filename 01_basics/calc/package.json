@@ -1,0 +1,17 @@
+{
+  "name": "calc",
+  "version": "1.0.0",
+  "description": "Calc",
+  "main": "calc.js",
+  "scripts": {
+    "test": "test"
+  },
+  "keywords": [
+    "calc"
+  ],
+  "author": "vietlq85@gmail.com",
+  "license": "ISC",
+  "dependencies": {
+    "readline-sync": "^1.4.4"
+  }
+}
