@@ -1,0 +1,23 @@
+{
+  "name": "skeleton",
+  "version": "0.0.1",
+  "description": "Skeleton for React",
+  "main": "main.js",
+  "scripts": {
+    "test": "test"
+  },
+  "repository": {
+    "type": "git",
+    "url": "git+https://github.com/vietlq/react-training.git"
+  },
+  "keywords": [
+    "react",
+    "skeleton"
+  ],
+  "author": "vietlq85@gmail.com",
+  "license": "ISC",
+  "bugs": {
+    "url": "https://github.com/vietlq/react-training/issues"
+  },
+  "homepage": "https://github.com/vietlq/react-training#readme"
+}
