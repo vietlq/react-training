@@ -20,24 +20,27 @@ var ListManager = React.createClass({
         this.setState({items: currentItems, newItemText: ''});
     },
     render: function() {
+        var displayStyle = {
+
+        };
+
+        var header
         return (
-            <div className="col-sm-4 col-sm-offset-4">
-                <div className="panel panel-default">
-                    <div className="panel-heading">
-                        <h3>{this.props.title}</h3>
-                    </div>
-                    <div className="panel-body">
-                        <form onSubmit={this.handleSubmit}>
-                            <div className="input-group">
-                                <input className="form-control" onChange={this.onChange} value={this.state.newItemText} />
-                                <span className="input-group-btn">
-                                    <button className="btn btn-primary">Add</button>
-                                </span>
-                            </div>
-                        </form>
-                        <br/>
-                        <List items={this.state.items} />
-                    </div>
+            <div className="panel panel-primary">
+                <div className="panel-heading">
+                    <h3>{this.props.title}</h3>
+                </div>
+                <div className="panel-body">
+                    <form onSubmit={this.handleSubmit}>
+                        <div className="input-group">
+                            <input className="form-control" onChange={this.onChange} value={this.state.newItemText} />
+                            <span className="input-group-btn">
+                                <button className="btn btn-primary">Add</button>
+                            </span>
+                        </div>
+                    </form>
+                    <br/>
+                    <List items={this.state.items} />
                 </div>
             </div>
         );
