@@ -28,7 +28,7 @@ var HeadingStats = React.createClass({
                     <span className="stats-description">{this.props.description}</span><br/>
                     <span className="stats-figure">{this.props.figure}</span>
                 </div>
-                <div className="panel-body">
+                <div className="panel-body stats-body">
                     <span className="stats-details">{this.props.details}</span>
                 </div>
             </div>

@@ -1,11 +1,11 @@
 var React = require('react');
 
-var RegularStats = React.createClass({
+var WeatherStats = React.createClass({
     render: function() {
         var bodyStyle = {
-            textColor: "#000000",
-            textAlign: "left",
-            background: "#FFFFFF"
+            color: "#FFFFFF",
+            textAlign: "center",
+            background: "orange"
         };
 
         if (this.props.textColor) {
@@ -23,7 +23,7 @@ var RegularStats = React.createClass({
         return (
             <div className="panel panel-default">
                 <div style={bodyStyle} className="panel-body stats-body">
-                    <span className="stats-figure">{this.props.figure}</span><br/>
+                    <span className="stats-figure">{this.props.figure}&deg;</span><br/>
                     <span className="stats-description">{this.props.description}</span>
                 </div>
             </div>
@@ -31,4 +31,4 @@ var RegularStats = React.createClass({
     }
 });
 
-module.exports = RegularStats;
+module.exports = WeatherStats;

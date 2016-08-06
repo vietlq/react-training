@@ -20803,7 +20803,7 @@ var HeadingStats = React.createClass({
             ),
             React.createElement(
                 'div',
-                { className: 'panel-body' },
+                { className: 'panel-body stats-body' },
                 React.createElement(
                     'span',
                     { className: 'stats-details' },
@@ -20823,12 +20823,30 @@ var RegularStats = React.createClass({
     displayName: "RegularStats",
 
     render: function () {
+        var bodyStyle = {
+            textColor: "#000000",
+            textAlign: "left",
+            background: "#FFFFFF"
+        };
+
+        if (this.props.textColor) {
+            bodyStyle.color = this.props.textColor;
+        }
+
+        if (this.props.textAlign) {
+            bodyStyle.textAlign = this.props.textAlign;
+        }
+
+        if (this.props.bgColor) {
+            bodyStyle.background = this.props.bgColor;
+        }
+
         return React.createElement(
             "div",
             { className: "panel panel-default" },
             React.createElement(
                 "div",
-                { className: "panel-body" },
+                { style: bodyStyle, className: "panel-body stats-body" },
                 React.createElement(
                     "span",
                     { className: "stats-figure" },
@@ -20849,9 +20867,60 @@ module.exports = RegularStats;
 
 },{"react":174}],177:[function(require,module,exports){
 var React = require('react');
+
+var WeatherStats = React.createClass({
+    displayName: "WeatherStats",
+
+    render: function () {
+        var bodyStyle = {
+            color: "#FFFFFF",
+            textAlign: "center",
+            background: "orange"
+        };
+
+        if (this.props.textColor) {
+            bodyStyle.color = this.props.textColor;
+        }
+
+        if (this.props.textAlign) {
+            bodyStyle.textAlign = this.props.textAlign;
+        }
+
+        if (this.props.bgColor) {
+            bodyStyle.background = this.props.bgColor;
+        }
+
+        return React.createElement(
+            "div",
+            { className: "panel panel-default" },
+            React.createElement(
+                "div",
+                { style: bodyStyle, className: "panel-body stats-body" },
+                React.createElement(
+                    "span",
+                    { className: "stats-figure" },
+                    this.props.figure,
+                    "°"
+                ),
+                React.createElement("br", null),
+                React.createElement(
+                    "span",
+                    { className: "stats-description" },
+                    this.props.description
+                )
+            )
+        );
+    }
+});
+
+module.exports = WeatherStats;
+
+},{"react":174}],178:[function(require,module,exports){
+var React = require('react');
 var ReactDOM = require('react-dom');
 var RegularStats = require('./components/RegularStats.jsx');
 var HeadingStats = require('./components/HeadingStats.jsx');
+var WeatherStats = require('./components/WeatherStats.jsx');
 
 ReactDOM.render(React.createElement(RegularStats, { figure: '20',
     description: 'New followers added this month' }), document.getElementById('dashboard-regular-stats'));
@@ -20859,4 +20928,7 @@ ReactDOM.render(React.createElement(RegularStats, { figure: '20',
 ReactDOM.render(React.createElement(HeadingStats, { figure: '1.5k',
     description: 'New visitors' }), document.getElementById('dashboard-heading-stats'));
 
-},{"./components/HeadingStats.jsx":175,"./components/RegularStats.jsx":176,"react":174,"react-dom":29}]},{},[177]);
+ReactDOM.render(React.createElement(WeatherStats, { figure: '20',
+    description: 'London' }), document.getElementById('dashboard-weather-stats'));
+
+},{"./components/HeadingStats.jsx":175,"./components/RegularStats.jsx":176,"./components/WeatherStats.jsx":177,"react":174,"react-dom":29}]},{},[178]);

@@ -1,0 +1,16 @@
+.stats-description {
+
+}
+
+.stats-figure {
+    font-size: 2em;
+    font-weight: bold;
+}
+
+.stats-details {
+
+}
+
+.panel-body.stats-body {
+    min-height: 50px;
+}
