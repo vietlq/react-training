@@ -3,7 +3,7 @@ var React = require('react');
 var RegularStats = React.createClass({
     render: function() {
         var bodyStyle = {
-            textColor: "#000000",
+            color: "#656565",
             textAlign: "left",
             background: "#FFFFFF"
         };

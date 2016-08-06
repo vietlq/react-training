@@ -11,7 +11,7 @@ var HeadingStats = React.createClass({
     render: function() {
         var headingStyle = {
             color: '#FFFFFF',
-            background: 'red'
+            background: '#ff4826'
         };
 
         if (this.props.textColor) {

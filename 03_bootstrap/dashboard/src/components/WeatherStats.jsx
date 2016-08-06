@@ -3,9 +3,9 @@ var React = require('react');
 var WeatherStats = React.createClass({
     render: function() {
         var bodyStyle = {
-            color: "#FFFFFF",
+            color: "#ffffff",
             textAlign: "center",
-            background: "orange"
+            background: "#ff8a00"
         };
 
         if (this.props.textColor) {

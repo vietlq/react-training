@@ -14,3 +14,17 @@
 .panel-body.stats-body {
     min-height: 50px;
 }
+
+.panel-heading.shots-stats-heading {
+    min-height: 200px;
+}
+
+.shots-stats-footer {
+    color: #ffffff;
+    text-align: center;
+    background: #484d4d;
+}
+
+.shots-stats-footer .stats-description {
+    color: #b1b2b2;
+}
