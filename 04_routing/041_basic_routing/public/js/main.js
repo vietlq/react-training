@@ -26127,24 +26127,85 @@ module.exports = Routes;
 
 },{"./components/Base.jsx":239,"./components/ShowList.jsx":243,"./components/ShowLists.jsx":244,"history/lib/createHashHistory":38,"react":235,"react-router":81}],239:[function(require,module,exports){
 var React = require('react');
+var ReactRouter = require('react-router');
+var Link = ReactRouter.Link;
 
 var Base = React.createClass({
-    displayName: "Base",
+    displayName: 'Base',
 
     render: function () {
         return React.createElement(
-            "div",
-            { className: "base-container" },
+            'div',
+            { className: 'base-container' },
             React.createElement(
-                "h1",
-                null,
-                "Header"
+                'nav',
+                { className: 'navbar navbar-inverse' },
+                React.createElement(
+                    'div',
+                    { className: 'container-fluid' },
+                    React.createElement(
+                        'div',
+                        { className: 'navbar-header' },
+                        React.createElement(
+                            'a',
+                            { className: 'navbar-brand', href: '/' },
+                            React.createElement('span', { className: 'glyphicon glyphicon-music' })
+                        )
+                    ),
+                    React.createElement(
+                        'div',
+                        { className: 'collapse navbar-collapse' },
+                        React.createElement(
+                            'ul',
+                            { className: 'nav navbar-nav' },
+                            React.createElement(
+                                'li',
+                                null,
+                                React.createElement(
+                                    Link,
+                                    { to: { pathname: '/' } },
+                                    'Home'
+                                )
+                            ),
+                            React.createElement(
+                                'li',
+                                null,
+                                React.createElement(
+                                    Link,
+                                    { to: { pathname: '/lists' } },
+                                    'All Lists'
+                                )
+                            ),
+                            React.createElement(
+                                'li',
+                                null,
+                                React.createElement(
+                                    Link,
+                                    { to: { pathname: '/list/todo' } },
+                                    'To-do List'
+                                )
+                            )
+                        )
+                    )
+                )
             ),
             this.props.children,
             React.createElement(
-                "h1",
-                null,
-                "Footer"
+                'nav',
+                { className: 'navbar navbar-inverse' },
+                React.createElement(
+                    'div',
+                    { className: 'container-fluid' },
+                    React.createElement(
+                        'div',
+                        { className: 'navbar-header' },
+                        React.createElement(
+                            'a',
+                            { className: 'navbar-brand', href: '/' },
+                            React.createElement('span', { className: 'glyphicon glyphicon-music' })
+                        )
+                    )
+                )
             )
         );
     }
@@ -26152,7 +26213,7 @@ var Base = React.createClass({
 
 module.exports = Base;
 
-},{"react":235}],240:[function(require,module,exports){
+},{"react":235,"react-router":81}],240:[function(require,module,exports){
 var React = require('react');
 var ListItem = require('./ListItem.jsx');
 
