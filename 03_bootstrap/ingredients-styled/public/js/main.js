@@ -20824,12 +20824,14 @@ var ListManager = React.createClass({
         this.setState({ items: currentItems, newItemText: '' });
     },
     render: function () {
-        var displayStyle = {};
+        var displayStyle = {
+            marginTop: 10
+        };
 
         var header;
         return React.createElement(
             'div',
-            { className: 'panel panel-primary' },
+            { style: displayStyle, className: 'panel panel-primary' },
             React.createElement(
                 'div',
                 { className: 'panel-heading' },
