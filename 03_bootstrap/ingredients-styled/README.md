@@ -1,2 +1,1 @@
-# Skeleton for React projects
-
+# Sample ReactJS + Bootstrap project with List & ListItem

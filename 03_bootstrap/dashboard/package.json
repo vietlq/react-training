@@ -1,0 +1,32 @@
+{
+  "name": "ingredients",
+  "version": "0.0.1",
+  "description": "Skeleton for React",
+  "main": "main.js",
+  "scripts": {
+    "start": "watchify src/main.jsx -v -t [ babelify --presets [ react ] ] -o public/js/main.js",
+    "test": "test"
+  },
+  "repository": {
+    "type": "git",
+    "url": "git+https://github.com/vietlq/react-training.git"
+  },
+  "keywords": [
+    "react",
+    "skeleton"
+  ],
+  "author": "vietlq85@gmail.com",
+  "license": "ISC",
+  "bugs": {
+    "url": "https://github.com/vietlq/react-training/issues"
+  },
+  "homepage": "https://github.com/vietlq/react-training#readme",
+  "dependencies": {
+    "babel-preset-react": "^6.11.1",
+    "babelify": "^7.3.0",
+    "browserify": "^13.1.0",
+    "react": "^15.3.0",
+    "react-dom": "^15.3.0",
+    "watchify": "^3.7.0"
+  }
+}
