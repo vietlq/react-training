@@ -20840,7 +20840,53 @@ var ListShotStats = React.createClass({
 
 module.exports = ListShotStats;
 
-},{"./ShotStats.jsx":178,"react":174}],177:[function(require,module,exports){
+},{"./ShotStats.jsx":179,"react":174}],177:[function(require,module,exports){
+var React = require('react');
+var RegularStats = require('./RegularStats.jsx');
+
+var PerformanceStats = React.createClass({
+    displayName: 'PerformanceStats',
+
+    getInitialState: function () {
+        return {
+            newFollowers: 0,
+            avgMonthlyIncome: 0,
+            yearlyIncomeGoal: 0
+        };
+    },
+    render: function () {
+        return React.createElement(
+            'div',
+            { className: 'performance-stats' },
+            React.createElement(
+                'div',
+                { className: 'row' },
+                React.createElement(
+                    'div',
+                    { className: 'col-sm-4' },
+                    React.createElement(RegularStats, { figure: this.props.newFollowers,
+                        description: 'New followers added this month' })
+                ),
+                React.createElement(
+                    'div',
+                    { className: 'col-sm-4' },
+                    React.createElement(RegularStats, { figure: this.props.avgMonthlyIncome,
+                        description: 'Average Monthly Income' })
+                ),
+                React.createElement(
+                    'div',
+                    { className: 'col-sm-4' },
+                    React.createElement(RegularStats, { figure: this.props.yearlyIncomeGoal,
+                        description: 'Yearly Income Goal' })
+                )
+            )
+        );
+    }
+});
+
+module.exports = PerformanceStats;
+
+},{"./RegularStats.jsx":178,"react":174}],178:[function(require,module,exports){
 var React = require('react');
 
 var RegularStats = React.createClass({
@@ -20889,7 +20935,7 @@ var RegularStats = React.createClass({
 
 module.exports = RegularStats;
 
-},{"react":174}],178:[function(require,module,exports){
+},{"react":174}],179:[function(require,module,exports){
 var React = require('react');
 var RegularStats = require('./RegularStats.jsx');
 
@@ -20982,7 +21028,7 @@ var ShotStats = React.createClass({
 
 module.exports = ShotStats;
 
-},{"./RegularStats.jsx":177,"react":174}],179:[function(require,module,exports){
+},{"./RegularStats.jsx":178,"react":174}],180:[function(require,module,exports){
 var React = require('react');
 
 var WeatherStats = React.createClass({
@@ -21032,16 +21078,27 @@ var WeatherStats = React.createClass({
 
 module.exports = WeatherStats;
 
-},{"react":174}],180:[function(require,module,exports){
+},{"react":174}],181:[function(require,module,exports){
 var React = require('react');
 var ReactDOM = require('react-dom');
-var RegularStats = require('./components/RegularStats.jsx');
+var PerformanceStats = require('./components/PerformanceStats.jsx');
 var HeadingStats = require('./components/HeadingStats.jsx');
 var WeatherStats = require('./components/WeatherStats.jsx');
 var ListShotStats = require('./components/ListShotStats.jsx');
 
-ReactDOM.render(React.createElement(RegularStats, { figure: '20',
-    description: 'New followers added this month' }), document.getElementById('dashboard-regular-stats'));
+var performanceStats = {
+    newFollowers: 2519,
+    avgMonthlyIncome: "$ 42820",
+    yearlyIncomeGoal: "$ 502189"
+};
+
+ReactDOM.render(React.createElement(PerformanceStats, { newFollowers: performanceStats.newFollowers,
+    avgMonthlyIncome: performanceStats.avgMonthlyIncome,
+    yearlyIncomeGoal: performanceStats.yearlyIncomeGoal }), document.getElementById('dashboard-performance-stats'));
+
+var listShotStatsItems = [{ views: 120453, likes: 18318, comments: 4919 }, { views: 42522, likes: 34153, comments: 6622, bgColor: "#cd59ae" }];
+
+ReactDOM.render(React.createElement(ListShotStats, { items: listShotStatsItems }), document.getElementById('dashboard-shot-stats'));
 
 ReactDOM.render(React.createElement(HeadingStats, { figure: '1.5k',
     description: 'New visitors' }), document.getElementById('dashboard-heading-stats'));
@@ -21049,8 +21106,4 @@ ReactDOM.render(React.createElement(HeadingStats, { figure: '1.5k',
 ReactDOM.render(React.createElement(WeatherStats, { figure: '20',
     description: 'London' }), document.getElementById('dashboard-weather-stats'));
 
-var listShotStatsItems = [{ views: 120453, likes: 18318, comments: 4919 }, { views: 42522, likes: 34153, comments: 6622, bgColor: "#cd59ae" }];
-
-ReactDOM.render(React.createElement(ListShotStats, { items: listShotStatsItems }), document.getElementById('dashboard-shot-stats'));
-
-},{"./components/HeadingStats.jsx":175,"./components/ListShotStats.jsx":176,"./components/RegularStats.jsx":177,"./components/WeatherStats.jsx":179,"react":174,"react-dom":29}]},{},[180]);
+},{"./components/HeadingStats.jsx":175,"./components/ListShotStats.jsx":176,"./components/PerformanceStats.jsx":177,"./components/WeatherStats.jsx":180,"react":174,"react-dom":29}]},{},[181]);

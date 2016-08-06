@@ -1,21 +1,20 @@
 var React = require('react');
 var ReactDOM = require('react-dom');
-var RegularStats = require('./components/RegularStats.jsx');
+var PerformanceStats = require('./components/PerformanceStats.jsx');
 var HeadingStats = require('./components/HeadingStats.jsx');
 var WeatherStats = require('./components/WeatherStats.jsx');
 var ListShotStats = require('./components/ListShotStats.jsx');
 
-ReactDOM.render(<RegularStats figure="20"
-    description="New followers added this month" />,
-    document.getElementById('dashboard-regular-stats'));
+var performanceStats = {
+    newFollowers: 2519,
+    avgMonthlyIncome: "$ 42820",
+    yearlyIncomeGoal: "$ 502189",
+};
 
-ReactDOM.render(<HeadingStats figure="1.5k"
-    description="New visitors" />,
-    document.getElementById('dashboard-heading-stats'));
-
-ReactDOM.render(<WeatherStats figure="20"
-    description="London" />,
-    document.getElementById('dashboard-weather-stats'));
+ReactDOM.render(<PerformanceStats newFollowers={performanceStats.newFollowers}
+    avgMonthlyIncome={performanceStats.avgMonthlyIncome}
+    yearlyIncomeGoal={performanceStats.yearlyIncomeGoal} />,
+    document.getElementById('dashboard-performance-stats'));
 
 var listShotStatsItems = [
     { views: 120453, likes: 18318, comments: 4919 },
@@ -24,3 +23,11 @@ var listShotStatsItems = [
 
 ReactDOM.render(<ListShotStats items={listShotStatsItems} />,
     document.getElementById('dashboard-shot-stats'));
+
+ReactDOM.render(<HeadingStats figure="1.5k"
+    description="New visitors" />,
+    document.getElementById('dashboard-heading-stats'));
+
+ReactDOM.render(<WeatherStats figure="20"
+    description="London" />,
+    document.getElementById('dashboard-weather-stats'));
