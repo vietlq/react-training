@@ -21055,7 +21055,7 @@ var ShotStats = React.createClass({
                     { className: 'row' },
                     React.createElement(
                         'div',
-                        { className: 'col-sm-4' },
+                        { className: 'col-xs-4' },
                         React.createElement(
                             'span',
                             { className: 'stats-figure' },
@@ -21070,7 +21070,7 @@ var ShotStats = React.createClass({
                     ),
                     React.createElement(
                         'div',
-                        { className: 'col-sm-4' },
+                        { className: 'col-xs-4' },
                         React.createElement(
                             'span',
                             { className: 'stats-figure' },
@@ -21085,7 +21085,7 @@ var ShotStats = React.createClass({
                     ),
                     React.createElement(
                         'div',
-                        { className: 'col-sm-4' },
+                        { className: 'col-xs-4' },
                         React.createElement(
                             'span',
                             { className: 'stats-figure' },
