@@ -3,7 +3,9 @@
 ## References
 
 * https://github.com/reactjs/react-router
+* https://github.com/reactjs/react-router-tutorial/tree/master/lessons
 * https://github.com/reactjs/react-router/blob/master/upgrade-guides/v2.0.0.md#no-default-history
+* https://github.com/reactjs/react-router/blob/master/upgrade-guides/v2.0.0.md#using-history-with-router
 
 ## Install & serve via webserver
 

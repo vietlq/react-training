@@ -26105,7 +26105,7 @@ var Route = ReactRouter.Route;
 var hashHistory = ReactRouter.hashHistory;
 var browserHistory = ReactRouter.browserHistory;
 var createHashHistory = require('history/lib/createHashHistory');
-var appHistory = ReactRouter.useRouterHistory(createHashHistory)({ queryKey: false });
+var cleanHashHistory = ReactRouter.useRouterHistory(createHashHistory)({ queryKey: false });
 
 var Base = require('./components/Base.jsx');
 var ShowList = require('./components/ShowList.jsx');
@@ -26113,7 +26113,7 @@ var ShowLists = require('./components/ShowLists.jsx');
 
 var Routes = React.createElement(
     Router,
-    { history: appHistory },
+    { history: cleanHashHistory },
     React.createElement(
         Route,
         { path: '/', component: Base },
