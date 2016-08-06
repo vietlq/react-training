@@ -2,9 +2,13 @@ var React = require('react');
 var ReactRouter = require('react-router');
 var Router = ReactRouter.Router;
 var Route = ReactRouter.Route;
-// hashHistory is recommended
+// You can use hashHistory/browserHistory/cleanHashHistory
 var hashHistory = ReactRouter.hashHistory;
 var browserHistory = ReactRouter.browserHistory;
+var History = require('history');
+var cleanHashHistory = History.createHistory({
+    queryKey: false
+});
 
 var Base = require('./components/Base.jsx');
 var ShowList = require('./components/ShowList.jsx');
