@@ -26,4 +26,29 @@ We have to specify history for routing from version 2.0.0 of react-router:
 // hash history
 import { hashHistory } from 'react-router'
 <Router history={hashHistory} />
+
+Using Browser (HTML5 pushState) History
+
+As already mentioned, you now use the singleton browserHistory exported from react-router.
+
+// v1.x
+import createBrowserHistory from 'history/lib/createBrowserHistory'
+<Router history={createBrowserHistory()} />
+
+// v2.0.0
+import { browserHistory } from 'react-router'
+<Router history={browserHistory} />
+Using Custom Histories
+
+// v1.x
+import createHashHistory from 'history/lib/createHashHistory'
+const history = createHashHistory({ queryKey: false })
+<Router history={history} />
+
+// v2.0.0
+import { Router, useRouterHistory } from 'react-router'
+import { createHashHistory } from 'history'
+// useRouterHistory creates a composable higher-order function
+const appHistory = useRouterHistory(createHashHistory)({ queryKey: false })
+<Router history={appHistory} />
 ```
