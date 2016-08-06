@@ -20818,6 +20818,30 @@ module.exports = HeadingStats;
 
 },{"react":174}],176:[function(require,module,exports){
 var React = require('react');
+var ShotStats = require('./ShotStats.jsx');
+
+var ListShotStats = React.createClass({
+    displayName: 'ListShotStats',
+
+    render: function () {
+        var createItem = function (item, index) {
+            return React.createElement(ShotStats, { key: index + item.views + item.likes + item.comments,
+                views: item.views, likes: item.likes, comments: item.comments,
+                textColor: item.textColor, bgColor: item.bgColor });
+        };
+
+        return React.createElement(
+            'div',
+            { className: 'shots-stats-container' },
+            this.props.items.map(createItem)
+        );
+    }
+});
+
+module.exports = ListShotStats;
+
+},{"./ShotStats.jsx":178,"react":174}],177:[function(require,module,exports){
+var React = require('react');
 
 var RegularStats = React.createClass({
     displayName: "RegularStats",
@@ -20865,7 +20889,7 @@ var RegularStats = React.createClass({
 
 module.exports = RegularStats;
 
-},{"react":174}],177:[function(require,module,exports){
+},{"react":174}],178:[function(require,module,exports){
 var React = require('react');
 var RegularStats = require('./RegularStats.jsx');
 
@@ -20876,7 +20900,9 @@ var ShotStats = React.createClass({
         return {
             views: 0,
             likes: 0,
-            comments: 0
+            comments: 0,
+            textColor: '#ffffff',
+            bgColor: '#0096d0'
         };
     },
     render: function () {
@@ -20956,7 +20982,7 @@ var ShotStats = React.createClass({
 
 module.exports = ShotStats;
 
-},{"./RegularStats.jsx":176,"react":174}],178:[function(require,module,exports){
+},{"./RegularStats.jsx":177,"react":174}],179:[function(require,module,exports){
 var React = require('react');
 
 var WeatherStats = React.createClass({
@@ -21006,13 +21032,13 @@ var WeatherStats = React.createClass({
 
 module.exports = WeatherStats;
 
-},{"react":174}],179:[function(require,module,exports){
+},{"react":174}],180:[function(require,module,exports){
 var React = require('react');
 var ReactDOM = require('react-dom');
 var RegularStats = require('./components/RegularStats.jsx');
 var HeadingStats = require('./components/HeadingStats.jsx');
 var WeatherStats = require('./components/WeatherStats.jsx');
-var ShotStats = require('./components/ShotStats.jsx');
+var ListShotStats = require('./components/ListShotStats.jsx');
 
 ReactDOM.render(React.createElement(RegularStats, { figure: '20',
     description: 'New followers added this month' }), document.getElementById('dashboard-regular-stats'));
@@ -21023,8 +21049,8 @@ ReactDOM.render(React.createElement(HeadingStats, { figure: '1.5k',
 ReactDOM.render(React.createElement(WeatherStats, { figure: '20',
     description: 'London' }), document.getElementById('dashboard-weather-stats'));
 
-ReactDOM.render(React.createElement(ShotStats, { views: '120453', likes: '18318', comments: '4919' }), document.getElementById('dashboard-shot-stats'));
+var listShotStatsItems = [{ views: 120453, likes: 18318, comments: 4919 }, { views: 42522, likes: 34153, comments: 6622, bgColor: "#cd59ae" }];
 
-ReactDOM.render(React.createElement(ShotStats, { views: '42522', likes: '34153', comments: '6622', bgColor: '#cd59ae' }), document.getElementById('dashboard-shot-stats-2'));
+ReactDOM.render(React.createElement(ListShotStats, { items: listShotStatsItems }), document.getElementById('dashboard-shot-stats'));
 
-},{"./components/HeadingStats.jsx":175,"./components/RegularStats.jsx":176,"./components/ShotStats.jsx":177,"./components/WeatherStats.jsx":178,"react":174,"react-dom":29}]},{},[179]);
+},{"./components/HeadingStats.jsx":175,"./components/ListShotStats.jsx":176,"./components/RegularStats.jsx":177,"./components/WeatherStats.jsx":179,"react":174,"react-dom":29}]},{},[180]);

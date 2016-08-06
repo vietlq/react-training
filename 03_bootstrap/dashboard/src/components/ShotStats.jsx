@@ -6,7 +6,9 @@ var ShotStats = React.createClass({
         return {
             views: 0,
             likes: 0,
-            comments: 0
+            comments: 0,
+            textColor: '#ffffff',
+            bgColor: '#0096d0'
         };
     },
     render: function() {
