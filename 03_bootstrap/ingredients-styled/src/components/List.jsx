@@ -7,7 +7,7 @@ var List = React.createClass({
             return <ListItem key={index + text} text={text} />;
         };
 
-        return (<ul>{this.props.items.map(createItem)}</ul>);
+        return (<ul className="list-group">{this.props.items.map(createItem)}</ul>);
     }
 });
 

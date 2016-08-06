@@ -20770,7 +20770,7 @@ var List = React.createClass({
 
         return React.createElement(
             'ul',
-            null,
+            { className: 'list-group' },
             this.props.items.map(createItem)
         );
     }
@@ -20782,14 +20782,14 @@ module.exports = List;
 var React = require('react');
 
 var ListItem = React.createClass({
-    displayName: 'ListItem',
+    displayName: "ListItem",
 
     render: function () {
         return React.createElement(
-            'li',
-            null,
+            "li",
+            { className: "list-group-item" },
             React.createElement(
-                'h4',
+                "span",
                 null,
                 this.props.text
             )
@@ -20860,6 +20860,7 @@ var ListManager = React.createClass({
                             )
                         )
                     ),
+                    React.createElement('br', null),
                     React.createElement(List, { items: this.state.items })
                 )
             )
