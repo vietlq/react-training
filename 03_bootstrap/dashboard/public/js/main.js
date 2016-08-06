@@ -20758,6 +20758,40 @@ module.exports = require('./lib/React');
 
 },{"./lib/React":55}],175:[function(require,module,exports){
 var React = require('react');
+var LeftBar = require('./LeftBar.jsx');
+var RightBar = require('./RightBar.jsx');
+
+var Dashboard = React.createClass({
+    displayName: 'Dashboard',
+
+    render: function () {
+        return React.createElement(
+            'div',
+            { className: 'dashboard-stats' },
+            React.createElement(
+                'div',
+                { className: 'row' },
+                React.createElement(
+                    'div',
+                    { className: 'col-sm-9' },
+                    React.createElement(LeftBar, { performanceStats: this.props.performanceStats,
+                        listShotStatsItems: this.props.listShotStatsItems })
+                ),
+                React.createElement(
+                    'div',
+                    { className: 'col-sm-3' },
+                    React.createElement(RightBar, { weatherStats: this.props.weatherStats,
+                        trafficStats: this.props.trafficStats })
+                )
+            )
+        );
+    }
+});
+
+module.exports = Dashboard;
+
+},{"./LeftBar.jsx":177,"./RightBar.jsx":181,"react":174}],176:[function(require,module,exports){
+var React = require('react');
 
 var HeadingStats = React.createClass({
     displayName: 'HeadingStats',
@@ -20816,7 +20850,7 @@ var HeadingStats = React.createClass({
 
 module.exports = HeadingStats;
 
-},{"react":174}],176:[function(require,module,exports){
+},{"react":174}],177:[function(require,module,exports){
 var React = require('react');
 var ListShotStats = require('./ListShotStats.jsx');
 var PerformanceStats = require('./PerformanceStats.jsx');
@@ -20836,7 +20870,7 @@ var LeftBar = React.createClass({
 
 module.exports = LeftBar;
 
-},{"./ListShotStats.jsx":177,"./PerformanceStats.jsx":178,"react":174}],177:[function(require,module,exports){
+},{"./ListShotStats.jsx":178,"./PerformanceStats.jsx":179,"react":174}],178:[function(require,module,exports){
 var React = require('react');
 var ShotStats = require('./ShotStats.jsx');
 
@@ -20860,7 +20894,7 @@ var ListShotStats = React.createClass({
 
 module.exports = ListShotStats;
 
-},{"./ShotStats.jsx":181,"react":174}],178:[function(require,module,exports){
+},{"./ShotStats.jsx":182,"react":174}],179:[function(require,module,exports){
 var React = require('react');
 var RegularStats = require('./RegularStats.jsx');
 
@@ -20910,7 +20944,7 @@ var PerformanceStats = React.createClass({
 
 module.exports = PerformanceStats;
 
-},{"./RegularStats.jsx":179,"react":174}],179:[function(require,module,exports){
+},{"./RegularStats.jsx":180,"react":174}],180:[function(require,module,exports){
 var React = require('react');
 
 var RegularStats = React.createClass({
@@ -20959,7 +20993,7 @@ var RegularStats = React.createClass({
 
 module.exports = RegularStats;
 
-},{"react":174}],180:[function(require,module,exports){
+},{"react":174}],181:[function(require,module,exports){
 var React = require('react');
 var TrafficStats = require('./TrafficStats.jsx');
 var WeatherStats = require('./WeatherStats.jsx');
@@ -20979,7 +21013,7 @@ var RightBar = React.createClass({
 
 module.exports = RightBar;
 
-},{"./TrafficStats.jsx":182,"./WeatherStats.jsx":183,"react":174}],181:[function(require,module,exports){
+},{"./TrafficStats.jsx":183,"./WeatherStats.jsx":184,"react":174}],182:[function(require,module,exports){
 var React = require('react');
 var RegularStats = require('./RegularStats.jsx');
 
@@ -21072,7 +21106,7 @@ var ShotStats = React.createClass({
 
 module.exports = ShotStats;
 
-},{"./RegularStats.jsx":179,"react":174}],182:[function(require,module,exports){
+},{"./RegularStats.jsx":180,"react":174}],183:[function(require,module,exports){
 var React = require('react');
 var HeadingStats = require('./HeadingStats.jsx');
 
@@ -21125,7 +21159,7 @@ var TrafficStats = React.createClass({
 
 module.exports = TrafficStats;
 
-},{"./HeadingStats.jsx":175,"react":174}],183:[function(require,module,exports){
+},{"./HeadingStats.jsx":176,"react":174}],184:[function(require,module,exports){
 var React = require('react');
 
 var WeatherStats = React.createClass({
@@ -21189,11 +21223,10 @@ var WeatherStats = React.createClass({
 
 module.exports = WeatherStats;
 
-},{"react":174}],184:[function(require,module,exports){
+},{"react":174}],185:[function(require,module,exports){
 var React = require('react');
 var ReactDOM = require('react-dom');
-var LeftBar = require('./components/LeftBar.jsx');
-var RightBar = require('./components/RightBar.jsx');
+var Dashboard = require('./components/Dashboard.jsx');
 
 var performanceStats = {
     newFollowers: 2519,
@@ -21202,9 +21235,6 @@ var performanceStats = {
 };
 
 var listShotStatsItems = [{ views: 120453, likes: 18318, comments: 4919 }, { views: 42522, likes: 34153, comments: 6622, bgColor: "#cd59ae" }];
-
-ReactDOM.render(React.createElement(LeftBar, { performanceStats: performanceStats,
-    listShotStatsItems: listShotStatsItems }), document.getElementById('dashboard-performance-stats'));
 
 var trafficStats = {
     newVisitors: 1500,
@@ -21218,6 +21248,8 @@ var weatherStats = {
     location: "London"
 };
 
-ReactDOM.render(React.createElement(RightBar, { weatherStats: weatherStats, trafficStats: trafficStats }), document.getElementById('dashboard-right-bar-stats'));
+ReactDOM.render(React.createElement(Dashboard, {
+    performanceStats: performanceStats, listShotStatsItems: listShotStatsItems,
+    weatherStats: weatherStats, trafficStats: trafficStats }), document.getElementById('dashboard-stats'));
 
-},{"./components/LeftBar.jsx":176,"./components/RightBar.jsx":180,"react":174,"react-dom":29}]},{},[184]);
+},{"./components/Dashboard.jsx":175,"react":174,"react-dom":29}]},{},[185]);
