@@ -26192,7 +26192,7 @@ var Base = React.createClass({
             this.props.children,
             React.createElement(
                 'nav',
-                { className: 'navbar navbar-inverse' },
+                { className: 'navbar navbar-inverse navbar-fixed-bottom' },
                 React.createElement(
                     'div',
                     { className: 'container-fluid' },

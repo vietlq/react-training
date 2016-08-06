@@ -6,6 +6,8 @@
 * https://github.com/reactjs/react-router-tutorial/tree/master/lessons
 * https://github.com/reactjs/react-router/blob/master/upgrade-guides/v2.0.0.md#no-default-history
 * https://github.com/reactjs/react-router/blob/master/upgrade-guides/v2.0.0.md#using-history-with-router
+* http://stackoverflow.com/a/13365611/128028
+* http://getbootstrap.com/components/#navbar-fixed-bottom
 
 ## Install & serve via webserver
 
