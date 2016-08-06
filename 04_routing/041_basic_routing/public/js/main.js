@@ -26271,10 +26271,18 @@ module.exports = ListManager;
 var React = require('react');
 var ListManager = require('./ListManager.jsx');
 
+var lists = {
+    todo: "To Do",
+    ingredients: "Ingredients",
+    xmas: "Christmas"
+};
+
 var ShowList = React.createClass({
     displayName: 'ShowList',
 
     render: function () {
+        let listName = lists[this.props.params.listId] || lists['todo'];
+
         return React.createElement(
             'div',
             { className: 'container' },
@@ -26284,7 +26292,7 @@ var ShowList = React.createClass({
                 React.createElement(
                     'div',
                     { className: 'col-sm-4 col-sm-offset-4' },
-                    React.createElement(ListManager, { title: 'To Do' })
+                    React.createElement(ListManager, { title: listName })
                 )
             )
         );
