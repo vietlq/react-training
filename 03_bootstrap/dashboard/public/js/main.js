@@ -20840,7 +20840,7 @@ var ListShotStats = React.createClass({
 
 module.exports = ListShotStats;
 
-},{"./ShotStats.jsx":179,"react":174}],177:[function(require,module,exports){
+},{"./ShotStats.jsx":180,"react":174}],177:[function(require,module,exports){
 var React = require('react');
 var RegularStats = require('./RegularStats.jsx');
 
@@ -20849,12 +20849,16 @@ var PerformanceStats = React.createClass({
 
     getInitialState: function () {
         return {
-            newFollowers: 0,
-            avgMonthlyIncome: 0,
-            yearlyIncomeGoal: 0
+            performanceStats: {
+                newFollowers: 0,
+                avgMonthlyIncome: 0,
+                yearlyIncomeGoal: 0
+            }
         };
     },
     render: function () {
+        let performanceStats = this.props.performanceStats;
+
         return React.createElement(
             'div',
             { className: 'performance-stats' },
@@ -20864,19 +20868,19 @@ var PerformanceStats = React.createClass({
                 React.createElement(
                     'div',
                     { className: 'col-sm-4' },
-                    React.createElement(RegularStats, { figure: this.props.newFollowers,
+                    React.createElement(RegularStats, { figure: performanceStats.newFollowers,
                         description: 'New followers added this month' })
                 ),
                 React.createElement(
                     'div',
                     { className: 'col-sm-4' },
-                    React.createElement(RegularStats, { figure: this.props.avgMonthlyIncome,
+                    React.createElement(RegularStats, { figure: performanceStats.avgMonthlyIncome,
                         description: 'Average Monthly Income' })
                 ),
                 React.createElement(
                     'div',
                     { className: 'col-sm-4' },
-                    React.createElement(RegularStats, { figure: this.props.yearlyIncomeGoal,
+                    React.createElement(RegularStats, { figure: performanceStats.yearlyIncomeGoal,
                         description: 'Yearly Income Goal' })
                 )
             )
@@ -20936,6 +20940,26 @@ var RegularStats = React.createClass({
 module.exports = RegularStats;
 
 },{"react":174}],179:[function(require,module,exports){
+var React = require('react');
+var TrafficStats = require('./TrafficStats.jsx');
+var WeatherStats = require('./WeatherStats.jsx');
+
+var RightBar = React.createClass({
+    displayName: 'RightBar',
+
+    render: function () {
+        return React.createElement(
+            'div',
+            { className: 'dashboard-right-bar' },
+            React.createElement(WeatherStats, { weatherStats: this.props.weatherStats }),
+            React.createElement(TrafficStats, { trafficStats: this.props.trafficStats })
+        );
+    }
+});
+
+module.exports = RightBar;
+
+},{"./TrafficStats.jsx":181,"./WeatherStats.jsx":182,"react":174}],180:[function(require,module,exports){
 var React = require('react');
 var RegularStats = require('./RegularStats.jsx');
 
@@ -21028,7 +21052,7 @@ var ShotStats = React.createClass({
 
 module.exports = ShotStats;
 
-},{"./RegularStats.jsx":178,"react":174}],180:[function(require,module,exports){
+},{"./RegularStats.jsx":178,"react":174}],181:[function(require,module,exports){
 var React = require('react');
 var HeadingStats = require('./HeadingStats.jsx');
 
@@ -21037,38 +21061,42 @@ var TrafficStats = React.createClass({
 
     getinitialState: function () {
         return {
-            newVisitors: 0,
-            bounceRate: '0%',
-            searches: '0%',
-            outBandwidth: '0GB'
+            trafficStats: {
+                newVisitors: 0,
+                bounceRate: '0%',
+                searches: '0%',
+                outBandwidth: '0GB'
+            }
         };
     },
     render: function () {
+        let trafficStats = this.props.trafficStats;
+
         return React.createElement(
             'div',
             { className: 'traffic-stats' },
             React.createElement(
                 'div',
                 { className: 'traffic-stats-item' },
-                React.createElement(HeadingStats, { figure: this.props.newVisitors,
+                React.createElement(HeadingStats, { figure: trafficStats.newVisitors,
                     description: 'New Visitors', headingColor: '#0096d0' })
             ),
             React.createElement(
                 'div',
                 { className: 'traffic-stats-item' },
-                React.createElement(HeadingStats, { figure: this.props.bounceRate,
+                React.createElement(HeadingStats, { figure: trafficStats.bounceRate,
                     description: 'Bounce Rate', headingColor: '#b28ad6' })
             ),
             React.createElement(
                 'div',
                 { className: 'traffic-stats-item' },
-                React.createElement(HeadingStats, { figure: this.props.searches,
+                React.createElement(HeadingStats, { figure: trafficStats.searches,
                     description: 'Searches', headingColor: '#ff4826' })
             ),
             React.createElement(
                 'div',
                 { className: 'traffic-stats-item' },
-                React.createElement(HeadingStats, { figure: this.props.outBandwidth,
+                React.createElement(HeadingStats, { figure: trafficStats.outBandwidth,
                     description: 'Outgoing Bandwidth', headingColor: '#63c254' })
             )
         );
@@ -21077,12 +21105,20 @@ var TrafficStats = React.createClass({
 
 module.exports = TrafficStats;
 
-},{"./HeadingStats.jsx":175,"react":174}],181:[function(require,module,exports){
+},{"./HeadingStats.jsx":175,"react":174}],182:[function(require,module,exports){
 var React = require('react');
 
 var WeatherStats = React.createClass({
-    displayName: "WeatherStats",
+    displayName: 'WeatherStats',
 
+    getInitialState: function () {
+        return {
+            weatherStats: {
+                temperature: '-273',
+                location: 'Nowhere'
+            }
+        };
+    },
     render: function () {
         var bodyStyle = {
             color: "#ffffff",
@@ -21102,23 +21138,29 @@ var WeatherStats = React.createClass({
             bodyStyle.background = this.props.bgColor;
         }
 
+        let weatherStats = this.props.weatherStats;
+
         return React.createElement(
-            "div",
-            { className: "panel panel-default" },
+            'div',
+            { className: 'weather-stats' },
             React.createElement(
-                "div",
-                { style: bodyStyle, className: "panel-body stats-body" },
+                'div',
+                { className: 'panel panel-default' },
                 React.createElement(
-                    "span",
-                    { className: "stats-figure" },
-                    this.props.figure,
-                    "°"
-                ),
-                React.createElement("br", null),
-                React.createElement(
-                    "span",
-                    { className: "stats-description" },
-                    this.props.description
+                    'div',
+                    { style: bodyStyle, className: 'panel-body stats-body' },
+                    React.createElement(
+                        'span',
+                        { className: 'stats-figure' },
+                        weatherStats.temperature,
+                        '°'
+                    ),
+                    React.createElement('br', null),
+                    React.createElement(
+                        'span',
+                        { className: 'stats-description' },
+                        weatherStats.location
+                    )
                 )
             )
         );
@@ -21127,12 +21169,11 @@ var WeatherStats = React.createClass({
 
 module.exports = WeatherStats;
 
-},{"react":174}],182:[function(require,module,exports){
+},{"react":174}],183:[function(require,module,exports){
 var React = require('react');
 var ReactDOM = require('react-dom');
 var PerformanceStats = require('./components/PerformanceStats.jsx');
-var TrafficStats = require('./components/TrafficStats.jsx');
-var WeatherStats = require('./components/WeatherStats.jsx');
+var RightBar = require('./components/RightBar.jsx');
 var ListShotStats = require('./components/ListShotStats.jsx');
 
 var performanceStats = {
@@ -21141,9 +21182,7 @@ var performanceStats = {
     yearlyIncomeGoal: "$ 502189"
 };
 
-ReactDOM.render(React.createElement(PerformanceStats, { newFollowers: performanceStats.newFollowers,
-    avgMonthlyIncome: performanceStats.avgMonthlyIncome,
-    yearlyIncomeGoal: performanceStats.yearlyIncomeGoal }), document.getElementById('dashboard-performance-stats'));
+ReactDOM.render(React.createElement(PerformanceStats, { performanceStats: performanceStats }), document.getElementById('dashboard-performance-stats'));
 
 var listShotStatsItems = [{ views: 120453, likes: 18318, comments: 4919 }, { views: 42522, likes: 34153, comments: 6622, bgColor: "#cd59ae" }];
 
@@ -21156,11 +21195,11 @@ var trafficStats = {
     outBandwidth: '1.27GB'
 };
 
-ReactDOM.render(React.createElement(TrafficStats, { newVisitors: trafficStats.newVisitors,
-    bounceRate: trafficStats.bounceRate, searches: trafficStats.searches,
-    outBandwidth: trafficStats.outBandwidth }), document.getElementById('dashboard-heading-stats'));
+var weatherStats = {
+    temperature: 20,
+    location: "London"
+};
 
-ReactDOM.render(React.createElement(WeatherStats, { figure: '20',
-    description: 'London' }), document.getElementById('dashboard-weather-stats'));
+ReactDOM.render(React.createElement(RightBar, { weatherStats: weatherStats, trafficStats: trafficStats }), document.getElementById('dashboard-right-bar-stats'));
 
-},{"./components/ListShotStats.jsx":176,"./components/PerformanceStats.jsx":177,"./components/TrafficStats.jsx":180,"./components/WeatherStats.jsx":181,"react":174,"react-dom":29}]},{},[182]);
+},{"./components/ListShotStats.jsx":176,"./components/PerformanceStats.jsx":177,"./components/RightBar.jsx":179,"react":174,"react-dom":29}]},{},[183]);

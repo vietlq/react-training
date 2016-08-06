@@ -1,8 +1,7 @@
 var React = require('react');
 var ReactDOM = require('react-dom');
 var PerformanceStats = require('./components/PerformanceStats.jsx');
-var TrafficStats = require('./components/TrafficStats.jsx');
-var WeatherStats = require('./components/WeatherStats.jsx');
+var RightBar = require('./components/RightBar.jsx');
 var ListShotStats = require('./components/ListShotStats.jsx');
 
 var performanceStats = {
@@ -11,9 +10,7 @@ var performanceStats = {
     yearlyIncomeGoal: "$ 502189",
 };
 
-ReactDOM.render(<PerformanceStats newFollowers={performanceStats.newFollowers}
-    avgMonthlyIncome={performanceStats.avgMonthlyIncome}
-    yearlyIncomeGoal={performanceStats.yearlyIncomeGoal} />,
+ReactDOM.render(<PerformanceStats performanceStats={performanceStats} />,
     document.getElementById('dashboard-performance-stats'));
 
 var listShotStatsItems = [
@@ -31,11 +28,10 @@ var trafficStats = {
     outBandwidth: '1.27GB',
 };
 
-ReactDOM.render(<TrafficStats newVisitors={trafficStats.newVisitors}
-    bounceRate={trafficStats.bounceRate} searches={trafficStats.searches}
-    outBandwidth={trafficStats.outBandwidth} />,
-    document.getElementById('dashboard-heading-stats'));
+var weatherStats = {
+temperature: 20,
+location: "London"
+};
 
-ReactDOM.render(<WeatherStats figure="20"
-    description="London" />,
-    document.getElementById('dashboard-weather-stats'));
+ReactDOM.render(<RightBar weatherStats={weatherStats} trafficStats={trafficStats} />,
+    document.getElementById('dashboard-right-bar-stats'));
