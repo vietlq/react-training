@@ -1,7 +1,7 @@
 var React = require('react');
 var ReactDOM = require('react-dom');
 var PerformanceStats = require('./components/PerformanceStats.jsx');
-var HeadingStats = require('./components/HeadingStats.jsx');
+var TrafficStats = require('./components/TrafficStats.jsx');
 var WeatherStats = require('./components/WeatherStats.jsx');
 var ListShotStats = require('./components/ListShotStats.jsx');
 
@@ -24,8 +24,16 @@ var listShotStatsItems = [
 ReactDOM.render(<ListShotStats items={listShotStatsItems} />,
     document.getElementById('dashboard-shot-stats'));
 
-ReactDOM.render(<HeadingStats figure="1.5k"
-    description="New visitors" />,
+var trafficStats = {
+    newVisitors: 1500,
+    bounceRate: '34%',
+    searches: '28%',
+    outBandwidth: '1.27GB',
+};
+
+ReactDOM.render(<TrafficStats newVisitors={trafficStats.newVisitors}
+    bounceRate={trafficStats.bounceRate} searches={trafficStats.searches}
+    outBandwidth={trafficStats.outBandwidth} />,
     document.getElementById('dashboard-heading-stats'));
 
 ReactDOM.render(<WeatherStats figure="20"

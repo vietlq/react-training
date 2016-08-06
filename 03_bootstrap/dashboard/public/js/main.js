@@ -21030,6 +21030,55 @@ module.exports = ShotStats;
 
 },{"./RegularStats.jsx":178,"react":174}],180:[function(require,module,exports){
 var React = require('react');
+var HeadingStats = require('./HeadingStats.jsx');
+
+var TrafficStats = React.createClass({
+    displayName: 'TrafficStats',
+
+    getinitialState: function () {
+        return {
+            newVisitors: 0,
+            bounceRate: '0%',
+            searches: '0%',
+            outBandwidth: '0GB'
+        };
+    },
+    render: function () {
+        return React.createElement(
+            'div',
+            { className: 'traffic-stats' },
+            React.createElement(
+                'div',
+                { className: 'traffic-stats-item' },
+                React.createElement(HeadingStats, { figure: this.props.newVisitors,
+                    description: 'New Visitors', headingColor: '#0096d0' })
+            ),
+            React.createElement(
+                'div',
+                { className: 'traffic-stats-item' },
+                React.createElement(HeadingStats, { figure: this.props.bounceRate,
+                    description: 'Bounce Rate', headingColor: '#b28ad6' })
+            ),
+            React.createElement(
+                'div',
+                { className: 'traffic-stats-item' },
+                React.createElement(HeadingStats, { figure: this.props.searches,
+                    description: 'Searches', headingColor: '#ff4826' })
+            ),
+            React.createElement(
+                'div',
+                { className: 'traffic-stats-item' },
+                React.createElement(HeadingStats, { figure: this.props.outBandwidth,
+                    description: 'Outgoing Bandwidth', headingColor: '#63c254' })
+            )
+        );
+    }
+});
+
+module.exports = TrafficStats;
+
+},{"./HeadingStats.jsx":175,"react":174}],181:[function(require,module,exports){
+var React = require('react');
 
 var WeatherStats = React.createClass({
     displayName: "WeatherStats",
@@ -21078,11 +21127,11 @@ var WeatherStats = React.createClass({
 
 module.exports = WeatherStats;
 
-},{"react":174}],181:[function(require,module,exports){
+},{"react":174}],182:[function(require,module,exports){
 var React = require('react');
 var ReactDOM = require('react-dom');
 var PerformanceStats = require('./components/PerformanceStats.jsx');
-var HeadingStats = require('./components/HeadingStats.jsx');
+var TrafficStats = require('./components/TrafficStats.jsx');
 var WeatherStats = require('./components/WeatherStats.jsx');
 var ListShotStats = require('./components/ListShotStats.jsx');
 
@@ -21100,10 +21149,18 @@ var listShotStatsItems = [{ views: 120453, likes: 18318, comments: 4919 }, { vie
 
 ReactDOM.render(React.createElement(ListShotStats, { items: listShotStatsItems }), document.getElementById('dashboard-shot-stats'));
 
-ReactDOM.render(React.createElement(HeadingStats, { figure: '1.5k',
-    description: 'New visitors' }), document.getElementById('dashboard-heading-stats'));
+var trafficStats = {
+    newVisitors: 1500,
+    bounceRate: '34%',
+    searches: '28%',
+    outBandwidth: '1.27GB'
+};
+
+ReactDOM.render(React.createElement(TrafficStats, { newVisitors: trafficStats.newVisitors,
+    bounceRate: trafficStats.bounceRate, searches: trafficStats.searches,
+    outBandwidth: trafficStats.outBandwidth }), document.getElementById('dashboard-heading-stats'));
 
 ReactDOM.render(React.createElement(WeatherStats, { figure: '20',
     description: 'London' }), document.getElementById('dashboard-weather-stats'));
 
-},{"./components/HeadingStats.jsx":175,"./components/ListShotStats.jsx":176,"./components/PerformanceStats.jsx":177,"./components/WeatherStats.jsx":180,"react":174,"react-dom":29}]},{},[181]);
+},{"./components/ListShotStats.jsx":176,"./components/PerformanceStats.jsx":177,"./components/TrafficStats.jsx":180,"./components/WeatherStats.jsx":181,"react":174,"react-dom":29}]},{},[182]);
