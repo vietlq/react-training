@@ -20,14 +20,21 @@ var ListManager = React.createClass({
         this.setState({items: currentItems, newItemText: ''});
     },
     render: function() {
-        var displayStyle = {
+        var divPanelStyle = {
             marginTop: 10
         };
 
-        var header
+        var headingStyle = {
+
+        };
+
+        if (this.props.headingColor) {
+            headingStyle.background = this.props.headingColor;
+        }
+
         return (
-            <div style={displayStyle} className="panel panel-primary">
-                <div className="panel-heading">
+            <div style={divPanelStyle} className="panel panel-primary">
+                <div style={headingStyle} className="panel-heading">
                     <h3>{this.props.title}</h3>
                 </div>
                 <div className="panel-body">
