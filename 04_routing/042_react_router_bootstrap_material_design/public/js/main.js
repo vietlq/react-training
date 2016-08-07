@@ -26128,14 +26128,19 @@ var Base = React.createClass({
     render: function () {
         return React.createElement(
             "div",
-            { className: "page-base-holder" },
-            React.createElement("div", { className: "page-base-header" }),
+            { className: "page-base-outer-container" },
+            React.createElement("div", { className: "page-base-header-bg" }),
             React.createElement(
                 "div",
-                { className: "page-base-body" },
-                this.props.children
-            ),
-            React.createElement("div", { className: "page-base-footer" })
+                { className: "container page-base-holder" },
+                React.createElement("div", { className: "page-base-header" }),
+                React.createElement(
+                    "div",
+                    { className: "page-base-body" },
+                    this.props.children
+                ),
+                React.createElement("div", { className: "page-base-footer" })
+            )
         );
     }
 });
