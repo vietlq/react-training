@@ -9,7 +9,26 @@
     position: absolute;
 }
 
-/* http://stackoverflow.com/a/16837667/128028 */
 .page-base-holder {
+    /* http://stackoverflow.com/a/16837667/128028 */
     min-height: 100vh;
+    position: relative;
+    /* http://getbootstrap.com/components/#navbar-fixed-bottom */
+    padding-bottom: 70px;
+}
+
+.page-base-header {
+    color: #ffffff;
+}
+
+.page-base-footer {
+    background: #3e51b5;
+    color: #ffffff;
+    padding-top: 20px;
+    padding-bottom: 20px;
+}
+
+.fa.fa-1 {
+    font-size: 2.5em;
+    color: #ffffff;
 }

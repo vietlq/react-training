@@ -26132,14 +26132,39 @@ var Base = React.createClass({
             React.createElement("div", { className: "page-base-header-bg" }),
             React.createElement(
                 "div",
-                { className: "container page-base-holder" },
-                React.createElement("div", { className: "page-base-header" }),
+                { className: "page-base-holder" },
                 React.createElement(
                     "div",
-                    { className: "page-base-body" },
-                    this.props.children
+                    { className: "container" },
+                    React.createElement(
+                        "div",
+                        { className: "page-base-header" },
+                        React.createElement(
+                            "h1",
+                            null,
+                            "page-base-header"
+                        ),
+                        React.createElement("i", { className: "fa fa-facebook-official fa-1", "aria-hidden": "true" })
+                    ),
+                    React.createElement(
+                        "div",
+                        { className: "page-base-body" },
+                        this.props.children
+                    )
                 ),
-                React.createElement("div", { className: "page-base-footer" })
+                React.createElement(
+                    "nav",
+                    { className: "navbar navbar-default navbar-fixed-bottom" },
+                    React.createElement(
+                        "div",
+                        { className: "page-base-footer" },
+                        React.createElement(
+                            "h1",
+                            null,
+                            "page-base-footer"
+                        )
+                    )
+                )
             )
         );
     }
