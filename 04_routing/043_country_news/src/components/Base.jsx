@@ -1,7 +1,10 @@
 var React = require('react');
+var Social = require('./Social.jsx')
 
 var Base = React.createClass({
     render: function() {
+        let social = this.props.social || {};
+
         return (
             <div className="page-base-outer-container">
                 <div className="page-base-header-bg"></div>
@@ -9,7 +12,7 @@ var Base = React.createClass({
                     <div className="container">
                         <div className="page-base-header">
                             <h1>page-base-header</h1>
-                            <i className="fa fa-facebook-official fa-1" aria-hidden="true"></i>
+                            <Social social={social} />
                         </div>
                         <div className="page-base-body">
                             {this.props.children}

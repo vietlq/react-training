@@ -26100,12 +26100,18 @@ arguments[4][90][0].apply(exports,arguments)
 var React = require('react');
 var ReactRouter = require('react-router');
 var Router = ReactRouter.Router;
+var IndexRoute = ReactRouter.IndexRoute;
 var Route = ReactRouter.Route;
 var createHashHistory = require('history/lib/createHashHistory');
 var cleanHashHistory = ReactRouter.useRouterHistory(createHashHistory)({ queryKey: false });
 
 var Base = require('./components/Base.jsx');
 var Test = require('./components/Test.jsx');
+var Social = require('./components/Social.jsx');
+
+var social = {
+    twitter: 'vietlq'
+};
 
 var Routes = React.createElement(
     Router,
@@ -26113,55 +26119,59 @@ var Routes = React.createElement(
     React.createElement(
         Route,
         { path: '/', component: Base },
+        React.createElement(IndexRoute, { component: Test }),
         React.createElement(Route, { path: '/test', component: Test })
     )
 );
 
 module.exports = Routes;
 
-},{"./components/Base.jsx":239,"./components/Test.jsx":240,"history/lib/createHashHistory":38,"react":235,"react-router":81}],239:[function(require,module,exports){
+},{"./components/Base.jsx":239,"./components/Social.jsx":240,"./components/Test.jsx":241,"history/lib/createHashHistory":38,"react":235,"react-router":81}],239:[function(require,module,exports){
 var React = require('react');
+var Social = require('./Social.jsx');
 
 var Base = React.createClass({
-    displayName: "Base",
+    displayName: 'Base',
 
     render: function () {
+        let social = this.props.social || {};
+
         return React.createElement(
-            "div",
-            { className: "page-base-outer-container" },
-            React.createElement("div", { className: "page-base-header-bg" }),
+            'div',
+            { className: 'page-base-outer-container' },
+            React.createElement('div', { className: 'page-base-header-bg' }),
             React.createElement(
-                "div",
-                { className: "page-base-holder" },
+                'div',
+                { className: 'page-base-holder' },
                 React.createElement(
-                    "div",
-                    { className: "container" },
+                    'div',
+                    { className: 'container' },
                     React.createElement(
-                        "div",
-                        { className: "page-base-header" },
+                        'div',
+                        { className: 'page-base-header' },
                         React.createElement(
-                            "h1",
+                            'h1',
                             null,
-                            "page-base-header"
+                            'page-base-header'
                         ),
-                        React.createElement("i", { className: "fa fa-facebook-official fa-1", "aria-hidden": "true" })
+                        React.createElement(Social, { social: social })
                     ),
                     React.createElement(
-                        "div",
-                        { className: "page-base-body" },
+                        'div',
+                        { className: 'page-base-body' },
                         this.props.children
                     )
                 ),
                 React.createElement(
-                    "nav",
-                    { className: "navbar navbar-default navbar-fixed-bottom" },
+                    'nav',
+                    { className: 'navbar navbar-default navbar-fixed-bottom' },
                     React.createElement(
-                        "div",
-                        { className: "page-base-footer" },
+                        'div',
+                        { className: 'page-base-footer' },
                         React.createElement(
-                            "h1",
+                            'h1',
                             null,
-                            "page-base-footer"
+                            'page-base-footer'
                         )
                     )
                 )
@@ -26172,7 +26182,86 @@ var Base = React.createClass({
 
 module.exports = Base;
 
-},{"react":235}],240:[function(require,module,exports){
+},{"./Social.jsx":240,"react":235}],240:[function(require,module,exports){
+var React = require('react');
+
+var Social = React.createClass({
+    displayName: 'Social',
+
+    getInitialState: function () {
+        return {
+            social: {
+                twitter: null,
+                facebook: null,
+                instagram: null,
+                linkedin: null,
+                email: null
+            }
+        };
+    },
+    createItem: function (item, index) {
+        let className = "fa " + item.css;
+
+        return React.createElement(
+            'li',
+            null,
+            React.createElement(
+                'a',
+                { href: item.url },
+                React.createElement('i', { className: className })
+            )
+        );
+    },
+    render: function () {
+        let social = this.props.social || {};
+        let socialItems = [];
+
+        if (social.twitter) {
+            socialItems.push({
+                css: 'fa-twitter-square',
+                url: 'https://twitter.com/' + social.twitter
+            });
+        }
+
+        if (social.facebook) {
+            socialItems.push({
+                css: 'fa-facebook-official',
+                url: 'https://facebook.com/' + social.facebook
+            });
+        }
+
+        if (social.instagram) {
+            socialItems.push({
+                css: 'fa-instagram',
+                url: 'https://instagram.com/' + social.instagram
+            });
+        }
+
+        if (social.linkedin) {
+            socialItems.push({
+                css: 'fa-linkedin-square',
+                url: 'https://linkedin.com/' + social.linkedin
+            });
+        }
+
+        if (social.email) {
+            socialItems.push({
+                css: 'fa-envelope',
+                url: 'mailto:' + social.email
+            });
+        }
+
+        return React.createElement(
+            'ul',
+            { className: 'social-items' },
+            socialItems.map(this.createItem)
+        );
+    }
+});
+
+module.exports = Social;
+
+},{"react":235}],241:[function(require,module,exports){
 var React = require('react');
 
 var Test = React.createClass({
@@ -26307,11 +26396,11 @@ var Test = React.createClass({
 
 module.exports = Test;
 
-},{"react":235}],241:[function(require,module,exports){
+},{"react":235}],242:[function(require,module,exports){
 var React = require('react');
 var ReactDOM = require('react-dom');
 var Routes = require('./Routes.jsx');
 
 ReactDOM.render(Routes, document.getElementById('main-page-container'));
 
-},{"./Routes.jsx":238,"react":235,"react-dom":51}]},{},[241]);
+},{"./Routes.jsx":238,"react":235,"react-dom":51}]},{},[242]);
