@@ -8,7 +8,6 @@ var cleanHashHistory = ReactRouter.useRouterHistory(createHashHistory)({ queryKe
 
 var Base = require('./components/Base.jsx');
 var Test = require('./components/Test.jsx');
-var Social = require('./components/Social.jsx');
 
 var social = {
     twitter: 'vietlq',
@@ -20,7 +19,8 @@ var Routes = (
     <Router history={cleanHashHistory}>
         <Route path="/" component={Base} social={social}>
             <IndexRoute component={Test} />
-            <Route path="/test" component={Test} />
+            <Route path="/news" component={Test} />
+            <Route path="/photos" component={Test} />
         </Route>
     </Router>
 );

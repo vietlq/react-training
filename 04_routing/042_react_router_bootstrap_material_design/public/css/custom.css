@@ -4,7 +4,7 @@
 
 .page-base-header-bg {
     width: 100%;
-    height: 200px;
+    height: 300px;
     background: #3e51b5;
     position: absolute;
 }
@@ -31,4 +31,19 @@
 .fa.fa-1 {
     font-size: 2.5em;
     color: #ffffff;
+}
+
+.social-items li {
+    list-style-type: none;
+    float: left;
+    margin: 10px;
+}
+
+.social-items li a i {
+    font-size: 2.5em;
+    color: #ffffff;
+}
+
+.social-items-clear {
+    clear: both;
 }

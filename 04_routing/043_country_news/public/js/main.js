@@ -26107,7 +26107,6 @@ var cleanHashHistory = ReactRouter.useRouterHistory(createHashHistory)({ queryKe
 
 var Base = require('./components/Base.jsx');
 var Test = require('./components/Test.jsx');
-var Social = require('./components/Social.jsx');
 
 var social = {
     twitter: 'vietlq',
@@ -26122,13 +26121,14 @@ var Routes = React.createElement(
         Route,
         { path: '/', component: Base, social: social },
         React.createElement(IndexRoute, { component: Test }),
-        React.createElement(Route, { path: '/test', component: Test })
+        React.createElement(Route, { path: '/news', component: Test }),
+        React.createElement(Route, { path: '/photos', component: Test })
     )
 );
 
 module.exports = Routes;
 
-},{"./components/Base.jsx":239,"./components/Social.jsx":240,"./components/Test.jsx":241,"history/lib/createHashHistory":38,"react":235,"react-router":81}],239:[function(require,module,exports){
+},{"./components/Base.jsx":239,"./components/Test.jsx":241,"history/lib/createHashHistory":38,"react":235,"react-router":81}],239:[function(require,module,exports){
 var React = require('react');
 var Social = require('./Social.jsx');
 
