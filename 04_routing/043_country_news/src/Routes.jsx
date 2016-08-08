@@ -12,11 +12,13 @@ var Social = require('./components/Social.jsx');
 
 var social = {
     twitter: 'vietlq',
+    facebook: 'vietlq85',
+    instagram: 'vietlq',
 };
 
 var Routes = (
     <Router history={cleanHashHistory}>
-        <Route path="/" component={Base}>
+        <Route path="/" component={Base} social={social}>
             <IndexRoute component={Test} />
             <Route path="/test" component={Test} />
         </Route>

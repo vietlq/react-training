@@ -26110,7 +26110,9 @@ var Test = require('./components/Test.jsx');
 var Social = require('./components/Social.jsx');
 
 var social = {
-    twitter: 'vietlq'
+    twitter: 'vietlq',
+    facebook: 'vietlq85',
+    instagram: 'vietlq'
 };
 
 var Routes = React.createElement(
@@ -26118,7 +26120,7 @@ var Routes = React.createElement(
     { history: cleanHashHistory },
     React.createElement(
         Route,
-        { path: '/', component: Base },
+        { path: '/', component: Base, social: social },
         React.createElement(IndexRoute, { component: Test }),
         React.createElement(Route, { path: '/test', component: Test })
     )
@@ -26134,7 +26136,7 @@ var Base = React.createClass({
     displayName: 'Base',
 
     render: function () {
-        let social = this.props.social || {};
+        let social = this.props.route.social || {};
 
         return React.createElement(
             'div',
@@ -26204,7 +26206,7 @@ var Social = React.createClass({
 
         return React.createElement(
             'li',
-            null,
+            { key: index + item.url },
             React.createElement(
                 'a',
                 { href: item.url },
@@ -26252,9 +26254,14 @@ var Social = React.createClass({
         }
 
         return React.createElement(
-            'ul',
-            { className: 'social-items' },
-            socialItems.map(this.createItem)
+            'div',
+            { className: 'social-items-holder' },
+            React.createElement(
+                'ul',
+                { className: 'social-items' },
+                socialItems.map(this.createItem)
+            ),
+            React.createElement('div', { className: 'social-items-clear' })
         );
     }
 });

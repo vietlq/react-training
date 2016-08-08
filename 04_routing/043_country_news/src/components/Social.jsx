@@ -16,7 +16,7 @@ var Social = React.createClass({
         let className = "fa " + item.css;
 
         return (
-            <li>
+            <li key={index + item.url}>
                 <a href={item.url}><i className={className}></i></a>
             </li>
         );
@@ -61,7 +61,10 @@ var Social = React.createClass({
         }
 
         return (
-            <ul className="social-items">{socialItems.map(this.createItem)}</ul>
+            <div className="social-items-holder">
+                <ul className="social-items">{socialItems.map(this.createItem)}</ul>
+                <div className="social-items-clear"></div>
+            </div>
         );
     }
 })

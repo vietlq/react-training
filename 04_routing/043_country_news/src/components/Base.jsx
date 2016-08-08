@@ -3,7 +3,7 @@ var Social = require('./Social.jsx')
 
 var Base = React.createClass({
     render: function() {
-        let social = this.props.social || {};
+        let social = this.props.route.social || {};
 
         return (
             <div className="page-base-outer-container">

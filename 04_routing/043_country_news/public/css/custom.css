@@ -32,3 +32,18 @@
     font-size: 2.5em;
     color: #ffffff;
 }
+
+.social-items li {
+    list-style-type: none;
+    float: left;
+    margin: 10px;
+}
+
+.social-items li a i {
+    font-size: 2.5em;
+    color: #ffffff;
+}
+
+.social-items-clear {
+    clear: both;
+}
