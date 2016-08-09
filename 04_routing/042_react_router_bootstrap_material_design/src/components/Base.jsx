@@ -1,19 +1,16 @@
 var React = require('react');
-var Social = require('./Social.jsx')
+var Header = require('./Header.jsx')
 
 var Base = React.createClass({
     render: function() {
-        let social = this.props.route.social || {};
+        let headerDetails = this.props.route.headerDetails || {};
 
         return (
             <div className="page-base-outer-container">
                 <div className="page-base-header-bg"></div>
                 <div className="page-base-holder">
                     <div className="container">
-                        <div className="page-base-header">
-                            <h1>page-base-header</h1>
-                            <Social social={social} />
-                        </div>
+                        <Header headerDetails={headerDetails} />
                         <div className="page-base-body">
                             {this.props.children}
                         </div>

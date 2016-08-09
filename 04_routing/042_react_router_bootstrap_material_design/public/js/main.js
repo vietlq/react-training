@@ -26114,12 +26114,18 @@ var social = {
     instagram: 'vietlq'
 };
 
+var headerDetails = {
+    title: 'VietExpat News',
+    subtitle: 'Top News About Vietnamese Expats',
+    social: social
+};
+
 var Routes = React.createElement(
     Router,
     { history: cleanHashHistory },
     React.createElement(
         Route,
-        { path: '/', component: Base, social: social },
+        { path: '/', component: Base, headerDetails: headerDetails },
         React.createElement(IndexRoute, { component: Test }),
         React.createElement(Route, { path: '/news', component: Test }),
         React.createElement(Route, { path: '/photos', component: Test })
@@ -26128,15 +26134,15 @@ var Routes = React.createElement(
 
 module.exports = Routes;
 
-},{"./components/Base.jsx":239,"./components/Test.jsx":241,"history/lib/createHashHistory":38,"react":235,"react-router":81}],239:[function(require,module,exports){
+},{"./components/Base.jsx":239,"./components/Test.jsx":242,"history/lib/createHashHistory":38,"react":235,"react-router":81}],239:[function(require,module,exports){
 var React = require('react');
-var Social = require('./Social.jsx');
+var Header = require('./Header.jsx');
 
 var Base = React.createClass({
     displayName: 'Base',
 
     render: function () {
-        let social = this.props.route.social || {};
+        let headerDetails = this.props.route.headerDetails || {};
 
         return React.createElement(
             'div',
@@ -26148,16 +26154,7 @@ var Base = React.createClass({
                 React.createElement(
                     'div',
                     { className: 'container' },
-                    React.createElement(
-                        'div',
-                        { className: 'page-base-header' },
-                        React.createElement(
-                            'h1',
-                            null,
-                            'page-base-header'
-                        ),
-                        React.createElement(Social, { social: social })
-                    ),
+                    React.createElement(Header, { headerDetails: headerDetails }),
                     React.createElement(
                         'div',
                         { className: 'page-base-body' },
@@ -26184,8 +26181,90 @@ var Base = React.createClass({
 
 module.exports = Base;
 
-},{"./Social.jsx":240,"react":235}],240:[function(require,module,exports){
+},{"./Header.jsx":240,"react":235}],240:[function(require,module,exports){
 var React = require('react');
+var ReactRouter = require('react-router');
+var Social = require('./Social.jsx');
+
+var Header = React.createClass({
+    displayName: 'Header',
+
+    render: function () {
+        let headerDetails = this.props.headerDetails;
+        let social = headerDetails.social || {};
+
+        return React.createElement(
+            'div',
+            { className: 'page-base-header' },
+            React.createElement(
+                'div',
+                { className: 'row' },
+                React.createElement(
+                    'div',
+                    { className: 'page-header-title col-sm-8' },
+                    React.createElement(
+                        'h1',
+                        null,
+                        headerDetails.title
+                    ),
+                    React.createElement(
+                        'h4',
+                        null,
+                        headerDetails.subtitle
+                    )
+                ),
+                React.createElement(
+                    'div',
+                    { className: 'page-header-social col-sm-4' },
+                    React.createElement(Social, { social: social })
+                )
+            )
+        );
+    }
+});
+
+module.exports = Header;
+
+},{"./Social.jsx":241,"react":235,"react-router":81}],241:[function(require,module,exports){
+var React = require('react');
+
+var generateSocialItems = function (social) {
+    let socialItems = [];
+    let cssPrefix = "fa fa-";
+    let mappings = {
+        twitter: {
+            css: 'twitter-square',
+            url: 'https://twitter.com/'
+        },
+        facebook: {
+            css: 'facebook-official',
+            url: 'https://facebook.com/'
+        },
+        instagram: {
+            css: 'instagram',
+            url: 'https://instagram.com/'
+        },
+        linkedin: {
+            css: 'linkedin-square',
+            url: 'https://linkedin.com/'
+        },
+        email: {
+            css: 'envelope',
+            url: 'mailto:'
+        }
+    };
+
+    Object.keys(mappings).forEach(function (val, index, array) {
+        if (social[val]) {
+            socialItems.push({
+                css: cssPrefix + mappings[val].css,
+                url: mappings[val].url + social[val]
+            });
+        }
+    });
+
+    return socialItems;
+};
 
 var Social = React.createClass({
     displayName: 'Social',
@@ -26216,42 +26295,6 @@ var Social = React.createClass({
     },
     render: function () {
         let social = this.props.social || {};
-        let socialItems = [];
-
-        if (social.twitter) {
-            socialItems.push({
-                css: 'fa-twitter-square',
-                url: 'https://twitter.com/' + social.twitter
-            });
-        }
-
-        if (social.facebook) {
-            socialItems.push({
-                css: 'fa-facebook-official',
-                url: 'https://facebook.com/' + social.facebook
-            });
-        }
-
-        if (social.instagram) {
-            socialItems.push({
-                css: 'fa-instagram',
-                url: 'https://instagram.com/' + social.instagram
-            });
-        }
-
-        if (social.linkedin) {
-            socialItems.push({
-                css: 'fa-linkedin-square',
-                url: 'https://linkedin.com/' + social.linkedin
-            });
-        }
-
-        if (social.email) {
-            socialItems.push({
-                css: 'fa-envelope',
-                url: 'mailto:' + social.email
-            });
-        }
 
         return React.createElement(
             'div',
@@ -26259,16 +26302,16 @@ var Social = React.createClass({
             React.createElement(
                 'ul',
                 { className: 'social-items' },
-                socialItems.map(this.createItem)
+                generateSocialItems(social).map(this.createItem)
             ),
-            React.createElement('div', { className: 'social-items-clear' })
+            React.createElement('div', { className: 'custom-clear-div' })
         );
     }
 });
 
 module.exports = Social;
 
-},{"react":235}],241:[function(require,module,exports){
+},{"react":235}],242:[function(require,module,exports){
 var React = require('react');
 
 var Test = React.createClass({
@@ -26281,15 +26324,6 @@ var Test = React.createClass({
             React.createElement(
                 "div",
                 { className: "row" },
-                React.createElement(
-                    "div",
-                    { className: "col-sm-6 col-sm-offset-3" },
-                    React.createElement(
-                        "h1",
-                        null,
-                        "Hey guys, I'm the Test page!"
-                    )
-                ),
                 React.createElement(
                     "div",
                     { className: "col-sm-6 col-sm-offset-3" },
@@ -26403,11 +26437,11 @@ var Test = React.createClass({
 
 module.exports = Test;
 
-},{"react":235}],242:[function(require,module,exports){
+},{"react":235}],243:[function(require,module,exports){
 var React = require('react');
 var ReactDOM = require('react-dom');
 var Routes = require('./Routes.jsx');
 
 ReactDOM.render(Routes, document.getElementById('main-page-container'));
 
-},{"./Routes.jsx":238,"react":235,"react-dom":51}]},{},[242]);
+},{"./Routes.jsx":238,"react":235,"react-dom":51}]},{},[243]);

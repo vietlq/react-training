@@ -15,9 +15,15 @@ var social = {
     instagram: 'vietlq',
 };
 
+var headerDetails = {
+    title: 'VietExpat News',
+    subtitle: 'Top News About Vietnamese Expats',
+    social: social
+}
+
 var Routes = (
     <Router history={cleanHashHistory}>
-        <Route path="/" component={Base} social={social}>
+        <Route path="/" component={Base} headerDetails={headerDetails}>
             <IndexRoute component={Test} />
             <Route path="/news" component={Test} />
             <Route path="/photos" component={Test} />

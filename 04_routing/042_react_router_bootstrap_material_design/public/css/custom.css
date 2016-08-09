@@ -33,6 +33,10 @@
     color: #ffffff;
 }
 
+.page-header-social ul {
+    float: right;
+}
+
 .social-items li {
     list-style-type: none;
     float: left;
@@ -44,6 +48,6 @@
     color: #ffffff;
 }
 
-.social-items-clear {
+.custom-clear-div {
     clear: both;
 }
