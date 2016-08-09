@@ -26106,7 +26106,8 @@ var createHashHistory = require('history/lib/createHashHistory');
 var cleanHashHistory = ReactRouter.useRouterHistory(createHashHistory)({ queryKey: false });
 
 var Base = require('./components/Base.jsx');
-var Test = require('./components/Test.jsx');
+var News = require('./components/News.jsx');
+var Photos = require('./components/Photos.jsx');
 
 var social = {
     twitter: 'vietlq',
@@ -26126,15 +26127,15 @@ var Routes = React.createElement(
     React.createElement(
         Route,
         { path: '/', component: Base, headerDetails: headerDetails },
-        React.createElement(IndexRoute, { component: Test }),
-        React.createElement(Route, { path: '/news', component: Test }),
-        React.createElement(Route, { path: '/photos', component: Test })
+        React.createElement(IndexRoute, { component: News }),
+        React.createElement(Route, { path: '/news', component: News }),
+        React.createElement(Route, { path: '/photos', component: Photos })
     )
 );
 
 module.exports = Routes;
 
-},{"./components/Base.jsx":239,"./components/Test.jsx":242,"history/lib/createHashHistory":38,"react":235,"react-router":81}],239:[function(require,module,exports){
+},{"./components/Base.jsx":239,"./components/News.jsx":241,"./components/Photos.jsx":242,"history/lib/createHashHistory":38,"react":235,"react-router":81}],239:[function(require,module,exports){
 var React = require('react');
 var Header = require('./Header.jsx');
 
@@ -26184,6 +26185,7 @@ module.exports = Base;
 },{"./Header.jsx":240,"react":235}],240:[function(require,module,exports){
 var React = require('react');
 var ReactRouter = require('react-router');
+var Link = ReactRouter.Link;
 var Social = require('./Social.jsx');
 
 var Header = React.createClass({
@@ -26198,25 +26200,53 @@ var Header = React.createClass({
             { className: 'page-base-header' },
             React.createElement(
                 'div',
-                { className: 'row' },
+                { className: 'page-header-title col-sm-8' },
                 React.createElement(
-                    'div',
-                    { className: 'page-header-title col-sm-8' },
-                    React.createElement(
-                        'h1',
-                        null,
-                        headerDetails.title
-                    ),
-                    React.createElement(
-                        'h4',
-                        null,
-                        headerDetails.subtitle
-                    )
+                    'h1',
+                    null,
+                    headerDetails.title
                 ),
                 React.createElement(
+                    'h4',
+                    null,
+                    headerDetails.subtitle
+                )
+            ),
+            React.createElement(
+                'div',
+                { className: 'page-header-social col-sm-4' },
+                React.createElement(Social, { social: social })
+            ),
+            React.createElement('div', { className: 'custom-clear-div' }),
+            React.createElement(
+                'div',
+                { className: 'page-header-social col-sm-12' },
+                React.createElement(
                     'div',
-                    { className: 'page-header-social col-sm-4' },
-                    React.createElement(Social, { social: social })
+                    { className: 'header-nav-menu' },
+                    React.createElement(
+                        'ul',
+                        null,
+                        React.createElement(
+                            'li',
+                            null,
+                            React.createElement(
+                                Link,
+                                { to: '/news', activeClassName: 'active' },
+                                'News'
+                            )
+                        ),
+                        React.createElement(
+                            'li',
+                            null,
+                            React.createElement(
+                                Link,
+                                { to: '/photos', activeClassName: 'active' },
+                                'Photos'
+                            )
+                        )
+                    ),
+                    React.createElement('div', { className: 'custom-clear-div' })
                 )
             )
         );
@@ -26225,7 +26255,41 @@ var Header = React.createClass({
 
 module.exports = Header;
 
-},{"./Social.jsx":241,"react":235,"react-router":81}],241:[function(require,module,exports){
+},{"./Social.jsx":243,"react":235,"react-router":81}],241:[function(require,module,exports){
+var React = require('react');
+
+var News = React.createClass({
+    displayName: "News",
+
+    render: function () {
+        return React.createElement(
+            "div",
+            { className: "col-sm-12" },
+            React.createElement("div", { className: "well bs-horizontal" })
+        );
+    }
+});
+
+module.exports = News;
+
+},{"react":235}],242:[function(require,module,exports){
+var React = require('react');
+
+var Photos = React.createClass({
+    displayName: "Photos",
+
+    render: function () {
+        return React.createElement(
+            "div",
+            { className: "col-sm-12" },
+            React.createElement("div", { className: "well bs-horizontal" })
+        );
+    }
+});
+
+module.exports = Photos;
+
+},{"react":235}],243:[function(require,module,exports){
 var React = require('react');
 
 var generateSocialItems = function (social) {
@@ -26311,137 +26375,11 @@ var Social = React.createClass({
 
 module.exports = Social;
 
-},{"react":235}],242:[function(require,module,exports){
-var React = require('react');
-
-var Test = React.createClass({
-    displayName: "Test",
-
-    render: function () {
-        return React.createElement(
-            "div",
-            { className: "container" },
-            React.createElement(
-                "div",
-                { className: "row" },
-                React.createElement(
-                    "div",
-                    { className: "col-sm-6 col-sm-offset-3" },
-                    React.createElement(
-                        "div",
-                        { className: "well bs-horizontal" },
-                        React.createElement(
-                            "form",
-                            { className: "form-horizontal" },
-                            React.createElement(
-                                "div",
-                                { className: "form-group label-static" },
-                                React.createElement(
-                                    "label",
-                                    { htmlFor: "i2", className: "control-label" },
-                                    "label-static"
-                                ),
-                                React.createElement("input", { type: "email", className: "form-control", id: "i2",
-                                    placeholder: "placeholder attribute" }),
-                                React.createElement(
-                                    "p",
-                                    { className: "help-block" },
-                                    "This is a hint as a ",
-                                    React.createElement(
-                                        "code",
-                                        null,
-                                        "p.help-block.hint"
-                                    )
-                                )
-                            ),
-                            React.createElement(
-                                "div",
-                                { className: "form-group label-floating" },
-                                React.createElement(
-                                    "label",
-                                    { htmlFor: "i5", className: "control-label" },
-                                    "label-floating"
-                                ),
-                                React.createElement("input", { type: "email", className: "form-control", id: "i5" }),
-                                React.createElement(
-                                    "span",
-                                    { className: "help-block" },
-                                    "This is a hint as a ",
-                                    React.createElement(
-                                        "code",
-                                        null,
-                                        "span.help-block.hint"
-                                    )
-                                )
-                            ),
-                            React.createElement(
-                                "div",
-                                { className: "form-group label-placeholder" },
-                                React.createElement(
-                                    "label",
-                                    { htmlFor: "i5p", className: "control-label" },
-                                    "label-placeholder"
-                                ),
-                                React.createElement("input", { type: "email", className: "form-control", id: "i5p" }),
-                                React.createElement(
-                                    "span",
-                                    { className: "help-block" },
-                                    "This is a hint as a ",
-                                    React.createElement(
-                                        "code",
-                                        null,
-                                        "span.help-block.hint"
-                                    )
-                                )
-                            ),
-                            React.createElement(
-                                "div",
-                                { className: "form-group" },
-                                React.createElement(
-                                    "label",
-                                    { className: "col-lg-2 control-label" },
-                                    "Radios"
-                                ),
-                                React.createElement(
-                                    "div",
-                                    { className: "col-lg-10" },
-                                    React.createElement(
-                                        "div",
-                                        { className: "radio radio-primary" },
-                                        React.createElement(
-                                            "label",
-                                            null,
-                                            React.createElement("input", { type: "radio", name: "optionsRadios", defaultChecked: true }),
-                                            "Option one"
-                                        )
-                                    ),
-                                    React.createElement(
-                                        "div",
-                                        { className: "radio radio-primary" },
-                                        React.createElement(
-                                            "label",
-                                            null,
-                                            React.createElement("input", { type: "radio", name: "optionsRadios" }),
-                                            "Option two"
-                                        )
-                                    )
-                                )
-                            )
-                        )
-                    )
-                )
-            )
-        );
-    }
-});
-
-module.exports = Test;
-
-},{"react":235}],243:[function(require,module,exports){
+},{"react":235}],244:[function(require,module,exports){
 var React = require('react');
 var ReactDOM = require('react-dom');
 var Routes = require('./Routes.jsx');
 
 ReactDOM.render(Routes, document.getElementById('main-page-container'));
 
-},{"./Routes.jsx":238,"react":235,"react-dom":51}]},{},[243]);
+},{"./Routes.jsx":238,"react":235,"react-dom":51}]},{},[244]);
