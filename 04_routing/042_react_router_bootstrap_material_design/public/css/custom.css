@@ -48,6 +48,10 @@
     color: #ffffff;
 }
 
+.social-items li a i:hover {
+    font-size: 2.5em;
+    color: #4DD0E1;
+}
 .custom-clear-div {
     clear: both;
 }
