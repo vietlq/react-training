@@ -26187,6 +26187,44 @@ module.exports = Base;
 },{"./Social.jsx":240,"react":235}],240:[function(require,module,exports){
 var React = require('react');
 
+var generateSocialItems = function (social) {
+    let socialItems = [];
+    let cssPrefix = "fa fa-";
+    let mappings = {
+        twitter: {
+            css: 'twitter-square',
+            url: 'https://twitter.com/'
+        },
+        facebook: {
+            css: 'facebook-official',
+            url: 'https://facebook.com/'
+        },
+        instagram: {
+            css: 'instagram',
+            url: 'https://instagram.com/'
+        },
+        linkedin: {
+            css: 'linkedin-square',
+            url: 'https://linkedin.com/'
+        },
+        email: {
+            css: 'envelope',
+            url: 'mailto:'
+        }
+    };
+
+    Object.keys(mappings).forEach(function (val, index, array) {
+        if (social[val]) {
+            socialItems.push({
+                css: cssPrefix + mappings[val].css,
+                url: mappings[val].url + social[val]
+            });
+        }
+    });
+
+    return socialItems;
+};
+
 var Social = React.createClass({
     displayName: 'Social',
 
@@ -26216,42 +26254,6 @@ var Social = React.createClass({
     },
     render: function () {
         let social = this.props.social || {};
-        let socialItems = [];
-
-        if (social.twitter) {
-            socialItems.push({
-                css: 'fa-twitter-square',
-                url: 'https://twitter.com/' + social.twitter
-            });
-        }
-
-        if (social.facebook) {
-            socialItems.push({
-                css: 'fa-facebook-official',
-                url: 'https://facebook.com/' + social.facebook
-            });
-        }
-
-        if (social.instagram) {
-            socialItems.push({
-                css: 'fa-instagram',
-                url: 'https://instagram.com/' + social.instagram
-            });
-        }
-
-        if (social.linkedin) {
-            socialItems.push({
-                css: 'fa-linkedin-square',
-                url: 'https://linkedin.com/' + social.linkedin
-            });
-        }
-
-        if (social.email) {
-            socialItems.push({
-                css: 'fa-envelope',
-                url: 'mailto:' + social.email
-            });
-        }
 
         return React.createElement(
             'div',
@@ -26259,7 +26261,7 @@ var Social = React.createClass({
             React.createElement(
                 'ul',
                 { className: 'social-items' },
-                socialItems.map(this.createItem)
+                generateSocialItems(social).map(this.createItem)
             ),
             React.createElement('div', { className: 'social-items-clear' })
         );
@@ -26281,15 +26283,6 @@ var Test = React.createClass({
             React.createElement(
                 "div",
                 { className: "row" },
-                React.createElement(
-                    "div",
-                    { className: "col-sm-6 col-sm-offset-3" },
-                    React.createElement(
-                        "h1",
-                        null,
-                        "Hey guys, I'm the Test page!"
-                    )
-                ),
                 React.createElement(
                     "div",
                     { className: "col-sm-6 col-sm-offset-3" },

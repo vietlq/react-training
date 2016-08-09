@@ -6,9 +6,6 @@ var Test = React.createClass({
             <div className="container">
                 <div className="row">
                     <div className="col-sm-6 col-sm-offset-3">
-                        <h1>Hey guys, I'm the Test page!</h1>
-                    </div>
-                    <div className="col-sm-6 col-sm-offset-3">
                         <div className="well bs-horizontal">
                             <form className="form-horizontal">
                                 <div className="form-group label-static">
