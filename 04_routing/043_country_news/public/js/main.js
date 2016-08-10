@@ -26204,12 +26204,20 @@ var Header = React.createClass({
                 React.createElement(
                     'h1',
                     null,
-                    headerDetails.title
+                    React.createElement(
+                        Link,
+                        { to: '/' },
+                        headerDetails.title
+                    )
                 ),
                 React.createElement(
                     'h4',
                     null,
-                    headerDetails.subtitle
+                    React.createElement(
+                        Link,
+                        { to: '/' },
+                        headerDetails.subtitle
+                    )
                 )
             ),
             React.createElement(
@@ -26232,7 +26240,8 @@ var Header = React.createClass({
                             null,
                             React.createElement(
                                 Link,
-                                { to: '/news', activeClassName: 'active' },
+                                { to: '/news', className: 'btn btn-raised',
+                                    activeClassName: 'btn-danger' },
                                 'News'
                             )
                         ),
@@ -26241,7 +26250,8 @@ var Header = React.createClass({
                             null,
                             React.createElement(
                                 Link,
-                                { to: '/photos', activeClassName: 'active' },
+                                { to: '/photos', className: 'btn btn-raised',
+                                    activeClassName: 'btn-danger' },
                                 'Photos'
                             )
                         )
@@ -26264,8 +26274,12 @@ var News = React.createClass({
     render: function () {
         return React.createElement(
             "div",
-            { className: "col-sm-12" },
-            React.createElement("div", { className: "well bs-horizontal" })
+            { className: "new-container" },
+            React.createElement(
+                "div",
+                { className: "col-sm-12" },
+                React.createElement("div", { className: "well bs-horizontal" })
+            )
         );
     }
 });
@@ -26281,8 +26295,12 @@ var Photos = React.createClass({
     render: function () {
         return React.createElement(
             "div",
-            { className: "col-sm-12" },
-            React.createElement("div", { className: "well bs-horizontal" })
+            { className: "new-container" },
+            React.createElement(
+                "div",
+                { className: "col-sm-12" },
+                React.createElement("div", { className: "well bs-horizontal" })
+            )
         );
     }
 });

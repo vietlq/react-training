@@ -21,6 +21,11 @@
     color: #ffffff;
 }
 
+.page-header-title a, .page-header-title a:visited, .page-header-title a:hover,
+.page-header-title a:active {
+    color: #ffffff;
+}
+
 .page-base-footer {
     background: #3e51b5;
     color: #ffffff;
