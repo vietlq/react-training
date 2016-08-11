@@ -8,18 +8,16 @@ var Base = React.createClass({
         return (
             <div className="page-base-outer-container">
                 <div className="page-base-header-bg"></div>
-                <div className="page-base-holder">
+                <div className="page-base-main">
                     <div className="container">
                         <Header headerDetails={headerDetails} />
                         <div className="page-base-body">
                             {this.props.children}
                         </div>
                     </div>
-                    <nav className="navbar navbar-default navbar-fixed-bottom">
-                        <div className="page-base-footer">
-                            <h1>page-base-footer</h1>
-                        </div>
-                    </nav>
+                </div>
+                <div className="page-base-footer">
+                    <h1>page-base-footer</h1>
                 </div>
             </div>
         );

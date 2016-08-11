@@ -26106,7 +26106,8 @@ var createHashHistory = require('history/lib/createHashHistory');
 var cleanHashHistory = ReactRouter.useRouterHistory(createHashHistory)({ queryKey: false });
 
 var Base = require('./components/Base.jsx');
-var Test = require('./components/Test.jsx');
+var News = require('./components/News.jsx');
+var Photos = require('./components/Photos.jsx');
 
 var social = {
     twitter: 'vietlq',
@@ -26116,7 +26117,7 @@ var social = {
 
 var headerDetails = {
     title: 'VietExpat News',
-    subtitle: 'Top News About Vietnamese Expats',
+    subtitle: 'Top News for Vietnamese Expats',
     social: social
 };
 
@@ -26126,15 +26127,15 @@ var Routes = React.createElement(
     React.createElement(
         Route,
         { path: '/', component: Base, headerDetails: headerDetails },
-        React.createElement(IndexRoute, { component: Test }),
-        React.createElement(Route, { path: '/news', component: Test }),
-        React.createElement(Route, { path: '/photos', component: Test })
+        React.createElement(IndexRoute, { component: News }),
+        React.createElement(Route, { path: '/news', component: News }),
+        React.createElement(Route, { path: '/photos', component: Photos })
     )
 );
 
 module.exports = Routes;
 
-},{"./components/Base.jsx":239,"./components/Test.jsx":242,"history/lib/createHashHistory":38,"react":235,"react-router":81}],239:[function(require,module,exports){
+},{"./components/Base.jsx":239,"./components/News.jsx":241,"./components/Photos.jsx":243,"history/lib/createHashHistory":38,"react":235,"react-router":81}],239:[function(require,module,exports){
 var React = require('react');
 var Header = require('./Header.jsx');
 
@@ -26150,7 +26151,7 @@ var Base = React.createClass({
             React.createElement('div', { className: 'page-base-header-bg' }),
             React.createElement(
                 'div',
-                { className: 'page-base-holder' },
+                { className: 'page-base-main' },
                 React.createElement(
                     'div',
                     { className: 'container' },
@@ -26160,19 +26161,15 @@ var Base = React.createClass({
                         { className: 'page-base-body' },
                         this.props.children
                     )
-                ),
+                )
+            ),
+            React.createElement(
+                'div',
+                { className: 'page-base-footer' },
                 React.createElement(
-                    'nav',
-                    { className: 'navbar navbar-default navbar-fixed-bottom' },
-                    React.createElement(
-                        'div',
-                        { className: 'page-base-footer' },
-                        React.createElement(
-                            'h1',
-                            null,
-                            'page-base-footer'
-                        )
-                    )
+                    'h1',
+                    null,
+                    'page-base-footer'
                 )
             )
         );
@@ -26184,6 +26181,7 @@ module.exports = Base;
 },{"./Header.jsx":240,"react":235}],240:[function(require,module,exports){
 var React = require('react');
 var ReactRouter = require('react-router');
+var Link = ReactRouter.Link;
 var Social = require('./Social.jsx');
 
 var Header = React.createClass({
@@ -26198,25 +26196,63 @@ var Header = React.createClass({
             { className: 'page-base-header' },
             React.createElement(
                 'div',
-                { className: 'row' },
+                { className: 'page-header-title col-sm-8' },
                 React.createElement(
-                    'div',
-                    { className: 'page-header-title col-sm-8' },
+                    'h1',
+                    null,
                     React.createElement(
-                        'h1',
-                        null,
+                        Link,
+                        { to: '/' },
                         headerDetails.title
-                    ),
-                    React.createElement(
-                        'h4',
-                        null,
-                        headerDetails.subtitle
                     )
                 ),
                 React.createElement(
+                    'h4',
+                    null,
+                    React.createElement(
+                        Link,
+                        { to: '/' },
+                        headerDetails.subtitle
+                    )
+                )
+            ),
+            React.createElement(
+                'div',
+                { className: 'page-header-social col-sm-4' },
+                React.createElement(Social, { social: social })
+            ),
+            React.createElement('div', { className: 'custom-clear-div' }),
+            React.createElement(
+                'div',
+                { className: 'col-sm-12' },
+                React.createElement(
                     'div',
-                    { className: 'page-header-social col-sm-4' },
-                    React.createElement(Social, { social: social })
+                    { className: 'header-nav-menu' },
+                    React.createElement(
+                        'ul',
+                        null,
+                        React.createElement(
+                            'li',
+                            null,
+                            React.createElement(
+                                Link,
+                                { to: '/news', className: 'btn btn-raised',
+                                    activeClassName: 'btn-danger' },
+                                'News'
+                            )
+                        ),
+                        React.createElement(
+                            'li',
+                            null,
+                            React.createElement(
+                                Link,
+                                { to: '/photos', className: 'btn btn-raised',
+                                    activeClassName: 'btn-danger' },
+                                'Photos'
+                            )
+                        )
+                    ),
+                    React.createElement('div', { className: 'custom-clear-div' })
                 )
             )
         );
@@ -26225,7 +26261,121 @@ var Header = React.createClass({
 
 module.exports = Header;
 
-},{"./Social.jsx":241,"react":235,"react-router":81}],241:[function(require,module,exports){
+},{"./Social.jsx":244,"react":235,"react-router":81}],241:[function(require,module,exports){
+var React = require('react');
+var NewsItem = require('./NewsItem.jsx');
+
+var News = React.createClass({
+    displayName: 'News',
+
+    render: function () {
+        let newsItemDetails = {
+            title: 'Brexit Hits U.K. Housing as Property Sales Drop Most Since 2008',
+            subtitle: 'Brexit is undermining the near-term outlook for the U.K. housing market, with both demand and sales dropping in July',
+            body: 'Brexit is undermining the near-term outlook for the U.K. housing market, with both demand and sales dropping in July, according to the Royal Institution of Chartered Surveyors.\nThe London-based group said new buyer inquiries fell for a fourth month, while its index of sales is pointing to the fastest decline in transactions since the global financial crisis in 2008. Prices continued to rise, but at the slowest pace in three years. Just 5 percent more surveyors recorded an increase than a fall, compared with 15 percent in June.\nBritain’s vote to leave the European Union has undermined confidence among U.K. consumers and increased worries about their finances and property values. That’s curbing demand for housing, though a worsening supply picture is proving some support to prices, according to RICS. New sales listings are falling at a record pace, it said.',
+            source: 'London, UK'
+        };
+
+        return React.createElement(
+            'div',
+            { className: 'news-container' },
+            React.createElement(NewsItem, { newsItemDetails: newsItemDetails })
+        );
+    }
+});
+
+module.exports = News;
+
+},{"./NewsItem.jsx":242,"react":235}],242:[function(require,module,exports){
+var React = require('react');
+
+var NewsItem = React.createClass({
+    displayName: "NewsItem",
+
+    render: function () {
+        let newsItemDetails = this.props.newsItemDetails || {};
+
+        return React.createElement(
+            "div",
+            { className: "news-item" },
+            React.createElement(
+                "div",
+                { className: "col-sm-12" },
+                React.createElement(
+                    "div",
+                    { className: "well" },
+                    React.createElement(
+                        "div",
+                        { className: "row news-item-main" },
+                        React.createElement(
+                            "div",
+                            { className: "col-sm-2 news-item-logo" },
+                            React.createElement("img", { src: "/img/Twitter_Logo_White_On_Blue.png" })
+                        ),
+                        React.createElement(
+                            "div",
+                            { className: "col-sm-10" },
+                            React.createElement(
+                                "h3",
+                                null,
+                                newsItemDetails.title
+                            ),
+                            React.createElement(
+                                "h4",
+                                null,
+                                newsItemDetails.subtitle
+                            ),
+                            React.createElement(
+                                "div",
+                                { className: "news-item-body" },
+                                newsItemDetails.body
+                            ),
+                            React.createElement(
+                                "h5",
+                                { className: "news-item-source" },
+                                newsItemDetails.source
+                            )
+                        )
+                    )
+                )
+            )
+        );
+    }
+});
+
+module.exports = NewsItem;
+
+},{"react":235}],243:[function(require,module,exports){
+var React = require('react');
+var NewsItem = require('./NewsItem.jsx');
+
+var Photos = React.createClass({
+    displayName: 'Photos',
+
+    render: function () {
+        let newsItemDetails = {
+            title: 'Brexit Hits U.K. Housing as Property Sales Drop Most Since 2008',
+            subtitle: 'Brexit is undermining the near-term outlook for the U.K. housing market, with both demand and sales dropping in July',
+            body: 'Brexit is undermining the near-term outlook for the U.K. housing market, with both demand and sales dropping in July, according to the Royal Institution of Chartered Surveyors.\nThe London-based group said new buyer inquiries fell for a fourth month, while its index of sales is pointing to the fastest decline in transactions since the global financial crisis in 2008. Prices continued to rise, but at the slowest pace in three years. Just 5 percent more surveyors recorded an increase than a fall, compared with 15 percent in June.\nBritain’s vote to leave the European Union has undermined confidence among U.K. consumers and increased worries about their finances and property values. That’s curbing demand for housing, though a worsening supply picture is proving some support to prices, according to RICS. New sales listings are falling at a record pace, it said.',
+            source: 'London, UK'
+        };
+
+        return React.createElement(
+            'div',
+            { className: 'news-container' },
+            React.createElement(NewsItem, { newsItemDetails: newsItemDetails }),
+            React.createElement(NewsItem, { newsItemDetails: newsItemDetails }),
+            React.createElement(NewsItem, { newsItemDetails: newsItemDetails }),
+            React.createElement(NewsItem, { newsItemDetails: newsItemDetails }),
+            React.createElement(NewsItem, { newsItemDetails: newsItemDetails }),
+            React.createElement(NewsItem, { newsItemDetails: newsItemDetails })
+        );
+    }
+});
+
+module.exports = Photos;
+
+},{"./NewsItem.jsx":242,"react":235}],244:[function(require,module,exports){
 var React = require('react');
 
 var generateSocialItems = function (social) {
@@ -26311,137 +26461,11 @@ var Social = React.createClass({
 
 module.exports = Social;
 
-},{"react":235}],242:[function(require,module,exports){
-var React = require('react');
-
-var Test = React.createClass({
-    displayName: "Test",
-
-    render: function () {
-        return React.createElement(
-            "div",
-            { className: "container" },
-            React.createElement(
-                "div",
-                { className: "row" },
-                React.createElement(
-                    "div",
-                    { className: "col-sm-6 col-sm-offset-3" },
-                    React.createElement(
-                        "div",
-                        { className: "well bs-horizontal" },
-                        React.createElement(
-                            "form",
-                            { className: "form-horizontal" },
-                            React.createElement(
-                                "div",
-                                { className: "form-group label-static" },
-                                React.createElement(
-                                    "label",
-                                    { htmlFor: "i2", className: "control-label" },
-                                    "label-static"
-                                ),
-                                React.createElement("input", { type: "email", className: "form-control", id: "i2",
-                                    placeholder: "placeholder attribute" }),
-                                React.createElement(
-                                    "p",
-                                    { className: "help-block" },
-                                    "This is a hint as a ",
-                                    React.createElement(
-                                        "code",
-                                        null,
-                                        "p.help-block.hint"
-                                    )
-                                )
-                            ),
-                            React.createElement(
-                                "div",
-                                { className: "form-group label-floating" },
-                                React.createElement(
-                                    "label",
-                                    { htmlFor: "i5", className: "control-label" },
-                                    "label-floating"
-                                ),
-                                React.createElement("input", { type: "email", className: "form-control", id: "i5" }),
-                                React.createElement(
-                                    "span",
-                                    { className: "help-block" },
-                                    "This is a hint as a ",
-                                    React.createElement(
-                                        "code",
-                                        null,
-                                        "span.help-block.hint"
-                                    )
-                                )
-                            ),
-                            React.createElement(
-                                "div",
-                                { className: "form-group label-placeholder" },
-                                React.createElement(
-                                    "label",
-                                    { htmlFor: "i5p", className: "control-label" },
-                                    "label-placeholder"
-                                ),
-                                React.createElement("input", { type: "email", className: "form-control", id: "i5p" }),
-                                React.createElement(
-                                    "span",
-                                    { className: "help-block" },
-                                    "This is a hint as a ",
-                                    React.createElement(
-                                        "code",
-                                        null,
-                                        "span.help-block.hint"
-                                    )
-                                )
-                            ),
-                            React.createElement(
-                                "div",
-                                { className: "form-group" },
-                                React.createElement(
-                                    "label",
-                                    { className: "col-lg-2 control-label" },
-                                    "Radios"
-                                ),
-                                React.createElement(
-                                    "div",
-                                    { className: "col-lg-10" },
-                                    React.createElement(
-                                        "div",
-                                        { className: "radio radio-primary" },
-                                        React.createElement(
-                                            "label",
-                                            null,
-                                            React.createElement("input", { type: "radio", name: "optionsRadios", defaultChecked: true }),
-                                            "Option one"
-                                        )
-                                    ),
-                                    React.createElement(
-                                        "div",
-                                        { className: "radio radio-primary" },
-                                        React.createElement(
-                                            "label",
-                                            null,
-                                            React.createElement("input", { type: "radio", name: "optionsRadios" }),
-                                            "Option two"
-                                        )
-                                    )
-                                )
-                            )
-                        )
-                    )
-                )
-            )
-        );
-    }
-});
-
-module.exports = Test;
-
-},{"react":235}],243:[function(require,module,exports){
+},{"react":235}],245:[function(require,module,exports){
 var React = require('react');
 var ReactDOM = require('react-dom');
 var Routes = require('./Routes.jsx');
 
 ReactDOM.render(Routes, document.getElementById('main-page-container'));
 
-},{"./Routes.jsx":238,"react":235,"react-dom":51}]},{},[243]);
+},{"./Routes.jsx":238,"react":235,"react-dom":51}]},{},[245]);

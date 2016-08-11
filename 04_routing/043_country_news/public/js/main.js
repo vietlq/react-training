@@ -26151,7 +26151,7 @@ var Base = React.createClass({
             React.createElement('div', { className: 'page-base-header-bg' }),
             React.createElement(
                 'div',
-                { className: 'page-base-holder' },
+                { className: 'page-base-main' },
                 React.createElement(
                     'div',
                     { className: 'container' },
@@ -26161,19 +26161,15 @@ var Base = React.createClass({
                         { className: 'page-base-body' },
                         this.props.children
                     )
-                ),
+                )
+            ),
+            React.createElement(
+                'div',
+                { className: 'page-base-footer' },
                 React.createElement(
-                    'nav',
-                    { className: 'navbar navbar-default navbar-fixed-bottom' },
-                    React.createElement(
-                        'div',
-                        { className: 'page-base-footer' },
-                        React.createElement(
-                            'h1',
-                            null,
-                            'page-base-footer'
-                        )
-                    )
+                    'h1',
+                    null,
+                    'page-base-footer'
                 )
             )
         );
@@ -26351,26 +26347,35 @@ module.exports = NewsItem;
 
 },{"react":235}],243:[function(require,module,exports){
 var React = require('react');
+var NewsItem = require('./NewsItem.jsx');
 
 var Photos = React.createClass({
-    displayName: "Photos",
+    displayName: 'Photos',
 
     render: function () {
+        let newsItemDetails = {
+            title: 'Brexit Hits U.K. Housing as Property Sales Drop Most Since 2008',
+            subtitle: 'Brexit is undermining the near-term outlook for the U.K. housing market, with both demand and sales dropping in July',
+            body: 'Brexit is undermining the near-term outlook for the U.K. housing market, with both demand and sales dropping in July, according to the Royal Institution of Chartered Surveyors.\nThe London-based group said new buyer inquiries fell for a fourth month, while its index of sales is pointing to the fastest decline in transactions since the global financial crisis in 2008. Prices continued to rise, but at the slowest pace in three years. Just 5 percent more surveyors recorded an increase than a fall, compared with 15 percent in June.\nBritain’s vote to leave the European Union has undermined confidence among U.K. consumers and increased worries about their finances and property values. That’s curbing demand for housing, though a worsening supply picture is proving some support to prices, according to RICS. New sales listings are falling at a record pace, it said.',
+            source: 'London, UK'
+        };
+
         return React.createElement(
-            "div",
-            { className: "new-container" },
-            React.createElement(
-                "div",
-                { className: "col-sm-12" },
-                React.createElement("div", { className: "well bs-horizontal" })
-            )
+            'div',
+            { className: 'news-container' },
+            React.createElement(NewsItem, { newsItemDetails: newsItemDetails }),
+            React.createElement(NewsItem, { newsItemDetails: newsItemDetails }),
+            React.createElement(NewsItem, { newsItemDetails: newsItemDetails }),
+            React.createElement(NewsItem, { newsItemDetails: newsItemDetails }),
+            React.createElement(NewsItem, { newsItemDetails: newsItemDetails }),
+            React.createElement(NewsItem, { newsItemDetails: newsItemDetails })
         );
     }
 });
 
 module.exports = Photos;
 
-},{"react":235}],244:[function(require,module,exports){
+},{"./NewsItem.jsx":242,"react":235}],244:[function(require,module,exports){
 var React = require('react');
 
 var generateSocialItems = function (social) {

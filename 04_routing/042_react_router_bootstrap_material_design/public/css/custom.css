@@ -4,21 +4,34 @@
 
 .page-base-header-bg {
     width: 100%;
-    height: 300px;
+    height: 250px;
     background: #3e51b5;
     position: absolute;
 }
 
-.page-base-holder {
-    /* http://stackoverflow.com/a/16837667/128028 */
-    min-height: 100vh;
-    position: relative;
-    /* http://getbootstrap.com/components/#navbar-fixed-bottom */
-    padding-bottom: 70px;
-}
-
 .page-base-header {
     color: #ffffff;
+}
+
+.page-header-title a,
+.page-header-title a:visited,
+.page-header-title a:hover,
+.page-header-title a:active {
+    color: #ffffff;
+}
+
+.page-base-main {
+    /* position: relative; */
+    /* http://stackoverflow.com/a/16837667/128028 */
+    /* http://stackoverflow.com/a/12701056/128028 */
+    min-height: 100vh;
+    padding-bottom: 150px;
+    /*
+        For sticky footer
+        http://stackoverflow.com/a/13365611/128028
+        <div class="navbar navbar-fixed-bottom"></div>
+        body { padding-bottom: 70px; }
+    */
 }
 
 .page-base-footer {
@@ -26,6 +39,12 @@
     color: #ffffff;
     padding-top: 20px;
     padding-bottom: 20px;
+    min-height: 150px;
+    margin-top: -150px;
+}
+
+.page-base-footer h1 {
+    margin: 0px 0px 0px 0px;
 }
 
 .fa.fa-1 {
@@ -35,12 +54,22 @@
 
 .page-header-social ul {
     float: right;
+    margin-top: 20px;
 }
 
-.social-items li {
+.header-nav-menu ul {
+    float: right;
+}
+
+.social-items li, .header-nav-menu ul li {
     list-style-type: none;
     float: left;
-    margin: 10px;
+    margin-left: 10px;
+    margin-right: 10px;
+}
+
+.social-items li:last-child, .header-nav-menu ul li:last-child {
+    margin-right: 0;
 }
 
 .social-items li a i {
@@ -52,6 +81,28 @@
     font-size: 2.5em;
     color: #4DD0E1;
 }
+
+.header-nav-menu ul li a {
+    color: #ffffff;
+    text-transform: uppercase;
+    font-weight: bold;
+    font-size: 1.25em;
+}
+
 .custom-clear-div {
     clear: both;
+}
+
+.news-item-logo img {
+    width: 120px;
+    height: 120px;
+}
+
+.news-item-main {
+    padding: 20px;
+}
+
+.news-item-body {
+    word-wrap: break-word;
+    text-align: justify;
 }

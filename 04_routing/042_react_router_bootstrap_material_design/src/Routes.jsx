@@ -7,7 +7,8 @@ var createHashHistory = require('history/lib/createHashHistory');
 var cleanHashHistory = ReactRouter.useRouterHistory(createHashHistory)({ queryKey: false });
 
 var Base = require('./components/Base.jsx');
-var Test = require('./components/Test.jsx');
+var News = require('./components/News.jsx');
+var Photos = require('./components/Photos.jsx');
 
 var social = {
     twitter: 'vietlq',
@@ -17,16 +18,16 @@ var social = {
 
 var headerDetails = {
     title: 'VietExpat News',
-    subtitle: 'Top News About Vietnamese Expats',
+    subtitle: 'Top News for Vietnamese Expats',
     social: social
 }
 
 var Routes = (
     <Router history={cleanHashHistory}>
         <Route path="/" component={Base} headerDetails={headerDetails}>
-            <IndexRoute component={Test} />
-            <Route path="/news" component={Test} />
-            <Route path="/photos" component={Test} />
+            <IndexRoute component={News} />
+            <Route path="/news" component={News} />
+            <Route path="/photos" component={Photos} />
         </Route>
     </Router>
 );

@@ -9,21 +9,29 @@
     position: absolute;
 }
 
-.page-base-holder {
-    /* http://stackoverflow.com/a/16837667/128028 */
-    min-height: 100vh;
-    position: relative;
-    /* http://getbootstrap.com/components/#navbar-fixed-bottom */
-    padding-bottom: 70px;
-}
-
 .page-base-header {
     color: #ffffff;
 }
 
-.page-header-title a, .page-header-title a:visited, .page-header-title a:hover,
+.page-header-title a,
+.page-header-title a:visited,
+.page-header-title a:hover,
 .page-header-title a:active {
     color: #ffffff;
+}
+
+.page-base-main {
+    /* position: relative; */
+    /* http://stackoverflow.com/a/16837667/128028 */
+    /* http://stackoverflow.com/a/12701056/128028 */
+    min-height: 100vh;
+    padding-bottom: 150px;
+    /*
+        For sticky footer
+        http://stackoverflow.com/a/13365611/128028
+        <div class="navbar navbar-fixed-bottom"></div>
+        body { padding-bottom: 70px; }
+    */
 }
 
 .page-base-footer {
@@ -31,6 +39,12 @@
     color: #ffffff;
     padding-top: 20px;
     padding-bottom: 20px;
+    min-height: 150px;
+    margin-top: -150px;
+}
+
+.page-base-footer h1 {
+    margin: 0px 0px 0px 0px;
 }
 
 .fa.fa-1 {
