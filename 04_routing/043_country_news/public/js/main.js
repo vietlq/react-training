@@ -26282,7 +26282,7 @@ var News = React.createClass({
 
         return React.createElement(
             'div',
-            { className: 'new-container' },
+            { className: 'news-container' },
             React.createElement(NewsItem, { newsItemDetails: newsItemDetails })
         );
     }
@@ -26310,7 +26310,7 @@ var NewsItem = React.createClass({
                     { className: "well" },
                     React.createElement(
                         "div",
-                        { className: "container" },
+                        { className: "row news-item-main" },
                         React.createElement(
                             "div",
                             { className: "col-sm-2 news-item-logo" },
@@ -26318,7 +26318,7 @@ var NewsItem = React.createClass({
                         ),
                         React.createElement(
                             "div",
-                            { className: "col-sm-8" },
+                            { className: "col-sm-10" },
                             React.createElement(
                                 "h3",
                                 null,

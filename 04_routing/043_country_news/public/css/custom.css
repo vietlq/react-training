@@ -84,6 +84,10 @@
     height: 120px;
 }
 
+.news-item-main {
+    padding: 20px;
+}
+
 .news-item-body {
     word-wrap: break-word;
     text-align: justify;

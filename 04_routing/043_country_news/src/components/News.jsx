@@ -11,7 +11,7 @@ var News = React.createClass({
         };
 
         return (
-            <div className="new-container">
+            <div className="news-container">
                 <NewsItem newsItemDetails={newsItemDetails} />
             </div>
         );

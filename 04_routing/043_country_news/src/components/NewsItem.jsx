@@ -8,11 +8,11 @@ var NewsItem = React.createClass({
             <div className="news-item">
                 <div className="col-sm-12">
                     <div className="well">
-                        <div className="container">
+                        <div className="row news-item-main">
                             <div className="col-sm-2 news-item-logo">
                                 <img src="/img/Twitter_Logo_White_On_Blue.png" />
                             </div>
-                            <div className="col-sm-8">
+                            <div className="col-sm-10">
                                 <h3>{newsItemDetails.title}</h3>
                                 <h4>{newsItemDetails.subtitle}</h4>
                                 <div className="news-item-body">{newsItemDetails.body}</div>
