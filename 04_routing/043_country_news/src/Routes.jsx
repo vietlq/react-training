@@ -18,7 +18,7 @@ var social = {
 
 var headerDetails = {
     title: 'VietExpat News',
-    subtitle: 'Top News About Vietnamese Expats',
+    subtitle: 'Top News for Vietnamese Expats',
     social: social
 }
 

@@ -26117,7 +26117,7 @@ var social = {
 
 var headerDetails = {
     title: 'VietExpat News',
-    subtitle: 'Top News About Vietnamese Expats',
+    subtitle: 'Top News for Vietnamese Expats',
     social: social
 };
 
@@ -26135,7 +26135,7 @@ var Routes = React.createElement(
 
 module.exports = Routes;
 
-},{"./components/Base.jsx":239,"./components/News.jsx":241,"./components/Photos.jsx":242,"history/lib/createHashHistory":38,"react":235,"react-router":81}],239:[function(require,module,exports){
+},{"./components/Base.jsx":239,"./components/News.jsx":241,"./components/Photos.jsx":243,"history/lib/createHashHistory":38,"react":235,"react-router":81}],239:[function(require,module,exports){
 var React = require('react');
 var Header = require('./Header.jsx');
 
@@ -26228,7 +26228,7 @@ var Header = React.createClass({
             React.createElement('div', { className: 'custom-clear-div' }),
             React.createElement(
                 'div',
-                { className: 'page-header-social col-sm-12' },
+                { className: 'col-sm-12' },
                 React.createElement(
                     'div',
                     { className: 'header-nav-menu' },
@@ -26265,28 +26265,91 @@ var Header = React.createClass({
 
 module.exports = Header;
 
-},{"./Social.jsx":243,"react":235,"react-router":81}],241:[function(require,module,exports){
+},{"./Social.jsx":244,"react":235,"react-router":81}],241:[function(require,module,exports){
 var React = require('react');
+var NewsItem = require('./NewsItem.jsx');
 
 var News = React.createClass({
-    displayName: "News",
+    displayName: 'News',
 
     render: function () {
+        let newsItemDetails = {
+            title: 'Brexit Hits U.K. Housing as Property Sales Drop Most Since 2008',
+            subtitle: 'Brexit is undermining the near-term outlook for the U.K. housing market, with both demand and sales dropping in July',
+            body: 'Brexit is undermining the near-term outlook for the U.K. housing market, with both demand and sales dropping in July, according to the Royal Institution of Chartered Surveyors.\nThe London-based group said new buyer inquiries fell for a fourth month, while its index of sales is pointing to the fastest decline in transactions since the global financial crisis in 2008. Prices continued to rise, but at the slowest pace in three years. Just 5 percent more surveyors recorded an increase than a fall, compared with 15 percent in June.\nBritain’s vote to leave the European Union has undermined confidence among U.K. consumers and increased worries about their finances and property values. That’s curbing demand for housing, though a worsening supply picture is proving some support to prices, according to RICS. New sales listings are falling at a record pace, it said.',
+            source: 'London, UK'
+        };
+
         return React.createElement(
-            "div",
-            { className: "new-container" },
-            React.createElement(
-                "div",
-                { className: "col-sm-12" },
-                React.createElement("div", { className: "well bs-horizontal" })
-            )
+            'div',
+            { className: 'new-container' },
+            React.createElement(NewsItem, { newsItemDetails: newsItemDetails })
         );
     }
 });
 
 module.exports = News;
 
-},{"react":235}],242:[function(require,module,exports){
+},{"./NewsItem.jsx":242,"react":235}],242:[function(require,module,exports){
+var React = require('react');
+
+var NewsItem = React.createClass({
+    displayName: "NewsItem",
+
+    render: function () {
+        let newsItemDetails = this.props.newsItemDetails || {};
+
+        return React.createElement(
+            "div",
+            { className: "news-item" },
+            React.createElement(
+                "div",
+                { className: "col-sm-12" },
+                React.createElement(
+                    "div",
+                    { className: "well" },
+                    React.createElement(
+                        "div",
+                        { className: "container" },
+                        React.createElement(
+                            "div",
+                            { className: "col-sm-2 news-item-logo" },
+                            React.createElement("img", { src: "/img/Twitter_Logo_White_On_Blue.png" })
+                        ),
+                        React.createElement(
+                            "div",
+                            { className: "col-sm-8" },
+                            React.createElement(
+                                "h3",
+                                null,
+                                newsItemDetails.title
+                            ),
+                            React.createElement(
+                                "h4",
+                                null,
+                                newsItemDetails.subtitle
+                            ),
+                            React.createElement(
+                                "div",
+                                { className: "news-item-body" },
+                                newsItemDetails.body
+                            ),
+                            React.createElement(
+                                "h5",
+                                { className: "news-item-source" },
+                                newsItemDetails.source
+                            )
+                        )
+                    )
+                )
+            )
+        );
+    }
+});
+
+module.exports = NewsItem;
+
+},{"react":235}],243:[function(require,module,exports){
 var React = require('react');
 
 var Photos = React.createClass({
@@ -26307,7 +26370,7 @@ var Photos = React.createClass({
 
 module.exports = Photos;
 
-},{"react":235}],243:[function(require,module,exports){
+},{"react":235}],244:[function(require,module,exports){
 var React = require('react');
 
 var generateSocialItems = function (social) {
@@ -26393,11 +26456,11 @@ var Social = React.createClass({
 
 module.exports = Social;
 
-},{"react":235}],244:[function(require,module,exports){
+},{"react":235}],245:[function(require,module,exports){
 var React = require('react');
 var ReactDOM = require('react-dom');
 var Routes = require('./Routes.jsx');
 
 ReactDOM.render(Routes, document.getElementById('main-page-container'));
 
-},{"./Routes.jsx":238,"react":235,"react-dom":51}]},{},[244]);
+},{"./Routes.jsx":238,"react":235,"react-dom":51}]},{},[245]);

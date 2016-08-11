@@ -20,7 +20,7 @@ var Header = React.createClass({
                 </div>
                 <div className="custom-clear-div"></div>
 
-                <div className="page-header-social col-sm-12">
+                <div className="col-sm-12">
                     <div className="header-nav-menu">
                         <ul>
                             <li><Link to="/news" className="btn btn-raised"

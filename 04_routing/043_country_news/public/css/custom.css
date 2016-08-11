@@ -73,3 +73,13 @@
 .custom-clear-div {
     clear: both;
 }
+
+.news-item-logo img {
+    width: 120px;
+    height: 120px;
+}
+
+.news-item-body {
+    word-wrap: break-word;
+    text-align: justify;
+}
