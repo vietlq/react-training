@@ -38,15 +38,20 @@
     color: #ffffff;
 }
 
-.page-header-social ul, .header-nav-menu ul {
+.page-header-social ul {
     float: right;
-    margin-top: 10px;
+    margin-top: 20px;
+}
+
+.header-nav-menu ul {
+    float: right;
 }
 
 .social-items li, .header-nav-menu ul li {
     list-style-type: none;
     float: left;
-    margin: 10px;
+    margin-left: 10px;
+    margin-right: 10px;
 }
 
 .social-items li:last-child, .header-nav-menu ul li:last-child {
