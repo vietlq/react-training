@@ -6,7 +6,7 @@
   "scripts": {
     "magic": "watchify src/main.jsx -v -t [ babelify --presets [ es2015 react ] ] -o public/js/main.js",
     "start": "if-env NODE_ENV=production && npm run start:prod || npm run start:dev",
-    "start:dev": "webpack-dev-server --inline --content-base public --port 3000 --history-api-fallback",
+    "start:dev": "webpack-dev-server --inline --content-base ./public --port 3000 --history-api-fallback",
     "start:prod": "webpack && node server.js",
     "dev": "webpack -d --watch",
     "build": "webpack -p"
