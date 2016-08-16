@@ -17,7 +17,6 @@ var Base = React.createClass({
                     </div>
                 </div>
                 <div className="page-base-footer">
-                    <h1>page-base-footer</h1>
                 </div>
             </div>
         );

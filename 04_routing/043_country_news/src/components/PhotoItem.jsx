@@ -1,8 +1,12 @@
 var React = require('react');
+import Thumbnail from './Thumbnail.jsx';
 
 var PhotoItem = React.createClass({
     render: function() {
-        let photoItemDetails = this.props.photoItemDetails || {};
+        const photoItemDetails = this.props.photoItemDetails || { logo: '', thumbs : [] };
+        var createThumbnail = function(thumb, index) {
+            return (<Thumbnail key={thumb.small_url + index} thumb={thumb} />);
+        };
 
         return (
             <div className="news-item">
@@ -10,13 +14,12 @@ var PhotoItem = React.createClass({
                     <div className="well">
                         <div className="row news-item-main">
                             <div className="col-sm-2 news-item-logo">
-                                <img src="/img/Twitter_Logo_White_On_Blue.png" />
+                                <img src={photoItemDetails.logo} />
                             </div>
                             <div className="col-sm-10">
-                                <h3>{photoItemDetails.title}</h3>
-                                <h4>{photoItemDetails.subtitle}</h4>
-                                <div className="news-item-body">{photoItemDetails.body}</div>
-                                <h5 className="news-item-source">{photoItemDetails.source}</h5>
+                                <div className="thumbnail-holder">
+                                    {photoItemDetails.thumbs.map(createThumbnail)}
+                                </div>
                             </div>
                         </div>
                     </div>
