@@ -17,3 +17,5 @@ npm install --save browserify react react-dom react-router watchify history@2.1.
 * https://material.google.com/style/color.html
 * https://www.codementor.io/reactjs/tutorial/beginner-guide-setup-reactjs-environment-npm-babel-6-webpack
 * http://stackoverflow.com/questions/22824546/how-to-run-gulp-tasks-synchronously-one-after-the-other
+* https://github.com/reactjs/react-router-tutorial/tree/master/lessons/11-productionish-server
+* https://github.com/reactjs/react-router-tutorial/tree/master/lessons/12-navigating
