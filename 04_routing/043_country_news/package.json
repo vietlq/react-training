@@ -4,7 +4,7 @@
   "description": "Minimalistic News",
   "main": "main.js",
   "scripts": {
-    "magic": "watchify src/main.jsx -v -t [ babelify --presets [ es2015 react ] ] -o public/js/main.js",
+    "magic": "watchify src/main.jsx -v -t [ babelify --presets [ es2015 react ] ] -o 'uglifyjs -cm > public/js/main.js'",
     "start": "if-env NODE_ENV=production && npm run start:prod || npm run start:dev",
     "start:dev": "webpack-dev-server --inline --hot --content-base ./public --port 3000 --history-api-fallback --watch",
     "start:prod": "webpack -p && node server.js",
@@ -38,6 +38,7 @@
     "react": "^15.3.0",
     "react-dom": "^15.3.0",
     "react-router": "^2.6.1",
+    "uglifyjs": "^2.4.10",
     "watchify": "^3.7.0",
     "webpack": "^1.13.1"
   }
