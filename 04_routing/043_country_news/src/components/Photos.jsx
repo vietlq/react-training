@@ -1,6 +1,5 @@
 var React = require('react');
 var PhotoItem = require('./PhotoItem.jsx');
-var NewsItem = require('./NewsItem.jsx');
 
 var Photos = React.createClass({
     render: function() {
@@ -32,6 +31,10 @@ var Photos = React.createClass({
 
         return (
             <div className="news-container">
+                <PhotoItem photoItemDetails={photoItemDetails} />
+                <PhotoItem photoItemDetails={photoItemDetails} />
+                <PhotoItem photoItemDetails={photoItemDetails} />
+                <PhotoItem photoItemDetails={photoItemDetails} />
                 <PhotoItem photoItemDetails={photoItemDetails} />
                 <PhotoItem photoItemDetails={photoItemDetails} />
             </div>
