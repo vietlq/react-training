@@ -20976,7 +20976,8 @@ var LeadCapture = function (_Component) {
                             _react2.default.createElement(
                                 'div',
                                 { className: 'panel-body' },
-                                _react2.default.createElement(_NameField2.default, null),
+                                _react2.default.createElement(_NameField2.default, { nameType: 'First' }),
+                                _react2.default.createElement(_NameField2.default, { nameType: 'Last' }),
                                 _react2.default.createElement(_EmailField2.default, null)
                             )
                         )
@@ -21057,7 +21058,7 @@ var NameField = function (_Component) {
                         _react2.default.createElement("span", { className: "glyphicon glyphicon-user" })
                     ),
                     _react2.default.createElement("input", { type: "text", className: "form-control",
-                        placeholder: "Name",
+                        placeholder: this.props.nameType + " Name",
                         onChange: this.onChange,
                         value: this.state.value })
                 )

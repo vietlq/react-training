@@ -33,7 +33,7 @@ class NameField extends Component {
                         <span className="glyphicon glyphicon-user"></span>
                     </span>
                     <input type="text" className="form-control"
-                        placeholder="Name"
+                        placeholder={this.props.nameType + " Name"}
                         onChange={this.onChange}
                         value={this.state.value} />
                 </div>

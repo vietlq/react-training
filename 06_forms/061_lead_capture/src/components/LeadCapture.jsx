@@ -20,7 +20,8 @@ class LeadCapture extends Component {
                     <div className="col-sm-6 col-sm-offset-3">
                         <div className="panel panel-default">
                             <div className="panel-body">
-                                <NameField />
+                                <NameField nameType="First" />
+                                <NameField nameType="Last" />
                                 <EmailField />
                             </div>
                         </div>
