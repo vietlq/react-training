@@ -34,6 +34,7 @@ class NameField extends Component {
                     </span>
                     <input type="text" className="form-control"
                         placeholder={this.props.nameType + " Name"}
+                        id={this.props.fieldId || ""}
                         onChange={this.onChange}
                         value={this.state.value} />
                 </div>

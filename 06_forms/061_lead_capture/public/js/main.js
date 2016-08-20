@@ -20889,6 +20889,7 @@ var EmailField = function (_Component) {
                     ),
                     _react2.default.createElement('input', { type: 'text', className: 'form-control',
                         placeholder: 'Email',
+                        id: this.props.fieldId || "",
                         onChange: this.onChange,
                         value: this.state.value })
                 )
@@ -20976,9 +20977,11 @@ var LeadCapture = function (_Component) {
                             _react2.default.createElement(
                                 'div',
                                 { className: 'panel-body' },
-                                _react2.default.createElement(_NameField2.default, { nameType: 'First' }),
-                                _react2.default.createElement(_NameField2.default, { nameType: 'Last' }),
-                                _react2.default.createElement(_EmailField2.default, null)
+                                _react2.default.createElement(_NameField2.default, { fieldId: 'lead-cap-fname',
+                                    nameType: 'First' }),
+                                _react2.default.createElement(_NameField2.default, { fieldId: 'lead-cap-lname',
+                                    nameType: 'Last' }),
+                                _react2.default.createElement(_EmailField2.default, { fieldId: 'lead-cap-email' })
                             )
                         )
                     )
@@ -21059,6 +21062,7 @@ var NameField = function (_Component) {
                     ),
                     _react2.default.createElement("input", { type: "text", className: "form-control",
                         placeholder: this.props.nameType + " Name",
+                        id: this.props.fieldId || "",
                         onChange: this.onChange,
                         value: this.state.value })
                 )

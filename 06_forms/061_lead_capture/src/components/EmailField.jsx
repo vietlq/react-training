@@ -33,6 +33,7 @@ class EmailField extends Component {
                     <span className="input-group-addon">@</span>
                     <input type="text" className="form-control"
                         placeholder="Email"
+                        id={this.props.fieldId || ""}
                         onChange={this.onChange}
                         value={this.state.value} />
                 </div>
