@@ -20919,13 +20919,9 @@ var _Social = require('./Social.jsx');
 
 var _Social2 = _interopRequireDefault(_Social);
 
-var _EmailField = require('./EmailField.jsx');
+var _LeadCapture = require('./LeadCapture.jsx');
 
-var _EmailField2 = _interopRequireDefault(_EmailField);
-
-var _NameField = require('./NameField.jsx');
-
-var _NameField2 = _interopRequireDefault(_NameField);
+var _LeadCapture2 = _interopRequireDefault(_LeadCapture);
 
 function _interopRequireDefault(obj) { return obj && obj.__esModule ? obj : { default: obj }; }
 
@@ -20941,16 +20937,22 @@ var social = {
     instagram: 'vietlq'
 };
 
-var LeadCapture = function (_Component) {
-    _inherits(LeadCapture, _Component);
+var fieldIds = {
+    fname: 'lead-cap-fname',
+    lname: 'lead-cap-lname',
+    email: 'lead-cap-fname'
+};
 
-    function LeadCapture() {
-        _classCallCheck(this, LeadCapture);
+var HomePage = function (_Component) {
+    _inherits(HomePage, _Component);
 
-        return _possibleConstructorReturn(this, Object.getPrototypeOf(LeadCapture).apply(this, arguments));
+    function HomePage() {
+        _classCallCheck(this, HomePage);
+
+        return _possibleConstructorReturn(this, Object.getPrototypeOf(HomePage).apply(this, arguments));
     }
 
-    _createClass(LeadCapture, [{
+    _createClass(HomePage, [{
         key: 'render',
         value: function render() {
             return _react2.default.createElement(
@@ -20971,20 +20973,71 @@ var LeadCapture = function (_Component) {
                     _react2.default.createElement(
                         'div',
                         { className: 'col-sm-6 col-sm-offset-3' },
-                        _react2.default.createElement(
-                            'div',
-                            { className: 'panel panel-default' },
-                            _react2.default.createElement(
-                                'div',
-                                { className: 'panel-body' },
-                                _react2.default.createElement(_NameField2.default, { fieldId: 'lead-cap-fname',
-                                    nameType: 'First' }),
-                                _react2.default.createElement(_NameField2.default, { fieldId: 'lead-cap-lname',
-                                    nameType: 'Last' }),
-                                _react2.default.createElement(_EmailField2.default, { fieldId: 'lead-cap-email' })
-                            )
-                        )
+                        _react2.default.createElement(_LeadCapture2.default, { fieldIds: fieldIds }),
+                        _react2.default.createElement(_Social2.default, { social: social })
                     )
+                )
+            );
+        }
+    }]);
+
+    return HomePage;
+}(_react.Component);
+
+exports.default = HomePage;
+
+},{"./LeadCapture.jsx":178,"./Social.jsx":180,"react":175}],178:[function(require,module,exports){
+'use strict';
+
+Object.defineProperty(exports, "__esModule", {
+    value: true
+});
+
+var _createClass = function () { function defineProperties(target, props) { for (var i = 0; i < props.length; i++) { var descriptor = props[i]; descriptor.enumerable = descriptor.enumerable || false; descriptor.configurable = true; if ("value" in descriptor) descriptor.writable = true; Object.defineProperty(target, descriptor.key, descriptor); } } return function (Constructor, protoProps, staticProps) { if (protoProps) defineProperties(Constructor.prototype, protoProps); if (staticProps) defineProperties(Constructor, staticProps); return Constructor; }; }();
+
+var _react = require('react');
+
+var _react2 = _interopRequireDefault(_react);
+
+var _EmailField = require('./EmailField.jsx');
+
+var _EmailField2 = _interopRequireDefault(_EmailField);
+
+var _NameField = require('./NameField.jsx');
+
+var _NameField2 = _interopRequireDefault(_NameField);
+
+function _interopRequireDefault(obj) { return obj && obj.__esModule ? obj : { default: obj }; }
+
+function _classCallCheck(instance, Constructor) { if (!(instance instanceof Constructor)) { throw new TypeError("Cannot call a class as a function"); } }
+
+function _possibleConstructorReturn(self, call) { if (!self) { throw new ReferenceError("this hasn't been initialised - super() hasn't been called"); } return call && (typeof call === "object" || typeof call === "function") ? call : self; }
+
+function _inherits(subClass, superClass) { if (typeof superClass !== "function" && superClass !== null) { throw new TypeError("Super expression must either be null or a function, not " + typeof superClass); } subClass.prototype = Object.create(superClass && superClass.prototype, { constructor: { value: subClass, enumerable: false, writable: true, configurable: true } }); if (superClass) Object.setPrototypeOf ? Object.setPrototypeOf(subClass, superClass) : subClass.__proto__ = superClass; }
+
+var LeadCapture = function (_Component) {
+    _inherits(LeadCapture, _Component);
+
+    function LeadCapture() {
+        _classCallCheck(this, LeadCapture);
+
+        return _possibleConstructorReturn(this, Object.getPrototypeOf(LeadCapture).apply(this, arguments));
+    }
+
+    _createClass(LeadCapture, [{
+        key: 'render',
+        value: function render() {
+            return _react2.default.createElement(
+                'div',
+                { className: 'panel panel-default' },
+                _react2.default.createElement(
+                    'div',
+                    { className: 'panel-body' },
+                    _react2.default.createElement(_NameField2.default, { fieldId: this.props.fieldIds.fname,
+                        nameType: 'First' }),
+                    _react2.default.createElement(_NameField2.default, { fieldId: this.props.fieldIds.lname,
+                        nameType: 'Last' }),
+                    _react2.default.createElement(_EmailField2.default, { fieldId: this.props.fieldIds.email })
                 )
             );
         }
@@ -20995,7 +21048,7 @@ var LeadCapture = function (_Component) {
 
 exports.default = LeadCapture;
 
-},{"./EmailField.jsx":176,"./NameField.jsx":178,"./Social.jsx":179,"react":175}],178:[function(require,module,exports){
+},{"./EmailField.jsx":176,"./NameField.jsx":179,"react":175}],179:[function(require,module,exports){
 "use strict";
 
 Object.defineProperty(exports, "__esModule", {
@@ -21075,7 +21128,7 @@ var NameField = function (_Component) {
 
 exports.default = NameField;
 
-},{"react":175}],179:[function(require,module,exports){
+},{"react":175}],180:[function(require,module,exports){
 'use strict';
 
 var React = require('react');
@@ -21163,7 +21216,7 @@ var Social = React.createClass({
 
 module.exports = Social;
 
-},{"react":175}],180:[function(require,module,exports){
+},{"react":175}],181:[function(require,module,exports){
 'use strict';
 
 var _react = require('react');
@@ -21172,12 +21225,12 @@ var _react2 = _interopRequireDefault(_react);
 
 var _reactDom = require('react-dom');
 
-var _LeadCapture = require('./components/LeadCapture.jsx');
+var _HomePage = require('./components/HomePage.jsx');
 
-var _LeadCapture2 = _interopRequireDefault(_LeadCapture);
+var _HomePage2 = _interopRequireDefault(_HomePage);
 
 function _interopRequireDefault(obj) { return obj && obj.__esModule ? obj : { default: obj }; }
 
-(0, _reactDom.render)(_react2.default.createElement(_LeadCapture2.default, null), document.getElementById('main-container'));
+(0, _reactDom.render)(_react2.default.createElement(_HomePage2.default, null), document.getElementById('main-container'));
 
-},{"./components/LeadCapture.jsx":177,"react":175,"react-dom":30}]},{},[180]);
+},{"./components/HomePage.jsx":177,"react":175,"react-dom":30}]},{},[181]);

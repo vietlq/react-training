@@ -1,5 +1,5 @@
 import React from 'react';
 import { render } from 'react-dom';
-import LeadCapture from './components/LeadCapture.jsx';
+import HomePage from './components/HomePage.jsx';
 
-render(<LeadCapture />, document.getElementById('main-container'));
+render(<HomePage />, document.getElementById('main-container'));
