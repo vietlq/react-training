@@ -1,7 +1,6 @@
 import React, { Component } from 'react';
-import validator from 'email-validator';
 
-class EmailField extends Component {
+class NameField extends Component {
     constructor() {
         super();
 
@@ -14,9 +13,9 @@ class EmailField extends Component {
     }
 
     onChange(event) {
-        var val = event.target.value;
+        const val = event.target.value;
 
-        if (validator.validate(val)) {
+        if (val.trim().length > 0) {
             this.setState({ valid: true, value: val });
         } else {
             this.setState({ valid: false, value: val });
@@ -30,9 +29,11 @@ class EmailField extends Component {
         return (
             <div className={formClass}>
                 <div className="input-group input-group-lg">
-                    <span className="input-group-addon">@</span>
+                    <span className="input-group-addon">
+                        <span className="glyphicon glyphicon-user"></span>
+                    </span>
                     <input type="text" className="form-control"
-                        placeholder="Email"
+                        placeholder="Name"
                         onChange={this.onChange}
                         value={this.state.value} />
                 </div>
@@ -41,4 +42,4 @@ class EmailField extends Component {
     }
 }
 
-export default EmailField;
+export default NameField;

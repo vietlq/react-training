@@ -20922,6 +20922,10 @@ var _EmailField = require('./EmailField.jsx');
 
 var _EmailField2 = _interopRequireDefault(_EmailField);
 
+var _NameField = require('./NameField.jsx');
+
+var _NameField2 = _interopRequireDefault(_NameField);
+
 function _interopRequireDefault(obj) { return obj && obj.__esModule ? obj : { default: obj }; }
 
 function _classCallCheck(instance, Constructor) { if (!(instance instanceof Constructor)) { throw new TypeError("Cannot call a class as a function"); } }
@@ -20965,13 +20969,14 @@ var LeadCapture = function (_Component) {
                     { className: 'container' },
                     _react2.default.createElement(
                         'div',
-                        { className: 'col-sm-6' },
+                        { className: 'col-sm-6 col-sm-offset-3' },
                         _react2.default.createElement(
                             'div',
                             { className: 'panel panel-default' },
                             _react2.default.createElement(
                                 'div',
                                 { className: 'panel-body' },
+                                _react2.default.createElement(_NameField2.default, null),
                                 _react2.default.createElement(_EmailField2.default, null)
                             )
                         )
@@ -20986,7 +20991,86 @@ var LeadCapture = function (_Component) {
 
 exports.default = LeadCapture;
 
-},{"./EmailField.jsx":176,"./Social.jsx":178,"react":175}],178:[function(require,module,exports){
+},{"./EmailField.jsx":176,"./NameField.jsx":178,"./Social.jsx":179,"react":175}],178:[function(require,module,exports){
+"use strict";
+
+Object.defineProperty(exports, "__esModule", {
+    value: true
+});
+
+var _createClass = function () { function defineProperties(target, props) { for (var i = 0; i < props.length; i++) { var descriptor = props[i]; descriptor.enumerable = descriptor.enumerable || false; descriptor.configurable = true; if ("value" in descriptor) descriptor.writable = true; Object.defineProperty(target, descriptor.key, descriptor); } } return function (Constructor, protoProps, staticProps) { if (protoProps) defineProperties(Constructor.prototype, protoProps); if (staticProps) defineProperties(Constructor, staticProps); return Constructor; }; }();
+
+var _react = require("react");
+
+var _react2 = _interopRequireDefault(_react);
+
+function _interopRequireDefault(obj) { return obj && obj.__esModule ? obj : { default: obj }; }
+
+function _classCallCheck(instance, Constructor) { if (!(instance instanceof Constructor)) { throw new TypeError("Cannot call a class as a function"); } }
+
+function _possibleConstructorReturn(self, call) { if (!self) { throw new ReferenceError("this hasn't been initialised - super() hasn't been called"); } return call && (typeof call === "object" || typeof call === "function") ? call : self; }
+
+function _inherits(subClass, superClass) { if (typeof superClass !== "function" && superClass !== null) { throw new TypeError("Super expression must either be null or a function, not " + typeof superClass); } subClass.prototype = Object.create(superClass && superClass.prototype, { constructor: { value: subClass, enumerable: false, writable: true, configurable: true } }); if (superClass) Object.setPrototypeOf ? Object.setPrototypeOf(subClass, superClass) : subClass.__proto__ = superClass; }
+
+var NameField = function (_Component) {
+    _inherits(NameField, _Component);
+
+    function NameField() {
+        _classCallCheck(this, NameField);
+
+        var _this = _possibleConstructorReturn(this, Object.getPrototypeOf(NameField).call(this));
+
+        _this.onChange = _this.onChange.bind(_this);
+
+        _this.state = {
+            valid: true,
+            value: ""
+        };
+        return _this;
+    }
+
+    _createClass(NameField, [{
+        key: "onChange",
+        value: function onChange(event) {
+            var val = event.target.value;
+
+            if (val.trim().length > 0) {
+                this.setState({ valid: true, value: val });
+            } else {
+                this.setState({ valid: false, value: val });
+            }
+        }
+    }, {
+        key: "render",
+        value: function render() {
+            var formClass = this.state.valid ? "form-group" : "form-group has-error";
+
+            return _react2.default.createElement(
+                "div",
+                { className: formClass },
+                _react2.default.createElement(
+                    "div",
+                    { className: "input-group input-group-lg" },
+                    _react2.default.createElement(
+                        "span",
+                        { className: "input-group-addon" },
+                        _react2.default.createElement("span", { className: "glyphicon glyphicon-user" })
+                    ),
+                    _react2.default.createElement("input", { type: "text", className: "form-control",
+                        placeholder: "Name",
+                        onChange: this.onChange,
+                        value: this.state.value })
+                )
+            );
+        }
+    }]);
+
+    return NameField;
+}(_react.Component);
+
+exports.default = NameField;
+
+},{"react":175}],179:[function(require,module,exports){
 'use strict';
 
 var React = require('react');
@@ -21074,7 +21158,7 @@ var Social = React.createClass({
 
 module.exports = Social;
 
-},{"react":175}],179:[function(require,module,exports){
+},{"react":175}],180:[function(require,module,exports){
 'use strict';
 
 var _react = require('react');
@@ -21091,4 +21175,4 @@ function _interopRequireDefault(obj) { return obj && obj.__esModule ? obj : { de
 
 (0, _reactDom.render)(_react2.default.createElement(_LeadCapture2.default, null), document.getElementById('main-container'));
 
-},{"./components/LeadCapture.jsx":177,"react":175,"react-dom":30}]},{},[179]);
+},{"./components/LeadCapture.jsx":177,"react":175,"react-dom":30}]},{},[180]);

@@ -1,6 +1,7 @@
 import React, { Component } from 'react';
 import Social from './Social.jsx';
 import EmailField from './EmailField.jsx';
+import NameField from './NameField.jsx';
 
 const social = {
     twitter: 'vietlq',
@@ -16,9 +17,10 @@ class LeadCapture extends Component {
                     <h1>Lead Capture</h1>
                 </div>
                 <div className="container">
-                    <div className="col-sm-6">
+                    <div className="col-sm-6 col-sm-offset-3">
                         <div className="panel panel-default">
                             <div className="panel-body">
+                                <NameField />
                                 <EmailField />
                             </div>
                         </div>
