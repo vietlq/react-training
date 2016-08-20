@@ -8,7 +8,7 @@ class EmailField extends Component {
         this.onChange = this.onChange.bind(this);
 
         this.state = {
-            valid: true,
+            valid: false,
             value: ""
         };
     }
