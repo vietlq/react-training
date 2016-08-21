@@ -7,8 +7,8 @@ class NumberField extends Component {
         this.onChange = this.onChange.bind(this);
 
         this.state = {
-            // To keep placeholder shown
-            value: undefined
+            // To keep placeholder shown. Do not use undefined!
+            value: ""
         };
     }
 

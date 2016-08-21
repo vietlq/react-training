@@ -20849,8 +20849,8 @@ var NumberField = function (_Component) {
         _this.onChange = _this.onChange.bind(_this);
 
         _this.state = {
-            // To keep placeholder shown
-            value: undefined
+            // To keep placeholder shown. Do not use undefined!
+            value: ""
         };
         return _this;
     }
@@ -21034,7 +21034,6 @@ var SimpleCalculator = function (_Component) {
 
         var _this = _possibleConstructorReturn(this, Object.getPrototypeOf(SimpleCalculator).call(this));
 
-        _this.onSubmit = _this.onSubmit.bind(_this);
         _this.onClickAdd = _this.onClickAdd.bind(_this);
         _this.onClickSubstract = _this.onClickSubstract.bind(_this);
         _this.onClickMultiply = _this.onClickMultiply.bind(_this);
@@ -21044,9 +21043,6 @@ var SimpleCalculator = function (_Component) {
     }
 
     _createClass(SimpleCalculator, [{
-        key: 'onSubmit',
-        value: function onSubmit(event) {}
-    }, {
         key: 'onClickAdd',
         value: function onClickAdd(event) {
             var newVal = parseInt(this.refs.fieldNum1.state.value) + parseInt(this.refs.fieldNum2.state.value);
@@ -21081,9 +21077,9 @@ var SimpleCalculator = function (_Component) {
     }, {
         key: 'onClickClear',
         value: function onClickClear(event) {
-            this.refs.fieldNum1.setState({ value: undefined });
-            this.refs.fieldNum2.setState({ value: undefined });
-            this.refs.fieldResult.setState({ value: undefined });
+            this.refs.fieldNum1.setState({ value: '' });
+            this.refs.fieldNum2.setState({ value: '' });
+            this.refs.fieldResult.setState({ value: '' });
         }
     }, {
         key: 'render',

@@ -7,15 +7,11 @@ class SimpleCalculator extends Component {
     constructor() {
         super();
 
-        this.onSubmit = this.onSubmit.bind(this);
         this.onClickAdd = this.onClickAdd.bind(this);
         this.onClickSubstract = this.onClickSubstract.bind(this);
         this.onClickMultiply = this.onClickMultiply.bind(this);
         this.onClickDivide = this.onClickDivide.bind(this);
         this.onClickClear = this.onClickClear.bind(this);
-    }
-
-    onSubmit(event) {
     }
 
     onClickAdd(event) {
@@ -50,9 +46,9 @@ class SimpleCalculator extends Component {
     }
 
     onClickClear(event) {
-        this.refs.fieldNum1.setState({ value : undefined });
-        this.refs.fieldNum2.setState({ value : undefined });
-        this.refs.fieldResult.setState({ value : undefined });
+        this.refs.fieldNum1.setState({ value : '' });
+        this.refs.fieldNum2.setState({ value : '' });
+        this.refs.fieldResult.setState({ value : '' });
     }
 
     render() {
