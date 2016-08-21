@@ -10,8 +10,8 @@ class OperationButton extends Component {
 
         return (
             <div className="operation-button">
-                <button className={btnStyle}
-                    style={opBtnStyle}>{this.props.text}</button>
+                <button className={btnStyle} style={opBtnStyle}
+                    onClick={this.props.onClick}>{this.props.text}</button>
             </div>
         );
     }

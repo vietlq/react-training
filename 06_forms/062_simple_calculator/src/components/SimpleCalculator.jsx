@@ -4,6 +4,57 @@ import OperationButton from './OperationButton.jsx';
 import ResultField from './ResultField.jsx';
 
 class SimpleCalculator extends Component {
+    constructor() {
+        super();
+
+        this.onSubmit = this.onSubmit.bind(this);
+        this.onClickAdd = this.onClickAdd.bind(this);
+        this.onClickSubstract = this.onClickSubstract.bind(this);
+        this.onClickMultiply = this.onClickMultiply.bind(this);
+        this.onClickDivide = this.onClickDivide.bind(this);
+        this.onClickClear = this.onClickClear.bind(this);
+    }
+
+    onSubmit(event) {
+    }
+
+    onClickAdd(event) {
+        const newVal = parseInt(this.refs.fieldNum1.state.value)
+            + parseInt(this.refs.fieldNum2.state.value);
+        this.refs.fieldResult.setState({
+            value: newVal
+        });
+    }
+
+    onClickSubstract(event) {
+        const newVal = parseInt(this.refs.fieldNum1.state.value)
+            - parseInt(this.refs.fieldNum2.state.value);
+        this.refs.fieldResult.setState({
+            value: newVal
+        });
+    }
+
+    onClickMultiply(event) {
+        const newVal = parseInt(this.refs.fieldNum1.state.value)
+            * parseInt(this.refs.fieldNum2.state.value);
+        this.refs.fieldResult.setState({
+            value: newVal
+        });
+    }
+
+    onClickDivide(event) {
+        const newVal = parseInt(this.refs.fieldNum1.state.value) / parseInt(this.refs.fieldNum2.state.value);
+        this.refs.fieldResult.setState({
+            value: newVal
+        });
+    }
+
+    onClickClear(event) {
+        this.refs.fieldNum1.setState({ value : undefined });
+        this.refs.fieldNum2.setState({ value : undefined });
+        this.refs.fieldResult.setState({ value : undefined });
+    }
+
     render() {
         const panelBodyStyle = {
             background: "#f5f5f5"

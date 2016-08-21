@@ -20844,17 +20844,31 @@ var NumberField = function (_Component) {
     function NumberField() {
         _classCallCheck(this, NumberField);
 
-        return _possibleConstructorReturn(this, Object.getPrototypeOf(NumberField).apply(this, arguments));
+        var _this = _possibleConstructorReturn(this, Object.getPrototypeOf(NumberField).call(this));
+
+        _this.onChange = _this.onChange.bind(_this);
+
+        _this.state = {
+            // To keep placeholder shown
+            value: undefined
+        };
+        return _this;
     }
 
     _createClass(NumberField, [{
+        key: "onChange",
+        value: function onChange(event) {
+            this.setState({ value: event.target.value });
+        }
+    }, {
         key: "render",
         value: function render() {
             return _react2.default.createElement(
                 "div",
                 { className: "number-field" },
-                _react2.default.createElement("input", { type: "text", className: "form-control",
-                    placeholder: this.props.placeholder || "" })
+                _react2.default.createElement("input", { type: "number", className: "form-control",
+                    placeholder: this.props.placeholder || "",
+                    value: this.state.value, onChange: this.onChange })
             );
         }
     }]);
@@ -20908,8 +20922,8 @@ var OperationButton = function (_Component) {
                 { className: "operation-button" },
                 _react2.default.createElement(
                     "button",
-                    { className: btnStyle,
-                        style: opBtnStyle },
+                    { className: btnStyle, style: opBtnStyle,
+                        onClick: this.props.onClick },
                     this.props.text
                 )
             );
@@ -21018,10 +21032,60 @@ var SimpleCalculator = function (_Component) {
     function SimpleCalculator() {
         _classCallCheck(this, SimpleCalculator);
 
-        return _possibleConstructorReturn(this, Object.getPrototypeOf(SimpleCalculator).apply(this, arguments));
+        var _this = _possibleConstructorReturn(this, Object.getPrototypeOf(SimpleCalculator).call(this));
+
+        _this.onSubmit = _this.onSubmit.bind(_this);
+        _this.onClickAdd = _this.onClickAdd.bind(_this);
+        _this.onClickSubstract = _this.onClickSubstract.bind(_this);
+        _this.onClickMultiply = _this.onClickMultiply.bind(_this);
+        _this.onClickDivide = _this.onClickDivide.bind(_this);
+        _this.onClickClear = _this.onClickClear.bind(_this);
+        return _this;
     }
 
     _createClass(SimpleCalculator, [{
+        key: 'onSubmit',
+        value: function onSubmit(event) {}
+    }, {
+        key: 'onClickAdd',
+        value: function onClickAdd(event) {
+            var newVal = parseInt(this.refs.fieldNum1.state.value) + parseInt(this.refs.fieldNum2.state.value);
+            this.refs.fieldResult.setState({
+                value: newVal
+            });
+        }
+    }, {
+        key: 'onClickSubstract',
+        value: function onClickSubstract(event) {
+            var newVal = parseInt(this.refs.fieldNum1.state.value) - parseInt(this.refs.fieldNum2.state.value);
+            this.refs.fieldResult.setState({
+                value: newVal
+            });
+        }
+    }, {
+        key: 'onClickMultiply',
+        value: function onClickMultiply(event) {
+            var newVal = parseInt(this.refs.fieldNum1.state.value) * parseInt(this.refs.fieldNum2.state.value);
+            this.refs.fieldResult.setState({
+                value: newVal
+            });
+        }
+    }, {
+        key: 'onClickDivide',
+        value: function onClickDivide(event) {
+            var newVal = parseInt(this.refs.fieldNum1.state.value) / parseInt(this.refs.fieldNum2.state.value);
+            this.refs.fieldResult.setState({
+                value: newVal
+            });
+        }
+    }, {
+        key: 'onClickClear',
+        value: function onClickClear(event) {
+            this.refs.fieldNum1.setState({ value: undefined });
+            this.refs.fieldNum2.setState({ value: undefined });
+            this.refs.fieldResult.setState({ value: undefined });
+        }
+    }, {
         key: 'render',
         value: function render() {
             var panelBodyStyle = {
