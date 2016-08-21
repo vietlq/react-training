@@ -1,8 +1,6 @@
 var React = require('react');
 var List = require('./List.jsx');
 var Fetcher = require('../services/Fetcher.jsx');
-require('es6-promise').polyfill();
-import axios from 'axios';
 
 var ListManager = React.createClass({
     // Calls only once when the component is created
@@ -21,17 +19,6 @@ var ListManager = React.createClass({
         .catch(function (error) {
             console.log('Error: ' + error);
         });
-
-        /*
-        // Another way to do it
-        axios.get(this.props.dataUrl)
-        .then(function (response) {
-            theOwner.setState({items: response.data, newItemText: ''});
-        })
-        .catch(function (error) {
-            console.log('Error: ' + error);
-        });
-        //*/
     },
     onChange: function(e) {
         // e in this case is the input text field being changed

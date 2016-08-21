@@ -37,7 +37,7 @@ app.get('/birds', function(req, res) {
 });
 
 app.get('/secrets', function(req, res) {
-    res.send(birds);
+    res.send(secrets);
 });
 
 // Send all requests to index.html so browserHistory in React Router works

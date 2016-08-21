@@ -4,7 +4,8 @@
   "description": "A sample project with NodeJS & ExpressJS",
   "main": "server.js",
   "scripts": {
-    "build": "babel src/server --watch src/server -o server.js",
+    "build": "babel src/server -o server.js && webpack -p",
+    "build:dev": "babel src/server --watch src/server -o server.js && webpack -p",
     "start": "node server.js",
     "start_client": "watchify src/client/main.jsx -v -t [ babelify --presets [ es2015 react ] ] -o public/js/main.js",
     "magic": "magic src/client/main.jsx -t [ babelify --presets [ es2015 react ] ] -o 'uglifyjs -cm > public/js/main.js'"
