@@ -2,4 +2,4 @@
 
 require("babel-core/register");
 
-var app = require('./src/App.jsx');
+var app = require('./src/server/App.jsx');

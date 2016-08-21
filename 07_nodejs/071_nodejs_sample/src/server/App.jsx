@@ -8,7 +8,7 @@ app.use(bodyParser.json());
 app.use(bodyParser.urlencoded({extended: false}));
 
 const animals = [
-    'cat', 'dog', 'Pokemon', 'Pikachu', 'devious turtle', 'bear', 'hippo',
+    'cat', 'dog', 'Pokemon', 'Pikachu', 'devious turtle', 'bear', 'hippo', 'ox',
 ]
 
 const birds = [

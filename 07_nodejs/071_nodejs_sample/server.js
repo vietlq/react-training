@@ -16,7 +16,7 @@ var app = (0, _express2.default)();
 app.use(_bodyParser2.default.json());
 app.use(_bodyParser2.default.urlencoded({ extended: false }));
 
-var animals = ['cat', 'dog', 'Pokemon', 'Pikachu', 'devious turtle', 'bear', 'hippo'];
+var animals = ['cat', 'dog', 'Pokemon', 'Pikachu', 'devious turtle', 'bear', 'hippo', 'ox'];
 
 var birds = ['Phoenix', 'Kungfu Crane', 'Eagle', 'Swallow', 'Swan'];
 
