@@ -4,6 +4,7 @@
   "description": "A sample project with NodeJS & ExpressJS",
   "main": "server.js",
   "scripts": {
+    "build": "babel src --watch -o server.js",
     "start": "node server.js"
   },
   "repository": {

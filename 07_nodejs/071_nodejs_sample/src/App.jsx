@@ -8,11 +8,11 @@ app.use(bodyParser.json());
 app.use(bodyParser.urlencoded({extended: false}));
 
 const animals = [
-    'cat', 'dog', 'pokemon', 'pikachu', 'devious turtle',
+    'cat', 'dog', 'Pokemon', 'Pikachu', 'devious turtle', 'bear', 'hippo',
 ]
 
 const birds = [
-    'Phoenix', 'Kungfu Crane', 'Eagle', 'Swallow',
+    'Phoenix', 'Kungfu Crane', 'Eagle', 'Swallow', 'Swan',
 ]
 
 const secrets = [
