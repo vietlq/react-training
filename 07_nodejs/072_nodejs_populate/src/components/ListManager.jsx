@@ -1,6 +1,7 @@
 var React = require('react');
 var List = require('./List.jsx');
-//var Fetcher = require('../services/Fetcher.jsx');
+var Fetcher = require('../services/Fetcher.jsx');
+require('es6-promise').polyfill();
 import axios from 'axios';
 
 var ListManager = React.createClass({
@@ -10,22 +11,27 @@ var ListManager = React.createClass({
     },
     componentWillMount: function() {
         console.log(this.props.dataUrl);
-        /*
-        Fetcher.setBaseUrl(this.props.baseUrl);
+        // Unable to call .bind(this) due to return type of Fetcher.get
+        var theOwner = this;
 
-        Fetcher.get(this.props.relUrl)
-        .then(function(data) {
-            // Remember to bind to correct `this`
-            this.setState({items: data, newItemText: ''});
-        }).bind(this);
-        //*/
-        axios.get(this.props.dataUrl)
-        .then(function (response) {
-            this.setState({items: data, newItemText: ''});
+        Fetcher.get(this.props.dataUrl)
+        .then(function (data) {
+            theOwner.setState({items: data, newItemText: ''});
         })
         .catch(function (error) {
             console.log('Error: ' + error);
-        }).bind(this);
+        });
+
+        /*
+        // Another way to do it
+        axios.get(this.props.dataUrl)
+        .then(function (response) {
+            theOwner.setState({items: response.data, newItemText: ''});
+        })
+        .catch(function (error) {
+            console.log('Error: ' + error);
+        });
+        //*/
     },
     onChange: function(e) {
         // e in this case is the input text field being changed

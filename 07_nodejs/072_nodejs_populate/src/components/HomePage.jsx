@@ -8,7 +8,7 @@ const social = {
     instagram: 'vietlq',
 };
 
-class HelloWorld extends Component {
+class HomePage extends Component {
     render() {
         return (
             <div className="outer-container">
@@ -26,4 +26,4 @@ class HelloWorld extends Component {
     }
 }
 
-export default HelloWorld;
+export default HomePage;
