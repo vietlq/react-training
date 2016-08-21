@@ -13,3 +13,5 @@ https://pokeapi.co/
 https://www.topcoder.com/blog/start-writing-es6-javascript-in-your-node-js-apps-today/
 
 https://babeljs.io/docs/usage/cli/
+
+http://www.zsoltnagy.eu/using-es6-modules-with-webpack/
