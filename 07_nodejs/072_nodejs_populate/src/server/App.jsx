@@ -36,7 +36,7 @@ app.get('/birds', function(req, res) {
     res.send(birds);
 });
 
-app.get('/ingredients', function(req, res) {
+app.get('/secrets', function(req, res) {
     res.send(birds);
 });
 

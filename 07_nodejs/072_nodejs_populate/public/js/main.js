@@ -22872,9 +22872,31 @@ var HomePage = function (_Component) {
                     { className: 'container' },
                     _react2.default.createElement(
                         'div',
-                        { className: 'col-sm-6 col-sm-offset-3' },
-                        _react2.default.createElement(_ListManager2.default, { dataUrl: 'http://localhost:6969/ingredients' }),
-                        _react2.default.createElement(_Social2.default, { social: social })
+                        { className: 'row' },
+                        _react2.default.createElement(
+                            'div',
+                            { className: 'col-sm-4' },
+                            _react2.default.createElement(_ListManager2.default, { dataUrl: 'http://localhost:6969/birds' })
+                        ),
+                        _react2.default.createElement(
+                            'div',
+                            { className: 'col-sm-4' },
+                            _react2.default.createElement(_ListManager2.default, { dataUrl: 'http://localhost:6969/animals' })
+                        ),
+                        _react2.default.createElement(
+                            'div',
+                            { className: 'col-sm-4' },
+                            _react2.default.createElement(_ListManager2.default, { dataUrl: 'http://localhost:6969/secrets' })
+                        )
+                    ),
+                    _react2.default.createElement(
+                        'div',
+                        { className: 'row' },
+                        _react2.default.createElement(
+                            'div',
+                            { className: 'col-sm-6 col-sm-offset-3' },
+                            _react2.default.createElement(_Social2.default, { social: social })
+                        )
                     )
                 )
             );

@@ -16,9 +16,21 @@ class HomePage extends Component {
                     <h1>Sample React => Server Communication</h1>
                 </div>
                 <div className="container">
-                    <div className="col-sm-6 col-sm-offset-3">
-                        <ListManager dataUrl="http://localhost:6969/ingredients" />
-                        <Social social={social} />
+                    <div className="row">
+                        <div className="col-sm-4">
+                            <ListManager dataUrl="http://localhost:6969/birds" />
+                        </div>
+                        <div className="col-sm-4">
+                            <ListManager dataUrl="http://localhost:6969/animals" />
+                        </div>
+                        <div className="col-sm-4">
+                            <ListManager dataUrl="http://localhost:6969/secrets" />
+                        </div>
+                    </div>
+                    <div className="row">
+                        <div className="col-sm-6 col-sm-offset-3">
+                            <Social social={social} />
+                        </div>
                     </div>
                 </div>
             </div>
