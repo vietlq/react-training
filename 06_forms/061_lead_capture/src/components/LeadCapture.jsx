@@ -2,8 +2,8 @@ import React, { Component } from 'react';
 import EmailField from './EmailField.jsx';
 import NameField from './NameField.jsx';
 // https://github.com/makeusabrew/bootbox/issues/457
-//import bootstrap from 'bootstrap';
 import $ from 'jquery';
+//import bootstrap from 'bootstrap';
 console.log($.fn.modal) // Modal
 $.fn = window.$.fn;
 console.log(window.$.fn.modal) // Modal
@@ -22,11 +22,11 @@ class LeadCapture extends Component {
             message += "<p class='.alert .alert-danger'>You must provide valid First Name</p>";
         }
 
-        if (! this.refs.fieldFName.state.valid) {
+        if (! this.refs.fieldLName.state.valid) {
             message += "<p class='.alert .alert-danger'>You must provide valid Last Name</p>";
         }
 
-        if (! this.refs.fieldFName.state.valid) {
+        if (! this.refs.fieldEmail.state.valid) {
             message += "<p class='.alert .alert-danger'>You must provide valid E-mail address</p>";
         }
 

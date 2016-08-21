@@ -30,7 +30,6 @@
     "babelify": "^7.3.0",
     "bootbox": "^4.4.0",
     "bootstrap": "^3.3.7",
-    "browserify": "^13.1.0",
     "email-validator": "^1.0.4",
     "jquery": "^3.1.0",
     "react": "^15.3.0",
