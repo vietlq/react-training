@@ -1,5 +1,4 @@
-run:
-	nodemon --verbose server.js
+.PHONY: server client build run
 
 server:
 	babel src/server --watch src/server -o server.js
@@ -9,3 +8,6 @@ client:
 
 build:
 	webpack -p && babel src/server -o server.js
+
+run: server.js
+	nodemon --verbose server.js

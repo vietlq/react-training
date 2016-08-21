@@ -8,7 +8,6 @@ var ListManager = React.createClass({
         return {items: [], newItemText: ''};
     },
     componentWillMount: function() {
-        console.log(this.props.dataUrl);
         // Unable to call .bind(this) due to return type of Fetcher.get
         var theOwner = this;
 
