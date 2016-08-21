@@ -1,0 +1,37 @@
+{
+  "name": "051_basic_form",
+  "version": "0.0.1",
+  "description": "Basic React Form",
+  "main": "main.js",
+  "scripts": {
+    "build": "webpack -p",
+    "start": "watchify src/main.jsx -v -t [ babelify --presets [ es2015 react ] ] -o public/js/main.js",
+    "magic": "magic src/main.jsx -t [ babelify --presets [ es2015 react ] ] -o 'uglifyjs -cm > public/js/main.js'"
+  },
+  "repository": {
+    "type": "git",
+    "url": "git+https://github.com/vietlq/react-training.git"
+  },
+  "keywords": [
+    "react",
+    "form",
+    "basic"
+  ],
+  "author": "vietlq85@gmail.com",
+  "license": "ISC",
+  "bugs": {
+    "url": "https://github.com/vietlq/react-training/issues"
+  },
+  "homepage": "https://github.com/vietlq/react-training#readme",
+  "dependencies": {
+    "babel-loader": "^6.2.5",
+    "babel-preset-es2015": "^6.13.2",
+    "babel-preset-react": "^6.11.1",
+    "babelify": "^7.3.0",
+    "react": "^15.3.0",
+    "react-dom": "^15.3.0",
+    "uglifyjs": "^2.4.10",
+    "watchify": "^3.7.0",
+    "webpack": "^1.13.1"
+  }
+}
