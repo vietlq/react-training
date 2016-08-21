@@ -32065,15 +32065,15 @@ var LeadCapture = function (_Component) {
         value: function onSubmit(event) {
             var message = "";
             if (!this.refs.fieldFName.state.valid) {
-                message += "<p class='.alert .alert-danger'>You must provide valid First Name</p>";
+                message += "<p>You must provide valid First Name</p>";
             }
 
             if (!this.refs.fieldLName.state.valid) {
-                message += "<p class='.alert .alert-danger'>You must provide valid Last Name</p>";
+                message += "<p>You must provide valid Last Name</p>";
             }
 
             if (!this.refs.fieldEmail.state.valid) {
-                message += "<p class='.alert .alert-danger'>You must provide valid E-mail address</p>";
+                message += "<p>You must provide valid E-mail address</p>";
             }
 
             var allValid = this.refs.fieldFName.state.valid && this.refs.fieldLName.state.valid && this.refs.fieldEmail.state.valid;
