@@ -18,3 +18,32 @@
 }
 
 /* https://material.google.com/style/color.html#color-color-palette */
+
+.weather-card .panel {
+    border-left: #ec4444;
+    border-right: #ec4444;
+    border-top: #ec4444;
+}
+
+.weather-card .panel-heading {
+    background: #ec4444;
+    color: #ffffff;
+}
+
+.weather-card .panel-body {
+    color: #6a6a6a;
+    text-align: right;
+    font-size: 0.8em;
+}
+
+.weather-card ul li {
+    color: #6a6a6a;
+}
+
+.weather-card ul li:nth-child(odd) {
+    background: #ebebeb;
+}
+
+.weather-card ul li:nth-child(even) {
+    background: #ffffff;
+}

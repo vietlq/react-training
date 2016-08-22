@@ -1,6 +1,7 @@
 import React, { Component } from 'react';
 import Social from './Social.jsx';
 import ListManager from './ListManager.jsx';
+import WeatherPanel from './WeatherPanel.jsx';
 
 const social = {
     twitter: 'vietlq',
@@ -13,19 +14,11 @@ class HomePage extends Component {
         return (
             <div className="outer-container">
                 <div className="page-header">
-                    <h1>Sample React => Server Communication</h1>
+                    <h1>Weather App</h1>
                 </div>
                 <div className="container">
                     <div className="row">
-                        <div className="col-sm-4">
-                            <ListManager dataUrl="http://localhost:6969/birds" />
-                        </div>
-                        <div className="col-sm-4">
-                            <ListManager dataUrl="http://localhost:6969/animals" />
-                        </div>
-                        <div className="col-sm-4">
-                            <ListManager dataUrl="http://localhost:6969/secrets" />
-                        </div>
+                        <WeatherPanel dataUrl="http://localhost:6969/secrets" />
                     </div>
                     <div className="row">
                         <div className="col-sm-6 col-sm-offset-3">
