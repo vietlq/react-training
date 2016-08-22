@@ -15,7 +15,8 @@ class WeatherCard extends Component {
 
         Fetcher.get(this.props.dataUrl)
         .then(function (data) {
-            theOwner.setState({items: data});
+            console.log(data)
+            theOwner.setState({items: ['a', 'b', 'c', 'd']});
         })
         .catch(function (error) {
             console.log('Error: ' + error);

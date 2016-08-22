@@ -1,6 +1,5 @@
 import React, { Component } from 'react';
 import Social from './Social.jsx';
-import ListManager from './ListManager.jsx';
 import WeatherPanel from './WeatherPanel.jsx';
 
 const social = {
@@ -18,7 +17,7 @@ class HomePage extends Component {
                 </div>
                 <div className="container">
                     <div className="row">
-                        <WeatherPanel dataUrl="http://localhost:6969/secrets" />
+                        <WeatherPanel dataUrl="http://api.openweathermap.org/data/2.5/forecast?id=524901&appid=1f5fee940a5e1ae6d2345dac139eae6f" />
                     </div>
                     <div className="row">
                         <div className="col-sm-6 col-sm-offset-3">
