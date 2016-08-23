@@ -31,7 +31,7 @@ class WeatherCard extends Component {
                         <h1>Yahoo</h1>
                     </div>
                     <List items={this.state.items} />
-                    <div className="panel-body">
+                    <div className="panel-body weather-card-bottom">
                         <span>Forecast by <a href="http://openweathermap.org/">http://openweathermap.org/</a></span>
                     </div>
                 </div>

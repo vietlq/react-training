@@ -22910,7 +22910,7 @@ var List = React.createClass({
 
         return React.createElement(
             'ul',
-            { className: 'list-group' },
+            { className: 'list-group weather-card-list' },
             this.props.items.map(createItem)
         );
     }
@@ -23104,7 +23104,7 @@ var WeatherCard = function (_Component) {
                     _react2.default.createElement(_List2.default, { items: this.state.items }),
                     _react2.default.createElement(
                         'div',
-                        { className: 'panel-body' },
+                        { className: 'panel-body weather-card-bottom' },
                         _react2.default.createElement(
                             'span',
                             null,
@@ -23195,6 +23195,7 @@ var WeatherPanel = function (_Component) {
                             )
                         )
                     ),
+                    _react2.default.createElement('br', null),
                     _react2.default.createElement('br', null),
                     _react2.default.createElement(
                         'div',
