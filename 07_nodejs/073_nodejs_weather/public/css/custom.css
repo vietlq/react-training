@@ -49,3 +49,15 @@
 .weather-card-list li:nth-child(even) {
     background: #f5f5f5;
 }
+
+.weather-card-list li .cell-left {
+    text-align: left;
+}
+
+.weather-card-list li .cell-center {
+    text-align: center;
+}
+
+.weather-card-list li .cell-right {
+    text-align: right;
+}

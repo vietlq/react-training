@@ -1,7 +1,7 @@
 var React = require('react');
 var ListItem = require('./ListItem.jsx');
 
-var List = React.createClass({
+var WeatherCardHead = React.createClass({
     render: function() {
         var createItem = function(text, index) {
             return <ListItem key={index + text} text={text} />;
@@ -11,4 +11,4 @@ var List = React.createClass({
     }
 });
 
-module.exports = List;
+module.exports = WeatherCardHead;

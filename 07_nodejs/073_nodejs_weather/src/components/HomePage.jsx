@@ -8,6 +8,8 @@ const social = {
     instagram: 'vietlq',
 };
 
+const dataUrl = "http://api.openweathermap.org/data/2.5/forecast/daily?id=524901&mode=json&units=metric&cnt=7&appid=1f5fee940a5e1ae6d2345dac139eae6f";
+
 class HomePage extends Component {
     render() {
         return (
@@ -17,7 +19,7 @@ class HomePage extends Component {
                 </div>
                 <div className="container">
                     <div className="row">
-                        <WeatherPanel dataUrl="http://api.openweathermap.org/data/2.5/forecast?id=524901&appid=1f5fee940a5e1ae6d2345dac139eae6f" />
+                        <WeatherPanel dataUrl={dataUrl} />
                     </div>
                     <div className="row">
                         <div className="col-sm-6 col-sm-offset-3">

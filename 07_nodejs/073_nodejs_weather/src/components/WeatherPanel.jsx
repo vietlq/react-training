@@ -23,6 +23,17 @@ class WeatherPanel extends Component {
                         <div className="col-sm-4">
                             <WeatherCard dataUrl={this.props.dataUrl} />
                         </div>
+                        <div className="col-sm-4">
+                            <WeatherCard dataUrl={this.props.dataUrl} />
+                        </div>
+                        <div className="col-sm-4">
+                            <WeatherCard dataUrl={this.props.dataUrl} />
+                        </div>
+                    </div>
+                    <div className="row">
+                        <div className="col-sm-12">
+                            <h2>Yahoo</h2>
+                        </div>
                     </div>
                 </div>
             </div>
