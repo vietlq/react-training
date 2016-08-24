@@ -27014,7 +27014,6 @@ var ForecastItem = React.createClass({
 
     render: function render() {
         var forecastDetails = this.props.forecastDetails;
-        console.log(forecastDetails);
         return React.createElement(
             "li",
             { className: "list-group-item" },
@@ -27081,7 +27080,7 @@ var social = {
     instagram: 'vietlq'
 };
 
-var dataUrl = "http://api.openweathermap.org/data/2.5/forecast/daily?id=524901&mode=json&units=metric&cnt=7&appid=1f5fee940a5e1ae6d2345dac139eae6f";
+var dataUrl = "http://api.openweathermap.org/data/2.5/forecast/daily?id=524901&mode=json&units=metric&cnt=5&appid=1f5fee940a5e1ae6d2345dac139eae6f";
 
 var HomePage = function (_Component) {
     _inherits(HomePage, _Component);
@@ -27263,7 +27262,7 @@ var WeatherCard = function (_Component) {
 
         var _this = _possibleConstructorReturn(this, Object.getPrototypeOf(WeatherCard).call(this, props));
 
-        _this.state = { city: '', items: [] };
+        _this.state = { city: '', mainItem: {}, items: [] };
         return _this;
     }
 
@@ -27274,10 +27273,14 @@ var WeatherCard = function (_Component) {
             var theOwner = this;
 
             _Fetcher2.default.get(this.props.dataUrl).then(function (data) {
-                console.log(data);
+                var resultList = data.list;
+                var mainItem = resultList[0];
+                console.log(mainItem);
+                resultList.shift();
                 theOwner.setState({
                     city: data.city.name + ', ' + data.city.country,
-                    items: data.list
+                    mainItem: mainItem,
+                    items: resultList
                 });
             }).catch(function (error) {
                 console.log('Error: ' + error);
@@ -27286,17 +27289,32 @@ var WeatherCard = function (_Component) {
     }, {
         key: 'render',
         value: function render() {
-            var createForecastItem = function createForecastItem(forecast, index) {
+            var extractForecastData = function extractForecastData(forecast) {
+                if (!forecast.dt) {
+                    return {
+                        date: '',
+                        minTemp: -999,
+                        maxTemp: -999,
+                        windSpeed: -1
+                    };
+                }
+
                 var date = new Date(parseInt(forecast.dt) * 1000);
-                console.log(date.toISOString());
                 var theMoment = (0, _moment2.default)(date.toISOString());
-                var forecastDetails = {
+
+                return {
                     date: theMoment.format('MMMM DD'),
                     minTemp: parseInt(forecast.temp.min),
-                    maxTemp: parseInt(forecast.temp.max)
+                    maxTemp: parseInt(forecast.temp.max),
+                    windSpeed: Math.round(parseFloat(forecast.speed) * 10) / 10
                 };
+            };
 
-                return _react2.default.createElement(_ForecastItem2.default, { key: index, forecastDetails: forecastDetails });
+            var mainForecastItem = extractForecastData(this.state.mainItem);
+
+            var createForecastItem = function createForecastItem(forecast, index) {
+                return _react2.default.createElement(_ForecastItem2.default, { key: index,
+                    forecastDetails: extractForecastData(forecast) });
             };
 
             return _react2.default.createElement(
@@ -27312,7 +27330,30 @@ var WeatherCard = function (_Component) {
                             'h4',
                             null,
                             this.state.city
-                        )
+                        ),
+                        _react2.default.createElement(
+                            'div',
+                            { className: 'col-xs-6 forecast-wind-dir' },
+                            _react2.default.createElement(
+                                'h4',
+                                null,
+                                'Northwest'
+                            )
+                        ),
+                        _react2.default.createElement(
+                            'div',
+                            { className: 'col-xs-6 forecast-wind-speed' },
+                            _react2.default.createElement(
+                                'h4',
+                                null,
+                                _react2.default.createElement('i', { className: 'wi wi-strong-wind' }),
+                                '  ',
+                                mainForecastItem.windSpeed,
+                                'mph'
+                            )
+                        ),
+                        _react2.default.createElement('br', null),
+                        _react2.default.createElement('br', null)
                     ),
                     _react2.default.createElement(
                         'ul',

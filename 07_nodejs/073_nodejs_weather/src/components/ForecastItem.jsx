@@ -3,7 +3,6 @@ var React = require('react');
 var ForecastItem = React.createClass({
     render: function() {
         const forecastDetails = this.props.forecastDetails;
-        console.log(forecastDetails);
         return (
             <li className="list-group-item">
                 <div className="row">

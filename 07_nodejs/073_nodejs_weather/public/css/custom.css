@@ -61,3 +61,11 @@
 .weather-card-list li .cell-right {
     text-align: right;
 }
+
+.forecast-wind-speed {
+    text-align: right;
+}
+
+.forecast-wind-speed i.wi {
+    font-size: 2em;
+}
