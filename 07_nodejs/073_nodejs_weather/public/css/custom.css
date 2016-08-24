@@ -30,6 +30,37 @@
     color: #ffffff;
 }
 
+h3.forecast-weather-city {
+    margin-top: 0;
+}
+
+.forecast-weather-date {
+    text-transform: uppercase;
+}
+
+.forecast-weather-icon {
+    text-align: right;
+}
+
+.forecast-weather-icon i.wi {
+    font-size: 3em;
+}
+
+.forecast-temperature {
+    font-weight: bolder;
+    font-size: 5em;
+    padding-top: 20px;
+    text-align: left;
+}
+
+.forecast-wind-speed {
+    text-align: right;
+}
+
+.forecast-wind-dir i.wi, .forecast-wind-speed i.wi {
+    font-size: 2em;
+}
+
 .panel-body.weather-card-bottom {
     color: #6a6a6a;
     text-align: right;
@@ -52,20 +83,15 @@
 
 .weather-card-list li .cell-left {
     text-align: left;
+    padding-top: 5px;
 }
 
 .weather-card-list li .cell-center {
     text-align: center;
+    font-size: 1.5em;
 }
 
 .weather-card-list li .cell-right {
     text-align: right;
-}
-
-.forecast-wind-speed {
-    text-align: right;
-}
-
-.forecast-wind-dir i.wi, .forecast-wind-speed i.wi {
-    font-size: 2em;
+    padding-top: 5px;
 }

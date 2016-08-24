@@ -27016,7 +27016,7 @@ var ForecastItem = React.createClass({
         var forecastDetails = this.props.forecastDetails;
         return React.createElement(
             "li",
-            { className: "list-group-item" },
+            { className: "list-group-item forecast-item" },
             React.createElement(
                 "div",
                 { className: "row" },
@@ -27027,8 +27027,8 @@ var ForecastItem = React.createClass({
                 ),
                 React.createElement(
                     "div",
-                    { className: "col-xs-4 cell-center" },
-                    forecastDetails.date
+                    { className: "col-xs-4 cell-center forecast-icon" },
+                    React.createElement("i", { className: forecastDetails.iconStyle })
                 ),
                 React.createElement(
                     "div",
@@ -27230,6 +27230,8 @@ Object.defineProperty(exports, "__esModule", {
 
 var _createClass = function () { function defineProperties(target, props) { for (var i = 0; i < props.length; i++) { var descriptor = props[i]; descriptor.enumerable = descriptor.enumerable || false; descriptor.configurable = true; if ("value" in descriptor) descriptor.writable = true; Object.defineProperty(target, descriptor.key, descriptor); } } return function (Constructor, protoProps, staticProps) { if (protoProps) defineProperties(Constructor.prototype, protoProps); if (staticProps) defineProperties(Constructor, staticProps); return Constructor; }; }();
 
+var _SOURCE_ICON_TO_WI_DA;
+
 var _react = require('react');
 
 var _react2 = _interopRequireDefault(_react);
@@ -27253,6 +27255,142 @@ function _classCallCheck(instance, Constructor) { if (!(instance instanceof Cons
 function _possibleConstructorReturn(self, call) { if (!self) { throw new ReferenceError("this hasn't been initialised - super() hasn't been called"); } return call && (typeof call === "object" || typeof call === "function") ? call : self; }
 
 function _inherits(subClass, superClass) { if (typeof superClass !== "function" && superClass !== null) { throw new TypeError("Super expression must either be null or a function, not " + typeof superClass); } subClass.prototype = Object.create(superClass && superClass.prototype, { constructor: { value: subClass, enumerable: false, writable: true, configurable: true } }); if (superClass) Object.setPrototypeOf ? Object.setPrototypeOf(subClass, superClass) : subClass.__proto__ = superClass; }
+
+function _defineProperty(obj, key, value) { if (key in obj) { Object.defineProperty(obj, key, { value: value, enumerable: true, configurable: true, writable: true }); } else { obj[key] = value; } return obj; }
+
+////////////////////////////////////////////////////////////////
+
+var SOURCE_ICON_TO_WI_DATA = (_SOURCE_ICON_TO_WI_DA = {
+    "01d": {
+        desc: "Clear Sky",
+        wiCode: "wi-day-sunny",
+        mode: "DAY"
+    },
+    "01n": {
+        desc: "Clear Sky",
+        wiCode: "wi-night-clear",
+        mode: "NIGHT"
+    },
+    "02d": {
+        desc: "Few Clouds",
+        wiCode: "wi-day-cloudy",
+        mode: "DAY"
+    },
+    "02n": {
+        desc: "Few Clouds",
+        wiCode: "wi-night-partly-cloudy",
+        mode: "NIGHT"
+    },
+    "03d": {
+        desc: "Scattered Clouds",
+        wiCode: "wi-day-cloudy",
+        mode: "DAY"
+    },
+    "03n": {
+        desc: "Scattered Clouds",
+        wiCode: "wi-night-alt-cloudy",
+        mode: "NIGHT"
+    },
+    "04d": {
+        desc: "Broken Clouds",
+        wiCode: "wi-day-cloudy",
+        mode: "DAY"
+    },
+    "04n": {
+        desc: "Broken Clouds",
+        wiCode: "wi-night-alt-cloudy",
+        mode: "NIGHT"
+    },
+    "09d": {
+        desc: "Shower Rain",
+        wiCode: "wi-day-showers",
+        mode: "DAY"
+    },
+    "09n": {
+        desc: "Shower Rain",
+        wiCode: "wi-night-alt-showers",
+        mode: "NIGHT"
+    },
+    "10d": {
+        desc: "Rain",
+        wiCode: "wi-day-rain",
+        mode: "DAY"
+    },
+    "10n": {
+        desc: "Rain",
+        wiCode: "wi-night-alt-rain",
+        mode: "NIGHT"
+    },
+    "11d": {
+        desc: "Thunderstorm",
+        wiCode: "wi-day-thunderstorm",
+        mode: "DAY"
+    },
+    "11n": {
+        desc: "Thunderstorm",
+        wiCode: "wi-night-alt-thunderstorm",
+        mode: "NIGHT"
+    },
+    "13d": {
+        desc: "Snow",
+        wiCode: "wi-day-snow",
+        mode: "DAY"
+    },
+    "13n": {
+        desc: "Snow",
+        wiCode: "wi-night-alt-snow",
+        mode: "NIGHT"
+    }
+}, _defineProperty(_SOURCE_ICON_TO_WI_DA, '13d', {
+    desc: "Mist",
+    wiCode: "wi-day-fog",
+    mode: "DAY"
+}), _defineProperty(_SOURCE_ICON_TO_WI_DA, '13n', {
+    desc: "Mist",
+    wiCode: "wi-night-fog",
+    mode: "NIGHT"
+}), _SOURCE_ICON_TO_WI_DA);
+
+var sourceIconToWIData = function sourceIconToWIData(sourceIcon) {
+    return SOURCE_ICON_TO_WI_DATA[sourceIcon] || {
+        desc: "Sky Fall",
+        wiCode: "wi-alien",
+        mode: "Chaos"
+    };
+};
+
+var extractForecastData = function extractForecastData(forecast) {
+    if (!forecast.dt) {
+        return {
+            date: '',
+            minTemp: -999,
+            maxTemp: -999,
+            simpleAvgTemp: -999,
+            windDir: 999,
+            windSpeed: -1,
+            iconStyle: "wi wi-alien"
+        };
+    }
+
+    var date = new Date(parseInt(forecast.dt) * 1000);
+    var theMoment = (0, _moment2.default)(date.toISOString());
+
+    return {
+        date: theMoment.format('MMMM DD'),
+        minTemp: parseInt(forecast.temp.min),
+        maxTemp: parseInt(forecast.temp.max),
+        simpleAvgTemp: (parseInt(forecast.temp.min) + parseInt(forecast.temp.max)) / 2,
+        windDir: forecast.deg,
+        windSpeed: Math.round(parseFloat(forecast.speed) * 10) / 10,
+        iconStyle: "wi " + sourceIconToWIData(forecast.weather[0].icon).wiCode
+    };
+};
+
+var getWindDirStyle = function getWindDirStyle(windDir) {
+    return "wi wi-wind towards-" + windDir + "-deg";
+};
+
+////////////////////////////////////////////////////////////////
 
 var WeatherCard = function (_Component) {
     _inherits(WeatherCard, _Component);
@@ -27289,31 +27427,8 @@ var WeatherCard = function (_Component) {
     }, {
         key: 'render',
         value: function render() {
-            var extractForecastData = function extractForecastData(forecast) {
-                if (!forecast.dt) {
-                    return {
-                        date: '',
-                        minTemp: -999,
-                        maxTemp: -999,
-                        windDir: 999,
-                        windSpeed: -1
-                    };
-                }
-
-                var date = new Date(parseInt(forecast.dt) * 1000);
-                var theMoment = (0, _moment2.default)(date.toISOString());
-
-                return {
-                    date: theMoment.format('MMMM DD'),
-                    minTemp: parseInt(forecast.temp.min),
-                    maxTemp: parseInt(forecast.temp.max),
-                    windDir: forecast.deg,
-                    windSpeed: Math.round(parseFloat(forecast.speed) * 10) / 10
-                };
-            };
-
             var mainForecastItem = extractForecastData(this.state.mainItem);
-            var mainItemWindDir = "wi wi-wind towards-" + mainForecastItem.windDir + "-deg";
+            var mainItemWindDir = getWindDirStyle(mainForecastItem.windDir);
 
             var createForecastItem = function createForecastItem(forecast, index) {
                 return _react2.default.createElement(_ForecastItem2.default, { key: index,
@@ -27330,36 +27445,69 @@ var WeatherCard = function (_Component) {
                         'div',
                         { className: 'panel-heading' },
                         _react2.default.createElement(
-                            'h4',
-                            null,
+                            'h3',
+                            { className: 'forecast-weather-city' },
                             this.state.city
                         ),
                         _react2.default.createElement(
-                            'div',
-                            { className: 'col-xs-6 forecast-wind-dir' },
-                            _react2.default.createElement(
-                                'h4',
-                                null,
-                                _react2.default.createElement('i', { className: mainItemWindDir }),
-                                '  ',
-                                mainForecastItem.windDir,
-                                '°'
-                            )
+                            'h4',
+                            { className: 'forecast-weather-date' },
+                            mainForecastItem.date
                         ),
+                        _react2.default.createElement('br', null),
                         _react2.default.createElement(
                             'div',
-                            { className: 'col-xs-6 forecast-wind-speed' },
+                            { className: 'row' },
                             _react2.default.createElement(
-                                'h4',
-                                null,
-                                _react2.default.createElement('i', { className: 'wi wi-strong-wind' }),
-                                '  ',
-                                mainForecastItem.windSpeed,
-                                'mph'
+                                'div',
+                                { className: 'col-xs-7 forecast-weather-icon' },
+                                _react2.default.createElement(
+                                    'h1',
+                                    null,
+                                    _react2.default.createElement('i', { className: mainForecastItem.iconStyle })
+                                )
+                            ),
+                            _react2.default.createElement(
+                                'div',
+                                { className: 'col-xs-5 forecast-temperature' },
+                                _react2.default.createElement(
+                                    'span',
+                                    null,
+                                    mainForecastItem.simpleAvgTemp,
+                                    '°'
+                                )
                             )
                         ),
                         _react2.default.createElement('br', null),
                         _react2.default.createElement('br', null),
+                        _react2.default.createElement(
+                            'div',
+                            { className: 'row' },
+                            _react2.default.createElement(
+                                'div',
+                                { className: 'col-xs-6 forecast-wind-dir' },
+                                _react2.default.createElement(
+                                    'h4',
+                                    null,
+                                    _react2.default.createElement('i', { className: mainItemWindDir }),
+                                    '  ',
+                                    mainForecastItem.windDir,
+                                    '°'
+                                )
+                            ),
+                            _react2.default.createElement(
+                                'div',
+                                { className: 'col-xs-6 forecast-wind-speed' },
+                                _react2.default.createElement(
+                                    'h4',
+                                    null,
+                                    _react2.default.createElement('i', { className: 'wi wi-strong-wind' }),
+                                    '  ',
+                                    mainForecastItem.windSpeed,
+                                    'mph'
+                                )
+                            )
+                        ),
                         _react2.default.createElement('br', null)
                     ),
                     _react2.default.createElement(
