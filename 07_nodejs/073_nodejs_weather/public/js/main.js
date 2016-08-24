@@ -27295,6 +27295,7 @@ var WeatherCard = function (_Component) {
                         date: '',
                         minTemp: -999,
                         maxTemp: -999,
+                        windDir: 999,
                         windSpeed: -1
                     };
                 }
@@ -27306,11 +27307,13 @@ var WeatherCard = function (_Component) {
                     date: theMoment.format('MMMM DD'),
                     minTemp: parseInt(forecast.temp.min),
                     maxTemp: parseInt(forecast.temp.max),
+                    windDir: forecast.deg,
                     windSpeed: Math.round(parseFloat(forecast.speed) * 10) / 10
                 };
             };
 
             var mainForecastItem = extractForecastData(this.state.mainItem);
+            var mainItemWindDir = "wi wi-wind towards-" + mainForecastItem.windDir + "-deg";
 
             var createForecastItem = function createForecastItem(forecast, index) {
                 return _react2.default.createElement(_ForecastItem2.default, { key: index,
@@ -27337,7 +27340,10 @@ var WeatherCard = function (_Component) {
                             _react2.default.createElement(
                                 'h4',
                                 null,
-                                'Northwest'
+                                _react2.default.createElement('i', { className: mainItemWindDir }),
+                                '  ',
+                                mainForecastItem.windDir,
+                                '°'
                             )
                         ),
                         _react2.default.createElement(
@@ -27352,6 +27358,7 @@ var WeatherCard = function (_Component) {
                                 'mph'
                             )
                         ),
+                        _react2.default.createElement('br', null),
                         _react2.default.createElement('br', null),
                         _react2.default.createElement('br', null)
                     ),

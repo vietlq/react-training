@@ -38,6 +38,7 @@ class WeatherCard extends Component {
                     date: '',
                     minTemp: -999,
                     maxTemp: -999,
+                    windDir: 999,
                     windSpeed: -1
                 };
             }
@@ -49,11 +50,13 @@ class WeatherCard extends Component {
                 date: theMoment.format('MMMM DD'),
                 minTemp: parseInt(forecast.temp.min),
                 maxTemp: parseInt(forecast.temp.max),
+                windDir: forecast.deg,
                 windSpeed: Math.round(parseFloat(forecast.speed)*10)/10
             };
         }
 
-        var mainForecastItem = extractForecastData(this.state.mainItem);
+        const mainForecastItem = extractForecastData(this.state.mainItem);
+        const mainItemWindDir = "wi wi-wind towards-" + mainForecastItem.windDir + "-deg";
 
         var createForecastItem = function(forecast, index) {
             return (<ForecastItem key={index}
@@ -66,14 +69,14 @@ class WeatherCard extends Component {
                     <div className="panel-heading">
                         <h4>{this.state.city}</h4>
                         <div className="col-xs-6 forecast-wind-dir">
-                            <h4>Northwest</h4>
+                            <h4><i className={mainItemWindDir}></i>
+                                &nbsp;&nbsp;{mainForecastItem.windDir}&deg;</h4>
                         </div>
                         <div className="col-xs-6 forecast-wind-speed">
-                            <h4><i className="wi wi-strong-wind"></i>&nbsp;&nbsp;
-                                {mainForecastItem.windSpeed}mph</h4>
+                            <h4><i className="wi wi-strong-wind"></i>
+                                &nbsp;&nbsp;{mainForecastItem.windSpeed}mph</h4>
                         </div>
-                        <br/>
-                        <br/>
+                        <br/><br/><br/>
                     </div>
                     <ul className="list-group weather-card-list">
                         {this.state.items.map(createForecastItem)}
