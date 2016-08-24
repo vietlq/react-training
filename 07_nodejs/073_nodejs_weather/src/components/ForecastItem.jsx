@@ -9,7 +9,7 @@ var ForecastItem = React.createClass({
                 <div className="row">
                 <div className="col-xs-4 cell-left">{forecastDetails.date}</div>
                 <div className="col-xs-4 cell-center">{forecastDetails.date}</div>
-                <div className="col-xs-4 cell-right">{forecastDetails.minTemp} &deg; / {forecastDetails.maxTemp} &deg;</div>
+                <div className="col-xs-4 cell-right">{forecastDetails.minTemp}&deg; / {forecastDetails.maxTemp}&deg;</div>
                 </div>
             </li>
         );

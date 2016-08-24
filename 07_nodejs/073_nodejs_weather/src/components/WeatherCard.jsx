@@ -33,7 +33,7 @@ class WeatherCard extends Component {
             console.log(date.toISOString());
             const theMoment = moment(date.toISOString());
             const forecastDetails = {
-                date: theMoment.format('ll'),
+                date: theMoment.format('MMMM DD'),
                 minTemp: parseInt(forecast.temp.min),
                 maxTemp: parseInt(forecast.temp.max),
             };
