@@ -30,7 +30,7 @@ var makeWeatherParams = function(input) {
     return params;
 }
 
-var OpenWeatherMap = {
+var OpenWeatherMapFetcher = {
     getDailyForecastByCityId: function(input) {
         var params = makeForecastParams(input);
 
@@ -55,4 +55,4 @@ var OpenWeatherMap = {
     }
 }
 
-module.exports = OpenWeatherMap;
+module.exports = OpenWeatherMapFetcher;
