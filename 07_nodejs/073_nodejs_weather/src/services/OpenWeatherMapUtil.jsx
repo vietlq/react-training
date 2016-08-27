@@ -5,7 +5,7 @@ var OpenWeatherMapUtil = {
     getDailyForecastByCityId: function(input) {
         return Fetcher.getDailyForecastByCityId(input)
         .then(function (data) {
-            Transformer.transformDailyForecast(data);
+            return Transformer.transformDailyForecast(data);
         })
         .catch(function (error) {
             console.log('OpenWeatherMapUtil::getDailyForecastByCityId - Error: ' + error);
@@ -14,7 +14,7 @@ var OpenWeatherMapUtil = {
     getWeatherByCityId: function(input) {
         return Fetcher.getWeatherByCityId(input)
         .then(function (data) {
-            Transformer.transformWeather(data);
+            return Transformer.transformWeather(data);
         })
         .catch(function (error) {
             console.log('OpenWeatherMapUtil::getWeatherByCityId - Error: ' + error);

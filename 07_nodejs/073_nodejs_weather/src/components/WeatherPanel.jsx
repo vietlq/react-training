@@ -1,6 +1,5 @@
 import React, { Component } from 'react';
 import WeatherCard from './WeatherCard.jsx';
-import Fetcher from '../services/Fetcher.jsx';
 
 class WeatherPanel extends Component {
     render() {
@@ -21,13 +20,13 @@ class WeatherPanel extends Component {
                     <br/>
                     <div className="row">
                         <div className="col-sm-4">
-                            <WeatherCard dataUrl={this.props.dataUrl} />
+                            <WeatherCard cityId={this.props.cityId} appId={this.props.appId} />
                         </div>
                         <div className="col-sm-4">
-                            <WeatherCard dataUrl={this.props.dataUrl} />
+                            <WeatherCard cityId={this.props.cityId} appId={this.props.appId} />
                         </div>
                         <div className="col-sm-4">
-                            <WeatherCard dataUrl={this.props.dataUrl} />
+                            <WeatherCard cityId={this.props.cityId} appId={this.props.appId} />
                         </div>
                     </div>
                     <div className="row">
