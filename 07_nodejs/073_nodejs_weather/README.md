@@ -26,6 +26,10 @@ https://www.npmjs.com/package/config
 
 https://github.com/indexzero/nconf
 
+http://www.citymayors.com/statistics/largest-cities-population-125.html
+
+http://www.citymayors.com/features/capitals.html
+
 http://bulk.openweathermap.org/sample/
 
 http://openweathermap.org/current

@@ -119,6 +119,7 @@ var extractForecastData = function(forecast) {
             windDir: 999,
             windSpeed: -1,
             iconStyle: "wi wi-alien",
+            windDirStyle: "wi wi-alien",
         };
     }
 

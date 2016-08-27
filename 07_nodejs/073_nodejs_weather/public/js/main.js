@@ -27239,10 +27239,6 @@ var _ForecastItem = require('./ForecastItem.jsx');
 
 var _ForecastItem2 = _interopRequireDefault(_ForecastItem);
 
-var _OpenWeatherMapUtil = require('../services/OpenWeatherMapUtil.jsx');
-
-var _OpenWeatherMapUtil2 = _interopRequireDefault(_OpenWeatherMapUtil);
-
 function _interopRequireDefault(obj) { return obj && obj.__esModule ? obj : { default: obj }; }
 
 function _classCallCheck(instance, Constructor) { if (!(instance instanceof Constructor)) { throw new TypeError("Cannot call a class as a function"); } }
@@ -27254,44 +27250,30 @@ function _inherits(subClass, superClass) { if (typeof superClass !== "function" 
 var WeatherCard = function (_Component) {
     _inherits(WeatherCard, _Component);
 
-    function WeatherCard(props) {
+    function WeatherCard() {
         _classCallCheck(this, WeatherCard);
 
-        var _this = _possibleConstructorReturn(this, Object.getPrototypeOf(WeatherCard).call(this, props));
-
-        _this.state = { city: '', today: {}, nextDays: [] };
-        return _this;
+        return _possibleConstructorReturn(this, Object.getPrototypeOf(WeatherCard).apply(this, arguments));
     }
 
     _createClass(WeatherCard, [{
-        key: 'componentWillMount',
-        value: function componentWillMount() {
-            // Unable to call .bind(this) due to return type of Fetcher.get
-            var theOwner = this;
-
-            _OpenWeatherMapUtil2.default.getDailyForecastByCityId({
-                appId: this.props.appId,
-                cityId: this.props.cityId
-            }).then(function (_ref) {
-                var city = _ref.city;
-                var dailyForecast = _ref.dailyForecast;
-
-                var today = dailyForecast[0];
-                dailyForecast.shift();
-
-                theOwner.setState({
-                    city: city,
-                    today: today,
-                    nextDays: dailyForecast
-                });
-            }).catch(function (error) {
-                console.log('WeatherCard::componentWillMount - Error: ' + error);
-            });
-        }
-    }, {
         key: 'render',
         value: function render() {
-            var todayWeather = this.state.today;
+            var cityForecast = this.props.cityForecast;
+            var todayWeather = cityForecast.today;
+            var bgColor = this.props.bgColor || '#357db5';
+            var textColor = this.props.textColor || '#ffffff';
+
+            var weatherCardPanelStyle = {
+                borderLeft: bgColor,
+                borderRight: bgColor,
+                borderTop: bgColor
+            };
+
+            var weatherCardPanelHeading = {
+                background: bgColor,
+                color: textColor
+            };
 
             var createForecastItem = function createForecastItem(forecast, index) {
                 return _react2.default.createElement(_ForecastItem2.default, { key: index, forecastDetails: forecast });
@@ -27302,14 +27284,14 @@ var WeatherCard = function (_Component) {
                 { className: 'weather-card' },
                 _react2.default.createElement(
                     'div',
-                    { className: 'panel panel-default' },
+                    { className: 'panel panel-default', style: weatherCardPanelStyle },
                     _react2.default.createElement(
                         'div',
-                        { className: 'panel-heading' },
+                        { className: 'panel-heading', style: weatherCardPanelHeading },
                         _react2.default.createElement(
                             'h3',
                             { className: 'forecast-weather-city' },
-                            this.state.city
+                            cityForecast.city
                         ),
                         _react2.default.createElement(
                             'h4',
@@ -27375,7 +27357,7 @@ var WeatherCard = function (_Component) {
                     _react2.default.createElement(
                         'ul',
                         { className: 'list-group weather-card-list' },
-                        this.state.nextDays.map(createForecastItem)
+                        cityForecast.nextDays.map(createForecastItem)
                     ),
                     _react2.default.createElement(
                         'div',
@@ -27401,7 +27383,7 @@ var WeatherCard = function (_Component) {
 
 exports.default = WeatherCard;
 
-},{"../services/OpenWeatherMapUtil.jsx":203,"./ForecastItem.jsx":196,"react":194}],200:[function(require,module,exports){
+},{"./ForecastItem.jsx":196,"react":194}],200:[function(require,module,exports){
 'use strict';
 
 Object.defineProperty(exports, "__esModule", {
@@ -27418,6 +27400,10 @@ var _WeatherCard = require('./WeatherCard.jsx');
 
 var _WeatherCard2 = _interopRequireDefault(_WeatherCard);
 
+var _OpenWeatherMapUtil = require('../services/OpenWeatherMapUtil.jsx');
+
+var _OpenWeatherMapUtil2 = _interopRequireDefault(_OpenWeatherMapUtil);
+
 function _interopRequireDefault(obj) { return obj && obj.__esModule ? obj : { default: obj }; }
 
 function _classCallCheck(instance, Constructor) { if (!(instance instanceof Constructor)) { throw new TypeError("Cannot call a class as a function"); } }
@@ -27429,15 +27415,78 @@ function _inherits(subClass, superClass) { if (typeof superClass !== "function" 
 var WeatherPanel = function (_Component) {
     _inherits(WeatherPanel, _Component);
 
-    function WeatherPanel() {
+    function WeatherPanel(props) {
         _classCallCheck(this, WeatherPanel);
 
-        return _possibleConstructorReturn(this, Object.getPrototypeOf(WeatherPanel).apply(this, arguments));
+        var _this = _possibleConstructorReturn(this, Object.getPrototypeOf(WeatherPanel).call(this, props));
+
+        _this.state = { cities: [], forecasts: {} };
+
+        _this.onCitySubmitted = _this.onCitySubmitted.bind(_this);
+        return _this;
     }
 
     _createClass(WeatherPanel, [{
+        key: 'onCitySubmitted',
+        value: function onCitySubmitted(event) {
+            // Prevent form submission
+            event.preventDefault();
+            // Unable to call .bind(this) due to return type of Fetcher.get
+            var theOwner = this;
+
+            var cityName = this.refs.fieldCityName.value;
+
+            _OpenWeatherMapUtil2.default.getDailyForecastByCityName({
+                appId: this.props.appId,
+                cityName: cityName
+            }).then(function (_ref) {
+                var city = _ref.city;
+                var dailyForecast = _ref.dailyForecast;
+
+                // Process returned results
+                var today = dailyForecast[0];
+                dailyForecast.shift();
+                var newForecast = {
+                    city: city,
+                    today: today,
+                    nextDays: dailyForecast
+                };
+                console.log(newForecast);
+                console.log(theOwner);
+
+                // Make copies
+                var _theOwner$state = theOwner.state;
+                var cities = _theOwner$state.cities;
+                var forecasts = _theOwner$state.forecasts;
+                // Only add the city to the list if it hasn't been added yet
+
+                if (!forecasts[cityName]) {
+                    cities.push(cityName);
+                }
+                // Always set the forecast
+                forecasts[cityName] = newForecast;
+                console.log(forecasts);
+
+                // Remember to update the state
+                theOwner.setState({
+                    cities: cities,
+                    forecasts: forecasts
+                });
+
+                // And clear the input
+                theOwner.refs.fieldCityName.value = '';
+            }).catch(function (error) {
+                console.log('WeatherPanel::onCitySubmitted - Error: ' + error);
+            });
+        }
+    }, {
         key: 'render',
         value: function render() {
+            var createWeatherCard = function createWeatherCard(cityName, index) {
+                return _react2.default.createElement(_WeatherCard2.default, { key: index,
+                    cityForecast: this.state.forecasts[cityName] });
+            };
+
             return _react2.default.createElement(
                 'div',
                 { className: 'weather-panel' },
@@ -27451,16 +27500,21 @@ var WeatherPanel = function (_Component) {
                             'div',
                             { className: 'col-sm-6 col-sm-offset-3' },
                             _react2.default.createElement(
-                                'div',
-                                { className: 'input-group input-group-lg' },
-                                _react2.default.createElement('input', { type: 'text', className: 'form-control' }),
+                                'form',
+                                { onSubmit: this.onCitySubmitted },
                                 _react2.default.createElement(
-                                    'span',
-                                    { className: 'input-group-btn' },
+                                    'div',
+                                    { className: 'input-group input-group-lg' },
+                                    _react2.default.createElement('input', { type: 'text', className: 'form-control',
+                                        ref: 'fieldCityName' }),
                                     _react2.default.createElement(
-                                        'button',
-                                        { className: 'btn btn-primary' },
-                                        'Add'
+                                        'span',
+                                        { className: 'input-group-btn' },
+                                        _react2.default.createElement(
+                                            'button',
+                                            { className: 'btn btn-primary' },
+                                            'Add'
+                                        )
                                     )
                                 )
                             )
@@ -27474,17 +27528,7 @@ var WeatherPanel = function (_Component) {
                         _react2.default.createElement(
                             'div',
                             { className: 'col-sm-4' },
-                            _react2.default.createElement(_WeatherCard2.default, { cityId: this.props.cityId, appId: this.props.appId })
-                        ),
-                        _react2.default.createElement(
-                            'div',
-                            { className: 'col-sm-4' },
-                            _react2.default.createElement(_WeatherCard2.default, { cityId: this.props.cityId, appId: this.props.appId })
-                        ),
-                        _react2.default.createElement(
-                            'div',
-                            { className: 'col-sm-4' },
-                            _react2.default.createElement(_WeatherCard2.default, { cityId: this.props.cityId, appId: this.props.appId })
+                            this.state.cities.map(createWeatherCard)
                         )
                     ),
                     _react2.default.createElement(
@@ -27510,7 +27554,7 @@ var WeatherPanel = function (_Component) {
 
 exports.default = WeatherPanel;
 
-},{"./WeatherCard.jsx":199,"react":194}],201:[function(require,module,exports){
+},{"../services/OpenWeatherMapUtil.jsx":203,"./WeatherCard.jsx":199,"react":194}],201:[function(require,module,exports){
 'use strict';
 
 var _axios = require('axios');
@@ -27528,11 +27572,16 @@ var WEATHER_URL = BASE_URL + '/weather';
 var FORECAST_URL = BASE_URL + '/forecast';
 var DAILY_FORECAST_URL = FORECAST_URL + '/daily';
 
-var makeForecastParams = function makeForecastParams(input) {
+var makeForecastParams = function makeForecastParams(input, idOrName) {
     var params = {};
 
+    if (idOrName === 'NAME') {
+        params.q = input.cityName || 'London';
+    } else {
+        params.id = input.cityId || 2643743; // London
+    }
+
     params.appid = input.appId || 'INVALID';
-    params.id = input.cityId || 524901; // Moscow
     params.cnt = input.days || 5; // Forecast 5 days
     params.units = input.units || 'metric'; // Metric units by default
     params.mode = 'json'; // We only use JSON format
@@ -27540,11 +27589,16 @@ var makeForecastParams = function makeForecastParams(input) {
     return params;
 };
 
-var makeWeatherParams = function makeWeatherParams(input) {
+var makeWeatherParams = function makeWeatherParams(input, idOrName) {
     var params = {};
 
+    if (idOrName === 'NAME') {
+        params.q = input.cityName || 'London';
+    } else {
+        params.id = input.cityId || 2643743; // London
+    }
+
     params.appid = input.appId || 'INVALID';
-    params.id = input.cityId || 524901; // Moscow
     params.units = input.units || 'metric'; // Metric units by default
     params.mode = 'json'; // We only use JSON format
 
@@ -27563,6 +27617,17 @@ var OpenWeatherMapFetcher = {
             console.log('OpenWeatherMapFetcher::getDailyForecastByCityId - Error: ' + error);
         });
     },
+    getDailyForecastByCityName: function getDailyForecastByCityName(input) {
+        var params = makeForecastParams(input, 'NAME');
+
+        return _axios2.default.get(DAILY_FORECAST_URL, {
+            params: params
+        }).then(function (response) {
+            return response.data;
+        }).catch(function (error) {
+            console.log('OpenWeatherMapFetcher::getDailyForecastByCityName - Error: ' + error);
+        });
+    },
     getWeatherByCityId: function getWeatherByCityId(input) {
         var params = makeWeatherParams(input);
 
@@ -27572,6 +27637,17 @@ var OpenWeatherMapFetcher = {
             return response.data;
         }).catch(function (error) {
             console.log('OpenWeatherMapFetcher::getWeatherByCityId - Error: ' + error);
+        });
+    },
+    getWeatherByCityName: function getWeatherByCityName(input) {
+        var params = makeWeatherParams(input, 'NAME');
+
+        return _axios2.default.get(WEATHER_URL, {
+            params: params
+        }).then(function (response) {
+            return response.data;
+        }).catch(function (error) {
+            console.log('OpenWeatherMapFetcher::getWeatherByCityName - Error: ' + error);
         });
     }
 };
@@ -27703,7 +27779,8 @@ var extractForecastData = function extractForecastData(forecast) {
             simpleAvgTemp: -999,
             windDir: 999,
             windSpeed: -1,
-            iconStyle: "wi wi-alien"
+            iconStyle: "wi wi-alien",
+            windDirStyle: "wi wi-alien"
         };
     }
 
@@ -27754,11 +27831,25 @@ var OpenWeatherMapUtil = {
             console.log('OpenWeatherMapUtil::getDailyForecastByCityId - Error: ' + error);
         });
     },
+    getDailyForecastByCityName: function getDailyForecastByCityName(input) {
+        return Fetcher.getDailyForecastByCityName(input).then(function (data) {
+            return Transformer.transformDailyForecast(data);
+        }).catch(function (error) {
+            console.log('OpenWeatherMapUtil::getDailyForecastByCityName - Error: ' + error);
+        });
+    },
     getWeatherByCityId: function getWeatherByCityId(input) {
         return Fetcher.getWeatherByCityId(input).then(function (data) {
             return Transformer.transformWeather(data);
         }).catch(function (error) {
             console.log('OpenWeatherMapUtil::getWeatherByCityId - Error: ' + error);
+        });
+    },
+    getWeatherByCityName: function getWeatherByCityName(input) {
+        return Fetcher.getWeatherByCityName(input).then(function (data) {
+            return Transformer.transformWeather(data);
+        }).catch(function (error) {
+            console.log('OpenWeatherMapUtil::getWeatherByCityName - Error: ' + error);
         });
     }
 };

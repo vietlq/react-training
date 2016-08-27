@@ -7,11 +7,16 @@ var WEATHER_URL = BASE_URL + '/weather';
 var FORECAST_URL = BASE_URL + '/forecast';
 var DAILY_FORECAST_URL = FORECAST_URL + '/daily';
 
-var makeForecastParams = function(input) {
+var makeForecastParams = function(input, idOrName) {
     var params = {};
 
+    if (idOrName === 'NAME') {
+        params.q = input.cityName || 'London';
+    } else {
+        params.id = input.cityId || 2643743; // London
+    }
+
     params.appid = input.appId || 'INVALID';
-    params.id = input.cityId || 524901; // Moscow
     params.cnt = input.days || 5; // Forecast 5 days
     params.units = input.units || 'metric'; // Metric units by default
     params.mode = 'json'; // We only use JSON format
@@ -19,11 +24,16 @@ var makeForecastParams = function(input) {
     return params;
 }
 
-var makeWeatherParams = function(input) {
+var makeWeatherParams = function(input, idOrName) {
     var params = {};
 
+    if (idOrName === 'NAME') {
+        params.q = input.cityName || 'London';
+    } else {
+        params.id = input.cityId || 2643743; // London
+    }
+
     params.appid = input.appId || 'INVALID';
-    params.id = input.cityId || 524901; // Moscow
     params.units = input.units || 'metric'; // Metric units by default
     params.mode = 'json'; // We only use JSON format
 
@@ -42,6 +52,17 @@ var OpenWeatherMapFetcher = {
             console.log('OpenWeatherMapFetcher::getDailyForecastByCityId - Error: ' + error);
         });
     },
+    getDailyForecastByCityName: function(input) {
+        var params = makeForecastParams(input, 'NAME');
+
+        return axios.get(DAILY_FORECAST_URL, {
+            params: params
+        }).then(function (response) {
+            return response.data;
+        }).catch(function (error) {
+            console.log('OpenWeatherMapFetcher::getDailyForecastByCityName - Error: ' + error);
+        });
+    },
     getWeatherByCityId: function(input) {
         var params = makeWeatherParams(input);
 
@@ -51,6 +72,17 @@ var OpenWeatherMapFetcher = {
             return response.data;
         }).catch(function (error) {
             console.log('OpenWeatherMapFetcher::getWeatherByCityId - Error: ' + error);
+        });
+    },
+    getWeatherByCityName: function(input) {
+        var params = makeWeatherParams(input, 'NAME');
+
+        return axios.get(WEATHER_URL, {
+            params: params
+        }).then(function (response) {
+            return response.data;
+        }).catch(function (error) {
+            console.log('OpenWeatherMapFetcher::getWeatherByCityName - Error: ' + error);
         });
     }
 }

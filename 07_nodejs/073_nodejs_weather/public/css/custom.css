@@ -20,13 +20,17 @@
 /* https://material.google.com/style/color.html#color-color-palette */
 
 .weather-card .panel {
+    /*
     border-left: #ec4444;
     border-right: #ec4444;
     border-top: #ec4444;
+    */
 }
 
 .weather-card .panel-heading {
+    /*
     background: #ec4444;
+    */
     color: #ffffff;
 }
 

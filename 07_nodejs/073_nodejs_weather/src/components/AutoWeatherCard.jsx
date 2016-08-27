@@ -1,23 +1,39 @@
 import React, { Component } from 'react';
 import ForecastItem from './ForecastItem.jsx';
+import WeatherUtil from '../services/OpenWeatherMapUtil.jsx';
 
-class WeatherCard extends Component {
+class AutoWeatherCard extends Component {
+    constructor(props) {
+        super(props);
+
+        this.state = { city : '', today: {}, nextDays: [] };
+    }
+
+    componentWillMount() {
+        // Unable to call .bind(this) due to return type of Fetcher.get
+        var theOwner = this;
+
+        WeatherUtil.getDailyForecastByCityId({
+            appId: this.props.appId,
+            cityId: this.props.cityId
+        })
+        .then(function ({ city, dailyForecast }) {
+            var today = dailyForecast[0];
+            dailyForecast.shift();
+
+            theOwner.setState({
+                city: city,
+                today: today,
+                nextDays: dailyForecast
+            });
+        })
+        .catch(function (error) {
+            console.log('WeatherCard::componentWillMount - Error: ' + error);
+        });
+    }
+
     render() {
-        const cityForecast = this.props.cityForecast;
-        const todayWeather = cityForecast.today;
-        const bgColor = this.props.bgColor || '#357db5';
-        const textColor = this.props.textColor || '#ffffff';
-
-        const weatherCardPanelStyle = {
-            borderLeft: bgColor,
-            borderRight: bgColor,
-            borderTop: bgColor
-        };
-
-        const weatherCardPanelHeading = {
-            background: bgColor,
-            color: textColor
-        };
+        const todayWeather = this.state.today;
 
         var createForecastItem = function(forecast, index) {
             return (<ForecastItem key={index} forecastDetails={forecast} />)
@@ -25,9 +41,9 @@ class WeatherCard extends Component {
 
         return (
             <div className="weather-card">
-                <div className="panel panel-default" style={weatherCardPanelStyle}>
-                    <div className="panel-heading" style={weatherCardPanelHeading}>
-                        <h3 className="forecast-weather-city">{cityForecast.city}</h3>
+                <div className="panel panel-default">
+                    <div className="panel-heading">
+                        <h3 className="forecast-weather-city">{this.state.city}</h3>
                         <h4 className="forecast-weather-date">{todayWeather.date}</h4>
                         <br/>
                         <div className="row">
@@ -53,7 +69,7 @@ class WeatherCard extends Component {
                         <br/>
                     </div>
                     <ul className="list-group weather-card-list">
-                        {cityForecast.nextDays.map(createForecastItem)}
+                        {this.state.nextDays.map(createForecastItem)}
                     </ul>
                     <div className="panel-body weather-card-bottom">
                         <span>Forecast by <a href="http://openweathermap.org/">http://openweathermap.org/</a></span>
@@ -64,4 +80,4 @@ class WeatherCard extends Component {
     }
 }
 
-export default WeatherCard;
+export default AutoWeatherCard;
