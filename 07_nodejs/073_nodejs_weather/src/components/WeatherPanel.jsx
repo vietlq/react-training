@@ -37,16 +37,18 @@ class WeatherPanel extends Component {
             // Make copies
             var { cities, forecasts } = this.state;
             // Only add the city to the list if it hasn't been added yet
-            if (! forecasts[cityName]) {
-                cities.push(cityName);
+            // We use city instead of cityName
+            if (! forecasts[city]) {
+                cities.push(city);
             }
             // Always set the forecast
-            forecasts[cityName] = newForecast;
+            forecasts[city] = newForecast;
             // Remember to update the state
             this.setState({
                 cities: cities,
                 forecasts: forecasts
             });
+            console.log(newForecast);
             // And clear the input
             this.refs.fieldCityName.value = '';
         }.bind(this))

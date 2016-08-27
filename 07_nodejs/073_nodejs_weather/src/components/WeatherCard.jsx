@@ -42,7 +42,7 @@ class WeatherCard extends Component {
                         <br/>
                         <div className="row">
                             <div className="col-xs-6 forecast-wind-dir">
-                                <h4><i className={todayWeather.windDir}></i>
+                                <h4><i className={todayWeather.windDirStyle}></i>
                                     &nbsp;&nbsp;{todayWeather.windDir}&deg;</h4>
                             </div>
                             <div className="col-xs-6 forecast-wind-speed">

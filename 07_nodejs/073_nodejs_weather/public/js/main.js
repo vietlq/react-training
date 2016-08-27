@@ -27333,7 +27333,7 @@ var WeatherCard = function (_Component) {
                                 _react2.default.createElement(
                                     'h4',
                                     null,
-                                    _react2.default.createElement('i', { className: todayWeather.windDir }),
+                                    _react2.default.createElement('i', { className: todayWeather.windDirStyle }),
                                     '  ',
                                     todayWeather.windDir,
                                     '°'
@@ -27457,17 +27457,19 @@ var WeatherPanel = function (_Component) {
                 var cities = _state.cities;
                 var forecasts = _state.forecasts;
                 // Only add the city to the list if it hasn't been added yet
+                // We use city instead of cityName
 
-                if (!forecasts[cityName]) {
-                    cities.push(cityName);
+                if (!forecasts[city]) {
+                    cities.push(city);
                 }
                 // Always set the forecast
-                forecasts[cityName] = newForecast;
+                forecasts[city] = newForecast;
                 // Remember to update the state
                 this.setState({
                     cities: cities,
                     forecasts: forecasts
                 });
+                console.log(newForecast);
                 // And clear the input
                 this.refs.fieldCityName.value = '';
             }.bind(this)).catch(function (error) {
