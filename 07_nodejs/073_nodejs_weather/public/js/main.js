@@ -27427,23 +27427,24 @@ var WeatherPanel = function (_Component) {
     }
 
     _createClass(WeatherPanel, [{
+        key: 'componentWillMount',
+        value: function componentWillMount() {}
+    }, {
         key: 'onCitySubmitted',
         value: function onCitySubmitted(event) {
             // Prevent form submission
             event.preventDefault();
-            // Unable to call .bind(this) due to return type of Fetcher.get
-            var theOwner = this;
-
+            // Get the city name
             var cityName = this.refs.fieldCityName.value;
 
             _OpenWeatherMapUtil2.default.getDailyForecastByCityName({
                 appId: this.props.appId,
                 cityName: cityName
-            }).then(function (_ref) {
-                var city = _ref.city;
-                var dailyForecast = _ref.dailyForecast;
-
+            }).then(function (data) {
+                var city = data.city;
+                var dailyForecast = data.dailyForecast;
                 // Process returned results
+
                 var today = dailyForecast[0];
                 dailyForecast.shift();
                 var newForecast = {
@@ -27451,13 +27452,10 @@ var WeatherPanel = function (_Component) {
                     today: today,
                     nextDays: dailyForecast
                 };
-                console.log(newForecast);
-                console.log(theOwner);
-
                 // Make copies
-                var _theOwner$state = theOwner.state;
-                var cities = _theOwner$state.cities;
-                var forecasts = _theOwner$state.forecasts;
+                var _state = this.state;
+                var cities = _state.cities;
+                var forecasts = _state.forecasts;
                 // Only add the city to the list if it hasn't been added yet
 
                 if (!forecasts[cityName]) {
@@ -27465,27 +27463,27 @@ var WeatherPanel = function (_Component) {
                 }
                 // Always set the forecast
                 forecasts[cityName] = newForecast;
-                console.log(forecasts);
-
                 // Remember to update the state
-                theOwner.setState({
+                this.setState({
                     cities: cities,
                     forecasts: forecasts
                 });
-
                 // And clear the input
-                theOwner.refs.fieldCityName.value = '';
-            }).catch(function (error) {
+                this.refs.fieldCityName.value = '';
+            }.bind(this)).catch(function (error) {
                 console.log('WeatherPanel::onCitySubmitted - Error: ' + error);
             });
         }
     }, {
         key: 'render',
         value: function render() {
-            var createWeatherCard = function createWeatherCard(cityName, index) {
-                return _react2.default.createElement(_WeatherCard2.default, { key: index,
-                    cityForecast: this.state.forecasts[cityName] });
-            };
+            var createWeatherCard = function (cityName, index) {
+                return _react2.default.createElement(
+                    'div',
+                    { key: index, className: 'col-sm-4' },
+                    _react2.default.createElement(_WeatherCard2.default, { cityForecast: this.state.forecasts[cityName] })
+                );
+            }.bind(this);
 
             return _react2.default.createElement(
                 'div',
@@ -27525,11 +27523,7 @@ var WeatherPanel = function (_Component) {
                     _react2.default.createElement(
                         'div',
                         { className: 'row' },
-                        _react2.default.createElement(
-                            'div',
-                            { className: 'col-sm-4' },
-                            this.state.cities.map(createWeatherCard)
-                        )
+                        this.state.cities.map(createWeatherCard)
                     ),
                     _react2.default.createElement(
                         'div',

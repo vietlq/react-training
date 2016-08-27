@@ -11,19 +11,21 @@ class WeatherPanel extends Component {
         this.onCitySubmitted = this.onCitySubmitted.bind(this);
     }
 
+    componentWillMount() {
+    }
+
     onCitySubmitted(event) {
         // Prevent form submission
         event.preventDefault();
-        // Unable to call .bind(this) due to return type of Fetcher.get
-        var theOwner = this;
-
+        // Get the city name
         const cityName = this.refs.fieldCityName.value;
 
         WeatherUtil.getDailyForecastByCityName({
             appId: this.props.appId,
             cityName: cityName
         })
-        .then(function ({ city, dailyForecast }) {
+        .then(function (data) {
+            var { city, dailyForecast } = data;
             // Process returned results
             var today = dailyForecast[0];
             dailyForecast.shift();
@@ -32,28 +34,22 @@ class WeatherPanel extends Component {
                 today: today,
                 nextDays: dailyForecast
             };
-            console.log(newForecast);
-            console.log(theOwner);
-
             // Make copies
-            var { cities, forecasts } = theOwner.state;
+            var { cities, forecasts } = this.state;
             // Only add the city to the list if it hasn't been added yet
             if (! forecasts[cityName]) {
                 cities.push(cityName);
             }
             // Always set the forecast
             forecasts[cityName] = newForecast;
-            console.log(forecasts);
-
             // Remember to update the state
-            theOwner.setState({
+            this.setState({
                 cities: cities,
                 forecasts: forecasts
             });
-
             // And clear the input
-            theOwner.refs.fieldCityName.value = '';
-        })
+            this.refs.fieldCityName.value = '';
+        }.bind(this))
         .catch(function (error) {
             console.log('WeatherPanel::onCitySubmitted - Error: ' + error);
         });
@@ -61,9 +57,11 @@ class WeatherPanel extends Component {
 
     render() {
         var createWeatherCard = function(cityName, index) {
-            return (<WeatherCard key={index}
-                cityForecast={this.state.forecasts[cityName]} />);
-        };
+            return (
+                <div key={index} className="col-sm-4">
+                    <WeatherCard cityForecast={this.state.forecasts[cityName]} />
+                </div>);
+        }.bind(this);
 
         return (
             <div className="weather-panel">
@@ -84,9 +82,7 @@ class WeatherPanel extends Component {
                     <br/>
                     <br/>
                     <div className="row">
-                        <div className="col-sm-4">
-                            {this.state.cities.map(createWeatherCard)}
-                        </div>
+                        {this.state.cities.map(createWeatherCard)}
                     </div>
                     <div className="row">
                         <div className="col-sm-12">
