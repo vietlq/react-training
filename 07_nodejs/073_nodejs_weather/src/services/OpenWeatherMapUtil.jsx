@@ -1,4 +1,4 @@
-var Fetcher = equire('./OpenWeatherMapFetcher.jsx');
+var Fetcher = require('./OpenWeatherMapFetcher.jsx');
 var Transformer = require('./OpenWeatherMapTransformer.jsx');
 
 var OpenWeatherMapUtil = {

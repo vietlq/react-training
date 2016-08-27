@@ -1,6 +1,7 @@
 import React, { Component } from 'react';
 import ForecastItem from './ForecastItem.jsx';
 import Fetcher from '../services/Fetcher.jsx';
+import WeatherUtil from '../services/OpenWeatherMapUtil.jsx';
 import moment from 'moment';
 
 ////////////////////////////////////////////////////////////////
@@ -184,10 +185,10 @@ class WeatherCard extends Component {
                         <h4 className="forecast-weather-date">{mainForecastItem.date}</h4>
                         <br/>
                         <div className="row">
-                            <div className="col-xs-7 forecast-weather-icon">
+                            <div className="col-xs-6 forecast-weather-icon">
                                 <h1><i className={mainForecastItem.iconStyle}></i></h1>
                             </div>
-                            <div className="col-xs-5 forecast-temperature">
+                            <div className="col-xs-6 forecast-temperature">
                                 <span>{mainForecastItem.simpleAvgTemp}&deg;</span>
                             </div>
                         </div>

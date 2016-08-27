@@ -39,7 +39,7 @@ var OpenWeatherMapFetcher = {
         }).then(function (response) {
             return response.data;
         }).catch(function (error) {
-            console.log('Error: ' + error);
+            console.log('OpenWeatherMapFetcher::getDailyForecastByCityId - Error: ' + error);
         });
     },
     getWeatherByCityId: function(input) {
@@ -50,7 +50,7 @@ var OpenWeatherMapFetcher = {
         }).then(function (response) {
             return response.data;
         }).catch(function (error) {
-            console.log('Error: ' + error);
+            console.log('OpenWeatherMapFetcher::getWeatherByCityId - Error: ' + error);
         });
     }
 }
