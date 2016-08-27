@@ -6,12 +6,9 @@ class WeatherPanel extends Component {
     constructor(props) {
         super(props);
 
-        this.state = { cities: [], forecasts: {} };
+        this.state = { cities: [], forecasts: {}, cityColors: {} };
 
         this.onCitySubmitted = this.onCitySubmitted.bind(this);
-    }
-
-    componentWillMount() {
     }
 
     onCitySubmitted(event) {
@@ -19,6 +16,11 @@ class WeatherPanel extends Component {
         event.preventDefault();
         // Get the city name
         const cityName = this.refs.fieldCityName.value;
+        // Colors to use
+        const CARD_COLORS = [
+            '#EC4444', '#79B8AF', '#817871', '#357DB5', '#E68E4F',
+            '#A6A539', '#F27E7E', '#9770A7', '#CE4571', '#3F3F3F',
+        ];
 
         WeatherUtil.getDailyForecastByCityName({
             appId: this.props.appId,
@@ -35,7 +37,7 @@ class WeatherPanel extends Component {
                 nextDays: dailyForecast
             };
             // Make copies
-            var { cities, forecasts } = this.state;
+            var { cities, forecasts, cityColors } = this.state;
             // Only add the city to the list if it hasn't been added yet
             // We use city instead of cityName
             if (! forecasts[city]) {
@@ -43,12 +45,14 @@ class WeatherPanel extends Component {
             }
             // Always set the forecast
             forecasts[city] = newForecast;
+            // Add some colors for fun
+            cityColors[city] = CARD_COLORS[Math.floor(Math.random() * CARD_COLORS.length)];
             // Remember to update the state
             this.setState({
                 cities: cities,
                 forecasts: forecasts
             });
-            console.log(newForecast);
+            console.log(cityColors);
             // And clear the input
             this.refs.fieldCityName.value = '';
         }.bind(this))
@@ -61,7 +65,8 @@ class WeatherPanel extends Component {
         var createWeatherCard = function(cityName, index) {
             return (
                 <div key={index} className="col-sm-4">
-                    <WeatherCard cityForecast={this.state.forecasts[cityName]} />
+                    <WeatherCard cityForecast={this.state.forecasts[cityName]}
+                        bgColor={this.state.cityColors[cityName]} />
                 </div>);
         }.bind(this);
 

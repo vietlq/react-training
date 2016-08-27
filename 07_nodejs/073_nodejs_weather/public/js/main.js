@@ -27420,22 +27420,21 @@ var WeatherPanel = function (_Component) {
 
         var _this = _possibleConstructorReturn(this, Object.getPrototypeOf(WeatherPanel).call(this, props));
 
-        _this.state = { cities: [], forecasts: {} };
+        _this.state = { cities: [], forecasts: {}, cityColors: {} };
 
         _this.onCitySubmitted = _this.onCitySubmitted.bind(_this);
         return _this;
     }
 
     _createClass(WeatherPanel, [{
-        key: 'componentWillMount',
-        value: function componentWillMount() {}
-    }, {
         key: 'onCitySubmitted',
         value: function onCitySubmitted(event) {
             // Prevent form submission
             event.preventDefault();
             // Get the city name
             var cityName = this.refs.fieldCityName.value;
+            // Colors to use
+            var CARD_COLORS = ['#EC4444', '#79B8AF', '#817871', '#357DB5', '#E68E4F', '#A6A539', '#F27E7E', '#9770A7', '#CE4571', '#3F3F3F'];
 
             _OpenWeatherMapUtil2.default.getDailyForecastByCityName({
                 appId: this.props.appId,
@@ -27456,6 +27455,7 @@ var WeatherPanel = function (_Component) {
                 var _state = this.state;
                 var cities = _state.cities;
                 var forecasts = _state.forecasts;
+                var cityColors = _state.cityColors;
                 // Only add the city to the list if it hasn't been added yet
                 // We use city instead of cityName
 
@@ -27464,12 +27464,14 @@ var WeatherPanel = function (_Component) {
                 }
                 // Always set the forecast
                 forecasts[city] = newForecast;
+                // Add some colors for fun
+                cityColors[city] = CARD_COLORS[Math.floor(Math.random() * CARD_COLORS.length)];
                 // Remember to update the state
                 this.setState({
                     cities: cities,
                     forecasts: forecasts
                 });
-                console.log(newForecast);
+                console.log(cityColors);
                 // And clear the input
                 this.refs.fieldCityName.value = '';
             }.bind(this)).catch(function (error) {
@@ -27483,7 +27485,8 @@ var WeatherPanel = function (_Component) {
                 return _react2.default.createElement(
                     'div',
                     { key: index, className: 'col-sm-4' },
-                    _react2.default.createElement(_WeatherCard2.default, { cityForecast: this.state.forecasts[cityName] })
+                    _react2.default.createElement(_WeatherCard2.default, { cityForecast: this.state.forecasts[cityName],
+                        bgColor: this.state.cityColors[cityName] })
                 );
             }.bind(this);
 
