@@ -23,13 +23,10 @@ var MainPanel = React.createClass({
     onFormSubmitted: function(event) {
         // Prevent form submission
         event.preventDefault();
-
-        var ingredients = this.state.ingredients;
-        const newItem = {
-            text: this.refs.fieldInput.value
+        // Some validation would be nice
+        if (this.refs.fieldInput.value) {
+            Actions.postIngredient(this.refs.fieldInput.value);
         }
-        ingredients.push(newItem);
-        this.setState({ ingredients: ingredients });
         this.refs.fieldInput.value = '';
     },
 

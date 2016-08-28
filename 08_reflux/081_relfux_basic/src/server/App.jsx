@@ -25,24 +25,33 @@ var STATIC_DIR = path.join(ROOT_DIR, 'public');
 // Serve our static stuff like index.css
 app.use(express.static(STATIC_DIR));
 
-var ingredients = [
-    {
-        "id": "ak38",
-        "text": "Egg"
-    },
-    {
-        "id": "akH8",
-        "text": "Broccoli"
-    },
-    {
-        "id": "gk38",
-        "text": "Bacon"
-    },
-    {
-        "id": "a638",
-        "text": "Spinach"
-    },
-];
+var ingredients = [];
+var uniqueIngredients = {};
+
+var gotDuplicate = function(ingredient) {
+    return (uniqueIngredients[ingredient.id] || uniqueIngredients[ingredient.text]);
+}
+
+var shouldInsert = function(ingredient) {
+    return (ingredient.id && ingredient.text && (! gotDuplicate(ingredient)));
+}
+
+var insertIngredient = function(ingredient) {
+    if (shouldInsert(ingredient)) {
+        ingredients.push(ingredient);
+        uniqueIngredients[ingredient.id] = true;
+        uniqueIngredients[ingredient.text] = true;
+
+        return true;
+    }
+
+    return false;
+}
+
+insertIngredient({ "id": "ak38", "text": "Egg" });
+insertIngredient({ "id": "akH8", "text": "Broccoli" });
+insertIngredient({ "id": "gk38", "text": "Bacon" });
+insertIngredient({ "id": "a638", "text": "Spinach" });
 
 app.get('/ingredients', function(req, res) {
     res.send(ingredients);
@@ -50,9 +59,12 @@ app.get('/ingredients', function(req, res) {
 
 app.post('/ingredients', function(req, res) {
     var ingredient = req.body;
+
     console.log(req.body);
-    ingredients.push(ingredient);
-    res.status(200).send("Successfully posted ingredient");
+
+    const insertStatus = insertIngredient(ingredient);
+
+    res.status(200).send({ inserted: insertStatus });
 });
 
 // Send all requests to index.html so browserHistory in React Router works

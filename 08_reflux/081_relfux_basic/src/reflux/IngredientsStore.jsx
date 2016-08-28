@@ -15,9 +15,24 @@ var IngredientsStore = createStore({
             console.log('IngredientsStore::getIngredients - Error: ' + error);
         });
     },
-    postIngredients: function(text) {
+    postIngredient: function(text) {
         // Posted ingredient to the server now we got a successful callback
-        this.fireUpdate();
+        var ingredient = {
+            text: text,
+            id: Math.floor(Date.now() / 1000) + text
+        };
+        // Send to the server and only fire an update when there was actual update
+        IngredientsUtil.postIngredient(ingredient)
+        .then(function(data) {
+            if (data.inserted) {
+                this.ingredients.push(ingredient);
+                // Always remember to fire an update event
+                this.fireUpdate();
+            }
+        }.bind(this))
+        .catch(function(error) {
+            console.log('IngredientsStore::getIngredients - Error: ' + error);
+        });
     },
     fireUpdate: function() {
         this.trigger('change', this.ingredients);
