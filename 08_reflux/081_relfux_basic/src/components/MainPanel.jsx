@@ -30,6 +30,10 @@ var MainPanel = React.createClass({
         this.refs.fieldInput.value = '';
     },
 
+    onListItemDelete: function(event, ingredientID) {
+        Actions.deleteIngredient(ingredientID);
+    },
+
     render: function() {
         return (
             <div className="main-panel">
@@ -52,7 +56,8 @@ var MainPanel = React.createClass({
                     <div className="row">
                         <div className="col-sm-6 col-sm-offset-3">
                             <List title={this.props.title}
-                                items={this.state.ingredients} />
+                                items={this.state.ingredients}
+                                onListItemDelete={this.onListItemDelete}/>
                         </div>
                     </div>
                 </div>

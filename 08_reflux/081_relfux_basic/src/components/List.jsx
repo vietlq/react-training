@@ -22,8 +22,10 @@ class List extends Component {
         }
 
         var createListItem = function(itemDetails, index) {
-            return (<ListItem key={index} itemDetails={itemDetails} />)
-        };
+            return (<ListItem key={itemDetails.id + index}
+                itemDetails={itemDetails}
+                onListItemDelete={this.props.onListItemDelete}/>)
+        }.bind(this);
 
         return (
             <div className="list-holder">

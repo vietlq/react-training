@@ -23,3 +23,13 @@
     margin-top: 0;
     margin-bottom: 0;
 }
+
+.list-item-custom .badge a {
+    color: #ffffff;
+    text-decoration: none;
+}
+
+.list-item-custom .badge a:hover {
+    color: #E91E63;
+    text-decoration: none;
+}

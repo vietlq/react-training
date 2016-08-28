@@ -15,11 +15,11 @@ var IngredientsStore = createStore({
             console.log('IngredientsStore::getIngredients - Error: ' + error);
         });
     },
-    postIngredient: function(text) {
+    postIngredient: function(ingredientName) {
         // Posted ingredient to the server now we got a successful callback
         var ingredient = {
-            text: text,
-            id: Math.floor(Date.now() / 1000) + text
+            text: ingredientName,
+            id: Math.floor(Date.now() / 1000) + ingredientName
         };
 
         // We do local update first and based on server response, we will correct later
@@ -38,6 +38,16 @@ var IngredientsStore = createStore({
         }.bind(this))
         .catch(function(error) {
             console.log('IngredientsStore::postIngredient - Error: ' + error);
+        });
+    },
+    deleteIngredient: function(ingredientID) {
+        IngredientsUtil.deleteIngredient(ingredientID)
+        .then(function(data) {
+            // Rest easy and let the get method handle it
+            this.getIngredients();
+        }.bind(this))
+        .catch(function(error) {
+            console.log('IngredientsStore::deleteIngredient - Error: ' + error);
         });
     },
     fireUpdate: function() {
