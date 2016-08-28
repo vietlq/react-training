@@ -60,11 +60,12 @@ app.get('/ingredients', function(req, res) {
 app.post('/ingredients', function(req, res) {
     var ingredient = req.body;
 
+    console.log(req.headers);
     console.log(req.body);
 
     const insertStatus = insertIngredient(ingredient);
 
-    res.status(200).send({ inserted: insertStatus });
+    res.status(200).send({ inserted: insertStatus, ingredients: ingredients });
 });
 
 // Send all requests to index.html so browserHistory in React Router works

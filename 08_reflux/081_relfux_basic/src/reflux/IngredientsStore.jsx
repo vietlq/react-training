@@ -21,14 +21,21 @@ var IngredientsStore = createStore({
             text: text,
             id: Math.floor(Date.now() / 1000) + text
         };
+
+        // We do local update first and based on server response, we will correct later
+        // This is called optimistic update
+        // Make sure it's an array
+        this.ingredients = this.ingredients || [];
+        this.ingredients.push(ingredient);
+        this.fireUpdate();
+
+        // Finally we send to the server and await actual data from the server
         // Send to the server and only fire an update when there was actual update
         IngredientsUtil.postIngredient(ingredient)
         .then(function(data) {
-            if (data.inserted) {
-                this.ingredients.push(ingredient);
-                // Always remember to fire an update event
-                this.fireUpdate();
-            }
+            this.ingredients = data.ingredients;
+            // Always remember to fire an update event
+            this.fireUpdate();
         }.bind(this))
         .catch(function(error) {
             console.log('IngredientsStore::getIngredients - Error: ' + error);
