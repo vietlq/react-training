@@ -52,3 +52,5 @@ https://facebook.github.io/react/docs/component-specs.html
 https://www.youtube.com/watch?v=xsSnOQynTHs
 
 http://stackoverflow.com/questions/31048953/what-does-the-three-dots-in-react-do
+
+https://facebook.github.io/react/docs/jsx-spread.html
