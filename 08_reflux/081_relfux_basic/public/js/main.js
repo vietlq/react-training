@@ -22870,7 +22870,7 @@ var HomePage = function (_Component) {
                     _react2.default.createElement(
                         'h1',
                         null,
-                        'Weather App'
+                        'Ingredients'
                     )
                 ),
                 _react2.default.createElement(

@@ -22,7 +22,7 @@ class HomePage extends Component {
         return (
             <div className="outer-container">
                 <div className="page-header">
-                    <h1>Weather App</h1>
+                    <h1>Ingredients</h1>
                 </div>
                 <div className="container">
                     <div className="row">
