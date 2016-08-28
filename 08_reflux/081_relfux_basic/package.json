@@ -1,0 +1,51 @@
+{
+  "name": "07_nodejs",
+  "version": "0.0.1",
+  "description": "A sample project with NodeJS & ExpressJS",
+  "main": "server.js",
+  "scripts": {
+    "build": "babel src/server -o server.js && webpack -p",
+    "build:dev": "babel src/server --watch src/server -o server.js && webpack -p",
+    "start": "node server.js",
+    "start_client": "watchify src/client/main.jsx -v -t [ babelify --presets [ es2015 react ] ] -o public/js/main.js",
+    "magic": "magic src/client/main.jsx -t [ babelify --presets [ es2015 react ] ] -o 'uglifyjs -cm > public/js/main.js'"
+  },
+  "repository": {
+    "type": "git",
+    "url": "git+https://github.com/vietlq/react-training.git"
+  },
+  "keywords": [
+    "node",
+    "express",
+    "js"
+  ],
+  "author": "vietlq85@gmail.com",
+  "license": "ISC",
+  "bugs": {
+    "url": "https://github.com/vietlq/react-training/issues"
+  },
+  "homepage": "https://github.com/vietlq/react-training#readme",
+  "dependencies": {
+    "axios": "^0.13.1",
+    "babel-core": "^6.13.2",
+    "babel-preset-es2015": "^6.13.2",
+    "babel-preset-react": "^6.11.1",
+    "babelify": "^7.3.0",
+    "body-parser": "^1.15.2",
+    "compression": "^1.6.2",
+    "express": "^4.14.0",
+    "moment": "^2.14.1",
+    "moment-timezone": "^0.5.5",
+    "nconf": "^0.8.4",
+    "react": "^15.3.1",
+    "react-dom": "^15.3.1",
+    "validate.js": "^0.10.0"
+  },
+  "devDependencies": {
+    "babel-core": "^6.13.2",
+    "babel-loader": "^6.2.5",
+    "nodemon": "^1.10.2",
+    "watchify": "^3.7.0",
+    "webpack": "^1.13.2"
+  }
+}
