@@ -24,3 +24,7 @@ https://swapi.co/
 https://pokeapi.co/
 
 https://babeljs.io/docs/usage/cli/
+
+http://egorsmirnov.me/2015/09/30/react-and-es6-part4.html
+
+https://facebook.github.io/react/docs/reusable-components.html

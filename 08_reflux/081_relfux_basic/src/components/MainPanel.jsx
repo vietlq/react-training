@@ -1,28 +1,26 @@
 import React, { Component } from 'react';
 import List from './List.jsx';
 import IngredientsUtil from '../services/IngredientsUtil.jsx';
-import axios from 'axios';
+import Reflux from 'reflux';
+import Actions from '../reflux/Actions.jsx';
+import IngredientsStore from '../reflux/IngredientsStore.jsx';
 
-class MainPanel extends Component {
-    constructor(props) {
-        super(props);
+var MainPanel = React.createClass({
+    mixins: [Reflux.listenTo(IngredientsStore, 'onChange')],
 
-        this.state = { ingredients: [] };
+    getInitialState: function() {
+        return { ingredients: [] };
+    },
 
-        this.onFormSubmitted = this.onFormSubmitted.bind(this);
-    }
+    componentWillMount: function() {
+        Actions.getIngredients();
+    },
 
-    componentWillMount() {
-        IngredientsUtil.getAllIngredients({ baseUrl: this.props.baseUrl })
-        .then(function(data) {
-            this.setState({ ingredients: data });
-        }.bind(this))
-        .catch(function(error) {
-            console.log('MainPanel::componentWillMount - Error: ' + error);
-        });
-    }
+    onChange: function(event, ingredients) {
+        this.setState({ ingredients: ingredients });
+    },
 
-    onFormSubmitted(event) {
+    onFormSubmitted: function(event) {
         // Prevent form submission
         event.preventDefault();
 
@@ -33,9 +31,9 @@ class MainPanel extends Component {
         ingredients.push(newItem);
         this.setState({ ingredients: ingredients });
         this.refs.fieldInput.value = '';
-    }
+    },
 
-    render() {
+    render: function() {
         return (
             <div className="main-panel">
                 <div className="container">
@@ -64,6 +62,6 @@ class MainPanel extends Component {
             </div>
         );
     }
-}
+});
 
 export default MainPanel;
