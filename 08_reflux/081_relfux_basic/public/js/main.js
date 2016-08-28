@@ -24626,9 +24626,8 @@ var IngredientsStore = (0, _reflux.createStore)({
         // Finally we send to the server and await actual data from the server
         // Send to the server and only fire an update when there was actual update
         _IngredientsUtil2.default.postIngredient(ingredient).then(function (data) {
-            this.ingredients = data.ingredients;
-            // Always remember to fire an update event
-            this.fireUpdate();
+            // Rest easy and let the get method handle it
+            this.getIngredients();
         }.bind(this)).catch(function (error) {
             console.log('IngredientsStore::getIngredients - Error: ' + error);
         });
