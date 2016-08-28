@@ -37,7 +37,7 @@ var IngredientsStore = createStore({
             this.getIngredients();
         }.bind(this))
         .catch(function(error) {
-            console.log('IngredientsStore::getIngredients - Error: ' + error);
+            console.log('IngredientsStore::postIngredient - Error: ' + error);
         });
     },
     fireUpdate: function() {

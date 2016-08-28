@@ -24629,7 +24629,7 @@ var IngredientsStore = (0, _reflux.createStore)({
             // Rest easy and let the get method handle it
             this.getIngredients();
         }.bind(this)).catch(function (error) {
-            console.log('IngredientsStore::getIngredients - Error: ' + error);
+            console.log('IngredientsStore::postIngredient - Error: ' + error);
         });
     },
     fireUpdate: function fireUpdate() {
