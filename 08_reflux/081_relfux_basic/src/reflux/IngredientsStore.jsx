@@ -5,7 +5,7 @@ import IngredientsUtil from '../services/IngredientsUtil.jsx';
 var IngredientsStore = createStore({
     listenables: [Actions],
     getIngredients: function() {
-        IngredientsUtil.getAllIngredients({ baseUrl: 'http://localhost:6969' })
+        IngredientsUtil.getAllIngredients()
         .then(function(data) {
             this.ingredients = data;
             // Always remember to fire an update event

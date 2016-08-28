@@ -5,12 +5,13 @@ var ROOT_PATH = path.resolve(__dirname);
 var SRC_DIR = path.resolve(ROOT_PATH, 'src');
 var COMPO_DIR = path.resolve(SRC_DIR, 'components');
 var SERVICES_DIR = path.resolve(SRC_DIR, 'services');
+var REFLUX_DIR = path.resolve(SRC_DIR, 'reflux');
 var APP_DIR = path.resolve(SRC_DIR, 'client');
 var BUILD_DIR = path.resolve(ROOT_PATH, 'public/js');
 
 var ForceProdEnv = new webpack.DefinePlugin({
-    "process.env": { 
-        NODE_ENV: JSON.stringify("production") 
+    "process.env": {
+        NODE_ENV: JSON.stringify("production")
     }
 });
 
@@ -43,6 +44,14 @@ var config = {
             {
                 test : /\.jsx?$/,
                 include : SERVICES_DIR,
+                loader : 'babel',
+                query: {
+                    presets: ['es2015']
+                }
+            },
+            {
+                test : /\.jsx?$/,
+                include : REFLUX_DIR,
                 loader : 'babel',
                 query: {
                     presets: ['es2015']
