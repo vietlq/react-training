@@ -25,11 +25,12 @@ var STATIC_DIR = path.join(ROOT_DIR, 'public');
 // Serve our static stuff like index.css
 app.use(express.static(STATIC_DIR));
 
-var ingredients = [];
-var uniqueIngredients = {};
+var ingredients = {};
+var ingredientIDs = [];
+var ingredientNames = {};
 
 var gotDuplicate = function(ingredient) {
-    return (uniqueIngredients[ingredient.id] || uniqueIngredients[ingredient.text]);
+    return (ingredients[ingredient.id] || ingredientNames[ingredient.text]);
 }
 
 var shouldInsert = function(ingredient) {
@@ -38,14 +39,47 @@ var shouldInsert = function(ingredient) {
 
 var insertIngredient = function(ingredient) {
     if (shouldInsert(ingredient)) {
-        ingredients.push(ingredient);
-        uniqueIngredients[ingredient.id] = true;
-        uniqueIngredients[ingredient.text] = true;
+        ingredients[ingredient.id] = ingredient.text;
+        ingredientIDs.push(ingredient.id);
+        ingredientNames[ingredient.text] = true;
 
         return true;
     }
 
     return false;
+}
+
+var deleteIngredient = function(ingredientID) {
+    if (ingredients[ingredientID]) {
+        const ingredientName = ingredients[ingredientID];
+
+        delete ingredients[ingredientID];
+
+        ingredientIDs = ingredientIDs.filter(function(value) {
+            return (value != ingredientID);
+        });
+
+        if (ingredientNames[ingredientName]) {
+            delete ingredientNames[ingredientName];
+        }
+
+        return true;
+    }
+
+    return false;
+}
+
+var ingredientIDToIngredient = function(ingredientID) {
+    if (ingredients[ingredientID]) {
+        return {
+            id: ingredientID,
+            text: ingredients[ingredientID]
+        };
+    }
+}
+
+var getIngredients = function() {
+    return ingredientIDs.map(ingredientIDToIngredient);
 }
 
 insertIngredient({ "id": "ak38", "text": "Egg" });
@@ -54,7 +88,8 @@ insertIngredient({ "id": "gk38", "text": "Bacon" });
 insertIngredient({ "id": "a638", "text": "Spinach" });
 
 app.get('/ingredients', function(req, res) {
-    res.send(ingredients);
+    console.log(getIngredients());
+    res.send(getIngredients());
 });
 
 app.post('/ingredients', function(req, res) {
@@ -66,6 +101,17 @@ app.post('/ingredients', function(req, res) {
     const insertStatus = insertIngredient(ingredient);
 
     res.status(200).send({ inserted: insertStatus });
+});
+
+app.post('/ingredients/delete', function(req, res) {
+    var ingredientID = req.body.id;
+
+    console.log(req.headers);
+    console.log(req.body);
+
+    const deleteStatus = deleteIngredient(ingredientID);
+
+    res.status(200).send({ deleteStatus: deleteStatus });
 });
 
 // Send all requests to index.html so browserHistory in React Router works
