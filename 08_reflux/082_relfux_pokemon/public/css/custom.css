@@ -1,0 +1,35 @@
+.social-items li {
+    list-style-type: none;
+    float: left;
+    margin-left: 10px;
+    margin-right: 10px;
+}
+
+.social-items li:last-child {
+    margin-right: 0;
+}
+
+.social-items li a i {
+    font-size: 4em;
+}
+
+.social-items li a i:hover {
+    color: #E91E63;
+}
+
+/* https://material.google.com/style/color.html#color-color-palette */
+
+.panel-heading-title {
+    margin-top: 0;
+    margin-bottom: 0;
+}
+
+.list-item-custom .badge a {
+    color: #ffffff;
+    text-decoration: none;
+}
+
+.list-item-custom .badge a:hover {
+    color: #E91E63;
+    text-decoration: none;
+}
